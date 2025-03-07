@@ -5,17 +5,22 @@
  * GitHub Repository: https://github.com/beamkiller/breakdance-navigator
  */
  
-/*
-Plugin Name: Breakdance QuickNav
-Plugin URI: https://github.com/deckerweb/breakdance-quicknav
-Description: Adds a quick-access navigator to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, Global Blocks, Popups, and Pages edited with Breakdance, along with some other essential settings.
-Version: 1.0.0
-Author: David Decker
-Author URI: https://deckerweb.de/
-Text Domain: breakdance-quicknav
-License: GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-*/
+/**
+ * Plugin Name: Breakdance QuickNav
+ * Plugin URI: https://github.com/deckerweb/breakdance-quicknav
+ * Description: Adds a quick-access navigator (aka QuickNav) to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, Global Blocks, Popups, and Pages edited with Breakdance, along with some other essential settings.
+ * Version: 1.0.0
+ * Author: David Decker – DECKERWEB
+ * Author URI: https://deckerweb.de/
+ * Text Domain: breakdance-quicknav
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Requires WP: 6.7
+ * Requires PHP: 7.4
+ *
+ * Original Copyright (c) 2024 Peter Kulcsár
+ * Copyright (c) 2025 David Decker – DECKERWEB
+ */
 
 /** Prevent direct access */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,7 +47,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                 /* Style for the separator */
                 #wp-admin-bar-ddw-breakdance-quicknav > .ab-sub-wrapper #wp-admin-bar-bdqn-settings {
                     border-bottom: 1px dashed rgba(255, 255, 255, 0.33);
-                    /* margin: 0 0 5px 0; */
                     padding-bottom: 5px;
                 }
                 '
@@ -82,7 +86,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             $icon_path  = trailingslashit( WP_PLUGIN_DIR ) . $bd_builder_icon;
             $icon_url   = file_exists( $icon_path ) ? plugins_url( $bd_builder_icon, dirname( __FILE__ ) ) : $bd_packaged_icon;
             $icon_url   = ( defined( 'BDQN_ICON' ) && 'yellow' === BDQN_ICON ) ? $bd_packaged_icon : $icon_url;
-            $title_html = '<img src="' . esc_url( $icon_url ) . '" style="width:16px;height:16px;padding-right:6px;vertical-align:middle;" alt="">' . $bdqn_name;
+            $title_html = '<img src="' . esc_url( $icon_url ) . '" style="display:inline-block;padding-right:6px;vertical-align:middle;width:16px;height:16px;" alt="">' . $bdqn_name;
             $title_html = wp_kses( $title_html, array(
                 'img' => array(
                     'src'   => array(),
@@ -91,6 +95,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                 ),
             ) );
 
+            /** Main menu item */
             $wp_admin_bar->add_node( array(
                 'id'    => 'ddw-breakdance-quicknav',
                 'title' => $title_html,
@@ -131,7 +136,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
         }
 
         /**
-         * Add all Breakdance-edited Pages
+         * Add up to 10 Breakdance-edited Pages
          */
         private function add_breakdance_pages_to_admin_bar( $wp_admin_bar ) {
             $bd_pages = $this->get_breakdance_pages();
@@ -454,7 +459,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             $settings_submenus = array(
                 'global_styles'    => __( 'Global Styles', 'breakdance-quicknav' ),
                 'theme_disabler'   => __( 'Theme', 'breakdance-quicknav' ),
-                'woocommerce'      => __( 'WooCommerce', 'breakdance-quicknav' ),
                 'permissions'      => __( 'User Access', 'breakdance-quicknav' ),
                 'maintenance-mode' => __( 'Maintenance', 'breakdance-quicknav' ),
                 'bloat_eliminator' => __( 'Performance', 'breakdance-quicknav' ),
@@ -465,17 +469,29 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                 'design_library'   => __( 'Design Library', 'breakdance-quicknav' ),
                 'header_footer'    => __( 'Custom Code', 'breakdance-quicknav' ),
                 'tools'            => __( 'Tools', 'breakdance-quicknav' ),
-                'license'          => __( 'License', 'breakdance-quicknav' ),
             );
             
+            /** Official extension */
             if ( defined( 'BREAKDANCE_AI_VERSION' ) ) {
                 $settings_submenus[ 'ai' ] = __( 'AI Assistant', 'breakdance-quicknav' );
             }
             
+            /** Official extension */
             if ( function_exists( 'Breakdance\MigrationMode\saveActivatingUserIp' ) ) {
                 $settings_submenus[ 'migration-mode' ] = __( 'Migration Mode', 'breakdance-quicknav' );
             }
+            
+            /** Only if WooCommerce plugin is active */
+            if ( class_uses( 'WooCommerce' ) ) {
+                $settinngs_submenus[ 'woocommerce' ] = __( 'WooCommerce', 'breakdance-quicknav' );
+            }
 
+            /** License always at the bottom, before filter */
+            $settings_submenus[ 'license' ] = __( 'License', 'breakdance-quicknav' );
+            
+            /** Make settings array filterable */
+            apply_filters( 'ddw/quicknav/bd_settings', $settings_submenus );
+            
             foreach ( $settings_submenus as $tab => $title ) {
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-settings-' . sanitize_key( $tab ),
@@ -497,7 +513,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
         }
         
         /**
-         * Add Headspin submenu if the plugin is active (Headspin Copilot)
+         * Add Headspin Copilot submenu if the plugin is active
          */
         private function add_headspin_submenu( $wp_admin_bar ) {
 
