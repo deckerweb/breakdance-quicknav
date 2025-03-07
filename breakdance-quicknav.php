@@ -86,7 +86,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             $icon_path  = trailingslashit( WP_PLUGIN_DIR ) . $bd_builder_icon;
             $icon_url   = file_exists( $icon_path ) ? plugins_url( $bd_builder_icon, dirname( __FILE__ ) ) : $bd_packaged_icon;
             $icon_url   = ( defined( 'BDQN_ICON' ) && 'yellow' === BDQN_ICON ) ? $bd_packaged_icon : $icon_url;
-            $title_html = '<img src="' . esc_url( $icon_url ) . '" style="display:inline-block;padding-right:6px;vertical-align:middle;width:16px;height:16px;" alt="">' . $bdqn_name;
+            $title_html = '<img src="' . esc_url( $icon_url ) . '" style="display:inline-block;padding-right:6px;vertical-align:middle;width:16px;height:16px;" alt="" />' . $bdqn_name;
             $title_html = wp_kses( $title_html, array(
                 'img' => array(
                     'src'   => array(),
