@@ -1,7 +1,5 @@
 # Breakdance QuickNav
 
-_Note:_ This plugin was originally developed by Peter Kulcsár under the name "Breakdance Navigator". Since it is licensed GPL v2 or later, I decided to fork it to add some more/other links and tweak some things. – If you like the original version, fine! Use it and support the original author!
-
 The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Builder Templates, Headers, Footers, Global Blocks, Popups, and (regular WordPress) Pages edited with Breakdance, along with other essential settings.
 
 ### Tested Compatibility
@@ -10,6 +8,8 @@ The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPres
 - **WPSix Exporter**: 1.0.8
 - **WordPress**: 6.7.2
 - **PHP**: 8.3+
+
+_Note:_ This plugin was originally developed by [Peter Kulcsár](https://github.com/beamkiller) under the name ["Breakdance Navigator"](https://github.com/beamkiller/breakdance-navigator). Since it is licensed GPL v2 or later, I decided to fork it to add some more/other links and tweak some things. – If you like the original version, fine! Use it and support the original author!
 
 ---
 
