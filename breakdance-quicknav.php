@@ -176,6 +176,27 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
         }
 
         /**
+         * Get items of a Breakdance template type. Helper function.
+         *
+         * @uses get_posts()
+         *
+         * @param string $post_type Slug of post type to query for.
+         */
+        private function get_breakdance_template_type( $post_type ) {
+            $args = array(
+                'post_type'      => sanitize_key( $post_type ),
+                'posts_per_page' => 10,
+                'post_status'    => 'publish',
+                'orderby'        => 'modified',
+                'order'          => 'DESC',
+            );
+            
+            apply_filters( 'ddw/quicknav/bd_get_template_type', $args, $post_type );
+            
+            return get_posts( $args );
+        }
+        
+        /**
          * Add Breakdance Templates submenu (parent node)
          */
         private function add_templates_submenu( $wp_admin_bar ) {
@@ -193,7 +214,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
          * Add up to 10 Breakdance Templates (child nodes)
          */
         private function add_templates_to_admin_bar( $wp_admin_bar ) {
-            $templates = $this->get_breakdance_templates();
+            $templates = $this->get_breakdance_template_type( 'breakdance_template' );
 
             if ( $templates ) {
                 foreach ( $templates as $template ) {
@@ -215,20 +236,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
         }
 
         /**
-         * Get Breakdance Templates. Helper function.
-         */
-        private function get_breakdance_templates() {
-            $args = array(
-                'post_type'      => 'breakdance_template',
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-            );
-            return get_posts( $args );
-        }
-
-        /**
          * Add Breakdance Headers submenu (parent node)
          */
         private function add_headers_submenu( $wp_admin_bar ) {
@@ -246,7 +253,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
          * Add up to 10 Breakdance Header templates (child nodes)
          */
         private function add_headers_to_admin_bar( $wp_admin_bar ) {
-            $headers = $this->get_breakdance_headers();
+            $headers = $this->get_breakdance_template_type( 'breakdance_header' );
 
             if ( $headers ) {
                 foreach ( $headers as $header ) {
@@ -260,20 +267,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     ) );
                 }  // end foreach
             }  // end if
-        }
-
-        /**
-         * Get Breakdance Header templates. Helper function.
-         */
-        private function get_breakdance_headers() {
-            $args = array(
-                'post_type'      => 'breakdance_header',
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-            );
-            return get_posts( $args );
         }
 
         /**
@@ -294,7 +287,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
          * Add up to 10 Breakdance Footer templates (child nodes)
          */
         private function add_footers_to_admin_bar( $wp_admin_bar ) {
-            $footers = $this->get_breakdance_footers();
+            $footers = $this->get_breakdance_template_type( 'breakdance_footer' );
 
             if ( $footers ) {
                 foreach ( $footers as $footer ) {
@@ -308,20 +301,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     ) );
                 }
             }
-        }
-
-        /**
-         * Get Breakdance Footer templates. Helper function.
-         */
-        private function get_breakdance_footers() {
-            $args = array(
-                'post_type'      => 'breakdance_footer',
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-            );
-            return get_posts( $args );
         }
 
         /**
@@ -342,7 +321,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
          * Add up to 10 Breakdance Global Block templates (child nodes)
          */
         private function add_global_blocks_to_admin_bar( $wp_admin_bar ) {
-            $blocks = $this->get_breakdance_global_blocks();
+            $blocks = $this->get_breakdance_template_type( 'breakdance_block' );
 
             if ( $blocks ) {
                 foreach ( $blocks as $block ) {
@@ -356,20 +335,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     ) );
                 }
             }
-        }
-
-        /**
-         * Get Breakdance Global Blocks. Helper function.
-         */
-        private function get_breakdance_global_blocks() {
-            $args = array(
-                'post_type'      => 'breakdance_block',
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-            );
-            return get_posts( $args );
         }
 
         /**
@@ -390,7 +355,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
          * Add up to 10 Breakdance Popup templates (child nodes)
          */
         private function add_popups_to_admin_bar( $wp_admin_bar ) {
-            $popups = $this->get_breakdance_popups();
+            $popups = $this->get_breakdance_template_type( 'breakdance_popup' );
 
             if ( $popups ) {
                 foreach ( $popups as $popup ) {
@@ -404,20 +369,6 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     ) );
                 }
             }
-        }
-
-        /**
-         * Get Breakdance Popup templates. Helper function.
-         */
-        private function get_breakdance_popups() {
-            $args = array(
-                'post_type'      => 'breakdance_popup',
-                'posts_per_page' => 10,
-                'post_status'    => 'publish',
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-            );
-            return get_posts( $args );
         }
 
         /**
@@ -482,7 +433,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             }
             
             /** Only if WooCommerce plugin is active */
-            if ( class_uses( 'WooCommerce' ) ) {
+            if ( class_exists( 'WooCommerce' ) ) {
                 $settinngs_submenus[ 'woocommerce' ] = __( 'WooCommerce', 'breakdance-quicknav' );
             }
 
