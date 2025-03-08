@@ -56,7 +56,7 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 
 ## Installation
 
-1. Click the `Code` button above and select `Download ZIP` to download the plugin.
+1. Go to the [**Releases** page](https://github.com/deckerweb/breakdance-quicknav/releases) and download the latest version package, named with the plugin title, for example  `breakdance-quicknav-v100.zip`
 2. In your WordPress admin dashboard, go to **Plugins** > **Add New**, then click on `Upload Plugin` and select the downloaded ZIP file.
 3. Activate the plugin.
 4. Once activated, you’ll see the **BD** menu item in the Admin Bar.
@@ -72,7 +72,7 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 
 ---
 
-## Changelog
+## [Changelog / Releases](https://github.com/deckerweb/breakdance-quicknav/releases)
 
 ### 1.0.0
 - Initial release
