@@ -18,7 +18,7 @@ _Note:_ This plugin was originally developed by [Peter Kulcsár](https://github.
 
 ## Quick Links
 
-[Differences](#differences) | [Support Project](#support-the-project) | [Installation](#installation) | [How this Plugin Works](#how-this-plugin-works) | [Changelog / Releases](#changelog-releases) | [Plugin Scope / Disclaimer](#plugin-scope-disclaimer)
+[Differences](#differences) | [Support Project](#support-the-project) | [Installation](#installation) | [How this Plugin Works](#how-this-plugin-works) | [Changelog / Releases](#changelog--releases) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
 
 ---
 
