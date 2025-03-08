@@ -1,6 +1,6 @@
 # Breakdance QuickNav
 
-<img src="https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/master/assets-github/breakdance-quicknav-screenshot.png" data-canonical-src="https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/master/assets-github/breakdance-quicknav-screenshot.png" width="772" height="404" />
+![Breakdance QuickNav plugin in action](https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/master/assets-github/breakdance-quicknav-screenshot.png)
 
 The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Builder Templates, Headers, Footers, Global Blocks, Popups, and (regular WordPress) Pages edited with Breakdance, along with other essential settings.
 
