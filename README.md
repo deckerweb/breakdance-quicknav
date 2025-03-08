@@ -6,6 +6,7 @@ The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPres
 - **Breakdance**: 2.3.0+ / 2.4.1 Beta
 - **Headspin Copilot**: 1.4.1
 - **WPSix Exporter**: 1.0.8
+- **Yabe Webfont** 1.0.70 / 2.0.70
 - **WordPress**: 6.7.2
 - **PHP**: 8.3+
 
