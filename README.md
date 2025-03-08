@@ -49,6 +49,7 @@ If you find this project helpful, consider showing your support by buying me a c
 
 Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through the following options:
 
+- [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
 - [Buy me a coffee](https://buymeacoffee.com/daveshine)
 
 ---
