@@ -18,3 +18,4 @@ node_modules/
 .git/
 .gitattributes
 .gitignore
+_config.yml
