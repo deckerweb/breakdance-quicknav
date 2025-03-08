@@ -76,6 +76,7 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 - Initial release
 - _Note:_ Forked from "Breakdance Navigator" v1.0.1 by Peter Kulcsár (licensed GPL v2 or later)
 - Added support for "Breakdanke Migration" plugin (official add-on)
+- Added support for "Yabe Webfont" plugin (third-party; free & Pro version!)
 - Added support for "WPSix Exporter" plugin (third-party)
 - Improved support for "Breakdance AI Assistant" (official add-on)
 

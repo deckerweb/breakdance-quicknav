@@ -114,6 +114,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             $this->add_settings_submenu( $wp_admin_bar );
             $this->add_plugin_support_group( $wp_admin_bar );  // group node
             $this->add_headspin_submenu( $wp_admin_bar );
+            $this->add_yabe_webfont_submenu( $wp_admin_bar );
             $this->add_wpsix_exporter_submenu( $wp_admin_bar );
             $this->add_footer_group( $wp_admin_bar );  // group node
             $this->add_links_submenu( $wp_admin_bar );
@@ -299,8 +300,8 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                         'href'   => esc_url( $edit_link ),
                         'parent' => 'bdqn-footers',
                     ) );
-                }
-            }
+                }  // end foreach
+            }  // end if
         }
 
         /**
@@ -333,8 +334,8 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                         'href'   => esc_url( $edit_link ),
                         'parent' => 'bdqn-global-blocks',
                     ) );
-                }
-            }
+                }  // end foreach
+            }  // end if
         }
 
         /**
@@ -367,8 +368,8 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                         'href'   => esc_url( $edit_link ),
                         'parent' => 'bdqn-popups',
                     ) );
-                }
-            }
+                }  // end foreach
+            }  // end if
         }
 
         /**
@@ -478,6 +479,21 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             }
         }
 
+        /**
+         * Add Yabe Webfont (free & Pro) submenu if the plugin is active
+         */
+        private function add_yabe_webfont_submenu( $wp_admin_bar ) {
+        
+            if ( class_exists( '\Yabe\Webfont\Plugin' ) ) {
+                $wp_admin_bar->add_node( array(
+                    'id'     => 'bdqn-yabe-webfont',
+                    'title'  => esc_html__( 'Yabe Webfont', 'breakdance-quicknav' ),
+                    'href'   => esc_url( admin_url( 'themes.php?page=yabe_webfont' ) ),
+                    'parent' => 'bdqn-plugins',
+                ) );
+            }
+        }
+        
         /**
          * Add WPSix Exporter submenu if the plugin is active
          */
