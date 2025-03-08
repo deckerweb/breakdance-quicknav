@@ -609,17 +609,17 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
             ) );
 
             $about_links = array(
-                'author'       => array(
+                'author' => array(
                     'title' => __( 'Author: David Decker', 'breakdance-quicknav' ),
                     'url'   => 'https://deckerweb.de/',
                 ),
-                'github'       => array(
+                'github' => array(
                     'title' => __( 'Plugin on GitHub', 'breakdance-quicknav' ),
                     'url'   => 'https://github.com/deckerweb/breakdance-quicknav',
                 ),
-                'buymeacoffee' => array(
+                'kofi' => array(
                     'title' => __( 'Buy Me a Coffee', 'breakdance-quicknav' ),
-                    'url'   => 'https://buymeacoffee.com/daveshine',
+                    'url'   => 'https://ko-fi.com/deckerweb',
                 ),
             );
 
