@@ -594,7 +594,7 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     'parent' => 'bdqn-links',
                     'meta'   => array( 'target' => '_blank' ),
                 ) );
-            }
+            }  // end foreach
         }
 
         /**
@@ -631,13 +631,13 @@ if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) {
                     'parent' => 'bdqn-about',
                     'meta'   => array( 'target' => '_blank' ),
                 ) );
-            }
+            }  // end foreach
         }
-    }
+    }  // end of class
 
     /** Don't do anything if Breakdance Navigator plugin is already active */
     if ( ! class_exists( 'Breakdance_Navigator' ) ) {
         new DDW_Breakdance_QuickNav();
     }
     
-}  // end of class
+}  // end if
