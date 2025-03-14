@@ -101,3 +101,7 @@ _Disclaimer 1:_ So far I will support the plugin for breaking errors to keep it 
 _Disclaimer 2:_ All of the above might change. I do all this stuff only in my spare time.
 
 _Most of all:_ Have fun building great Breakdance powered sites!!! ;-)
+
+---
+
+Copyright © 2025 David Decker – DECKERWEB.de
