@@ -18,13 +18,37 @@ _Note:_ This plugin was originally developed by [Peter Kulcsár](https://github.
 
 ## Quick Links
 
-[Differences](#differences) | [Support Project](#support-the-project) | [Installation](#installation) | [How Plugin Works](#how-this-plugin-works) | [Changelog](#changelog--releases) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+[Support Project](#support-the-project) | [Installation](#installation) | [Differences](#differences) | [How Plugin Works](#how-this-plugin-works) | [Changelog](#changelog--releases) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+
+---
+
+## Support the Project
+
+If you find this project helpful, consider showing your support by buying me a coffee! Your contribution helps me keep developing and improving this plugin.
+
+Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through the following options:
+
+- [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
+- [Buy me a coffee](https://buymeacoffee.com/daveshine)
+- [PayPal donation](https://paypal.me/deckerweb)
+- [Join my **newsletter** for DECKERWEB WordPress Plugins](https://eepurl.com/gbAUUn)
+
+---
+
+## Installation
+
+**Quick Install:**
+1. **Download ZIP:** [**breakdance-quicknav.zip**](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip)
+2. Upload via WordPress Plugins > Add New > Upload Plugin
+3. Once activated, you’ll see the **BD** menu item in the Admin Bar.
 
 ---
 
 ## Differences
 
 **What Does "Breakdance QuickNav" _Different_ than "Breakdance Navigator"?**
+
+_Good question, hehe :-)_
 
 ### 1) Intended usage for Administrator users only!
 Therefore the default capability to see the new Admin Bar node is set to `activate_plugins`. You can change this via the constant `BDQN_VIEW_CAPABILITY` – define that via wp-config.php or via a Code Snippet plugin: `define( 'BDQN_VIEW_CAPABILITY', 'edit_posts' );`
@@ -48,26 +72,6 @@ I carefully updated the links from the Breakdance community, including plugin/ l
 ### 7) Other tweaks.
 a) There is another check for Breakdance plugin itself: if no Breakdance active then the whole Admin Bar addition is NOT loaded and displayed. Makes sense.
 b) If for whatever reason you have already "Breakdance Navigator" installed and ACTIVATED, my plugin (Breakdance QuickNav) will not display anything (even if activated). So it makes sense you decide for one or the other ... 🙂
-
----
-
-## Support the Project
-
-If you find this project helpful, consider showing your support by buying me a coffee! Your contribution helps me keep developing and improving this plugin.
-
-Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through the following options:
-
-- [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
-- [Buy me a coffee](https://buymeacoffee.com/daveshine)
-
----
-
-## Installation
-
-**Quick Install**
-1. Download [breakdance-quicknav.zip](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip)
-2. Upload via WordPress Plugins > Add New > Upload Plugin
-3. Once activated, you’ll see the **BD** menu item in the Admin Bar.
 
 ---
 
