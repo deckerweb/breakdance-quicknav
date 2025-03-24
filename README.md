@@ -108,4 +108,6 @@ _Most of all:_ Have fun building great Breakdance powered sites!!! ;-)
 
 ---
 
+Icon used in promo graphics: © Remix Icon
+
 Copyright © 2025 David Decker – DECKERWEB.de
