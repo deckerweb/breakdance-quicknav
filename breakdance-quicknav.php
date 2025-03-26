@@ -3,24 +3,26 @@
 Forked from "Breakdance Navigator" by Peter Kulcsár
 License: GPL v2 or later
 GitHub Repository: https://github.com/beamkiller/breakdance-navigator
-Original Copyright: © 2024 Peter Kulcsár
+Original Copyright: © 2024, Peter Kulcsár
 */
  
 /*
 Plugin Name:  Breakdance QuickNav
 Plugin URI:   https://github.com/deckerweb/breakdance-quicknav
 Description:  Adds a quick-access navigator (aka QuickNav) to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, Global Blocks, Popups, and Pages edited with Breakdance, along with some other essential settings.
+Project:      Code Snippet: DDW Breakdance QuickNav
 Version:      1.1.0
 Author:       David Decker – DECKERWEB
 Author URI:   https://deckerweb.de/
 Text Domain:  breakdance-quicknav
+Domain Path:  /languages/
 License:      GPL v2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Requires WP:  6.7
 Requires PHP: 7.4
 
 Original Copyright: © 2024 Peter Kulcsár
-Copyright:    © 2025 David Decker – DECKERWEB
+Copyright:    © 2025, David Decker – DECKERWEB
 
 TESTED WITH:
 Product			Versions
@@ -33,7 +35,8 @@ Breakdance Pro	2.3.0 ... 2.4.0 Beta
 VERSION HISTORY:
 Date        Version     Description
 --------------------------------------------------------------------------------------------------------------
-2025-03-??	1.1.0       New: Show Admin Bar also in Block Editor full screen mode
+2025-03-??	1.1.0       New: Adjust the number of shown templates via constant (default: up to 20)
+                        New: Show Admin Bar also in Block Editor full screen mode
                         New: Add info to Site Health Debug, useful for our constants for custom tweaking
 2025-03-08	1.0.0	    Initial release
 2025-03-07	0.5.0       Internal test version
@@ -51,6 +54,7 @@ class DDW_Breakdance_QuickNav {
 
     /** Class constants & variables */
     private const VERSION = '1.1.0';
+    private const NUMBER_OF_TEMPLATES = 20;
 
     /**
      * Constructor
@@ -251,12 +255,25 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
+     * Number of templates/pages to query for. Can be tweaked via constant.
+     *   (Helper function)
+     *
+     * @return int Number of templates.
+     */
+    private function number_of_templates() {
+            
+        $number_of_templates = ( defined( 'BDQN_NUMBER_TEMPLATES' ) ) ? (int) BDQN_NUMBER_TEMPLATES : self::VERSION;
+        
+        return $number_of_templates;
+    }
+    
+    /**
      * Get all Breakdance-edited Pages. Helper function.
      */
     private function get_breakdance_pages() {
         $args = array(
             'post_type'      => 'page',
-            'posts_per_page' => 10,
+            'posts_per_page' => absint( $this->number_of_templates() ),
             'post_status'    => 'publish',
             'orderby'        => 'modified',
             'order'          => 'DESC',
@@ -280,7 +297,7 @@ class DDW_Breakdance_QuickNav {
     private function get_breakdance_template_type( $post_type ) {
         $args = array(
             'post_type'      => sanitize_key( $post_type ),
-            'posts_per_page' => 10,
+            'posts_per_page' => absint( $this->number_of_templates() ),
             'post_status'    => 'publish',
             'orderby'        => 'modified',
             'order'          => 'DESC',
@@ -306,7 +323,7 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add up to 10 Breakdance Templates (child nodes)
+     * Add Breakdance Templates (child nodes)
      */
     private function add_templates_to_admin_bar( $wp_admin_bar ) {
         $templates = $this->get_breakdance_template_type( 'breakdance_template' );
@@ -345,7 +362,7 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add up to 10 Breakdance Header templates (child nodes)
+     * Add Breakdance Header templates (child nodes)
      */
     private function add_headers_to_admin_bar( $wp_admin_bar ) {
         $headers = $this->get_breakdance_template_type( 'breakdance_header' );
@@ -379,7 +396,7 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add up to 10 Breakdance Footer templates (child nodes)
+     * Add Breakdance Footer templates (child nodes)
      */
     private function add_footers_to_admin_bar( $wp_admin_bar ) {
         $footers = $this->get_breakdance_template_type( 'breakdance_footer' );
@@ -413,7 +430,7 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add up to 10 Breakdance Global Block templates (child nodes)
+     * Add Breakdance Global Block templates (child nodes)
      */
     private function add_global_blocks_to_admin_bar( $wp_admin_bar ) {
         $blocks = $this->get_breakdance_template_type( 'breakdance_block' );
@@ -447,7 +464,7 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add up to 10 Breakdance Popup templates (child nodes)
+     * Add Breakdance Popup templates (child nodes)
      */
     private function add_popups_to_admin_bar( $wp_admin_bar ) {
         $popups = $this->get_breakdance_template_type( 'breakdance_popup' );
@@ -609,12 +626,13 @@ class DDW_Breakdance_QuickNav {
     private function add_footer_group( $wp_admin_bar ) {
         
         if ( defined( 'BDQN_DISABLE_FOOTER' ) && 'yes' === BDQN_DISABLE_FOOTER ) {
-            return;
+            return $wp_admin_bar;
         }
         
         $wp_admin_bar->add_group( array(
             'id'     => 'bdqn-footer',
             'parent' => 'ddw-breakdance-quicknav',
+            'meta'   => array( 'class' => 'ab-sub-secondary' ),
         ) );
     }
     
@@ -686,7 +704,7 @@ class DDW_Breakdance_QuickNav {
                 'title'  => esc_html( $info[ 'title' ] ),
                 'href'   => esc_url( $info[ 'url' ] ),
                 'parent' => 'bdqn-links',
-                'meta'   => array( 'target' => '_blank' ),
+                'meta'   => array( 'target' => '_blank', 'rel' => 'nofollow noopener noreferrer' ),
             ) );
         }  // end foreach
     }
@@ -723,7 +741,7 @@ class DDW_Breakdance_QuickNav {
                 'title'  => esc_html( $info[ 'title' ] ),
                 'href'   => esc_url( $info[ 'url' ] ),
                 'parent' => 'bdqn-about',
-                'meta'   => array( 'target' => '_blank' ),
+                'meta'   => array( 'target' => '_blank', 'rel' => 'nofollow noopener noreferrer' ),
             ) );
         }  // end foreach
     }

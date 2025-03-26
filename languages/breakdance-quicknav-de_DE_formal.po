@@ -1,0 +1,285 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Breakdance QuickNav\n"
+"POT-Creation-Date: 2025-03-26 10:50+0100\n"
+"PO-Revision-Date: 2025-03-26 10:53+0100\n"
+"Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
+"Language-Team: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
+"Language: de_DE@formal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: breakdance-quicknav.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: breakdance-quicknav.php:176
+msgid "BD"
+msgstr "BD"
+
+#: breakdance-quicknav.php:229
+msgid "Pages"
+msgstr "Seiten"
+
+#: breakdance-quicknav.php:317
+msgid "Templates"
+msgstr "Templates"
+
+#: breakdance-quicknav.php:356
+msgid "Headers"
+msgstr "Kopfzeilen"
+
+#: breakdance-quicknav.php:390
+msgid "Footers"
+msgstr "Fußzeilen"
+
+#: breakdance-quicknav.php:424
+msgid "Global Blocks"
+msgstr "Globale Blöcke"
+
+#: breakdance-quicknav.php:458
+msgid "Popups"
+msgstr "Popups"
+
+#: breakdance-quicknav.php:492
+msgid "Form Submissions"
+msgstr "Ausgefüllte Formulare"
+
+#: breakdance-quicknav.php:504 breakdance-quicknav.php:532
+msgid "Design Library"
+msgstr "Designbibliothek"
+
+#: breakdance-quicknav.php:516
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: breakdance-quicknav.php:523
+msgid "Global Styles"
+msgstr "Globale Styles"
+
+#: breakdance-quicknav.php:524
+msgid "Theme"
+msgstr "Theme"
+
+#: breakdance-quicknav.php:525
+msgid "User Access"
+msgstr "Benutzerzugriff"
+
+#: breakdance-quicknav.php:526
+msgid "Maintenance"
+msgstr "Wartung"
+
+#: breakdance-quicknav.php:527
+msgid "Performance"
+msgstr "Leistung"
+
+#: breakdance-quicknav.php:528
+msgid "API Keys"
+msgstr "API-Schlüssel"
+
+#: breakdance-quicknav.php:529
+msgid "Post Types"
+msgstr "Beitragstypen"
+
+#: breakdance-quicknav.php:530
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: breakdance-quicknav.php:531
+msgid "Privacy"
+msgstr "Datenschutz"
+
+#: breakdance-quicknav.php:533
+msgid "Custom Code"
+msgstr "Benutzerdefinierter Code"
+
+#: breakdance-quicknav.php:534
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: breakdance-quicknav.php:539
+msgid "AI Assistant"
+msgstr "KI-Assistent"
+
+#: breakdance-quicknav.php:544
+msgid "Migration Mode"
+msgstr "Migrationsmodus"
+
+#: breakdance-quicknav.php:549
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: breakdance-quicknav.php:553
+msgid "License"
+msgstr "Lizenz"
+
+#: breakdance-quicknav.php:586
+msgid "Headspin Copilot"
+msgstr "Headspin Copilot"
+
+#: breakdance-quicknav.php:601
+msgid "Yabe Webfont"
+msgstr "Yabe Webfont"
+
+#: breakdance-quicknav.php:616
+msgid "WPSix Exporter"
+msgstr "WPSix Exporter"
+
+#: breakdance-quicknav.php:645
+msgid "Links"
+msgstr "Links"
+
+#: breakdance-quicknav.php:652
+msgid "Breakdance HQ"
+msgstr "Breakdance Zentrale"
+
+#: breakdance-quicknav.php:656
+msgid "Learn Breakdance (Tutorials)"
+msgstr "Breakdance lernen (Tutorials)"
+
+#: breakdance-quicknav.php:660
+msgid "Breakdance Documentation"
+msgstr "Breakdance Dokumentation"
+
+#: breakdance-quicknav.php:664
+msgid "Breakdance YouTube Channel"
+msgstr "Breakdance YouTube-Kanal"
+
+#: breakdance-quicknav.php:668
+msgid "Breakdance FB Group"
+msgstr "Breakdance FB Gruppe"
+
+#: breakdance-quicknav.php:672
+msgid "breakdance4fun (Tutorials, Tips, Resources)"
+msgstr "breakdance4fun (Anleitungen, Tipps, Ressourcen)"
+
+#: breakdance-quicknav.php:676
+msgid "Breakdance Unofficial Discord"
+msgstr "Breakdance Inoffizieller Discord"
+
+#: breakdance-quicknav.php:680
+msgid "Headspin"
+msgstr "Headspin"
+
+#: breakdance-quicknav.php:684
+msgid "Moreblocks"
+msgstr "Moreblocks"
+
+#: breakdance-quicknav.php:688
+msgid "Breakerblocks"
+msgstr "Breakerblocks"
+
+#: breakdance-quicknav.php:692
+msgid "BD Library Awesome"
+msgstr "BD Library Awesome"
+
+#: breakdance-quicknav.php:696
+msgid "Bdblox"
+msgstr "Bdblox"
+
+#: breakdance-quicknav.php:718
+msgid "About"
+msgstr "Über"
+
+#: breakdance-quicknav.php:725
+msgid "Author: David Decker"
+msgstr "Autor: David Decker"
+
+#: breakdance-quicknav.php:729
+msgid "Plugin on GitHub"
+msgstr "Plugin auf GitHub"
+
+#: breakdance-quicknav.php:733
+msgid "Buy Me a Coffee"
+msgstr "Kaufen Sie mir einen Kaffee"
+
+#: breakdance-quicknav.php:825
+msgctxt "Site Health Debug info"
+msgid "Undefined"
+msgstr "Nicht definiert"
+
+#: breakdance-quicknav.php:826
+msgctxt "Site Health Debug info"
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: breakdance-quicknav.php:827
+msgctxt "Site Health Debug info"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: breakdance-quicknav.php:828
+msgctxt "Site Health Debug info"
+msgid "value"
+msgstr "Wert"
+
+#. Plugin Name of the plugin/theme
+#: breakdance-quicknav.php:833
+msgid "Breakdance QuickNav"
+msgstr "Breakdance QuickNav"
+
+#: breakdance-quicknav.php:833
+msgid "Plugin"
+msgstr "Plugin"
+
+#: breakdance-quicknav.php:838
+msgid "Plugin version"
+msgstr "Pluginversion"
+
+#: breakdance-quicknav.php:842
+msgid "WordPress Install Type"
+msgstr "WordPress Installationstyp"
+
+#: breakdance-quicknav.php:843
+msgid "Multisite install"
+msgstr "Multisite-Installation"
+
+#: breakdance-quicknav.php:843
+msgid "Single Site install"
+msgstr "Single-Site-Installation"
+
+#: breakdance-quicknav.php:865
+msgid "Plugin not installed"
+msgstr "Plugin nicht installiert"
+
+#: breakdance-quicknav.php:912
+msgctxt "Plugins page listing"
+msgid "Donate"
+msgstr "Spenden"
+
+#: breakdance-quicknav.php:918
+msgctxt "Plugins page listing"
+msgid "Join our Newsletter"
+msgstr "Jetzt Newsletter"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/deckerweb/breakdance-quicknav"
+msgstr "https://github.com/deckerweb/breakdance-quicknav"
+
+#. Description of the plugin/theme
+msgid ""
+"Adds a quick-access navigator (aka QuickNav) to the WordPress Admin Bar "
+"(Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, "
+"Global Blocks, Popups, and Pages edited with Breakdance, along with some "
+"other essential settings."
+msgstr ""
+"Fügt der WordPress Admin Bar (Toolbar) einen Schnellzugriffsnavigator (auch "
+"QuickNav genannt) hinzu. Er ermöglicht den einfachen Zugriff auf Breakdance-"
+"Templates, Header- und Footer-Templates, Globale Blöcke, Popups und Seiten, "
+"die mit Breakdance bearbeitet werden, sowie auf einige andere wichtige "
+"Einstellungen."
+
+#. Author of the plugin/theme
+msgid "David Decker – DECKERWEB"
+msgstr "David Decker - DECKERWEB"
+
+#. Author URI of the plugin/theme
+msgid "https://deckerweb.de/"
+msgstr "https://deckerweb.de/"
