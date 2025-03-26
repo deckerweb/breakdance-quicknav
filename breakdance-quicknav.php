@@ -16,7 +16,7 @@ Author:       David Decker – DECKERWEB
 Author URI:   https://deckerweb.de/
 Text Domain:  breakdance-quicknav
 Domain Path:  /languages/
-License:      GPL v2 or later
+License:      GPL-2.0-or-later 
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Requires WP:  6.7
 Requires PHP: 7.4
@@ -46,7 +46,6 @@ Date        Version     Description
 
 /** Prevent direct access */
 if ( ! defined( 'ABSPATH' ) ) exit;  // Exit if accessed directly.
-
 
 if ( ! class_exists( 'DDW_Breakdance_QuickNav' ) ) :
 
@@ -144,10 +143,19 @@ class DDW_Breakdance_QuickNav {
         
         $inline_css = sprintf(
             '
-            /* Style for the separator */
+            /* for the separator */
             #wp-admin-bar-ddw-breakdance-quicknav > .ab-sub-wrapper #wp-admin-bar-bdqn-settings {
                 border-bottom: 1px dashed rgba(255, 255, 255, 0.33);
                 padding-bottom: 5px;
+            }
+            
+            /* for icons */
+            #wpadminbar .has-icon .icon-svg svg {
+                display: inline-block;
+                margin-bottom: 3px;
+                vertical-align: middle;
+                width: 16px;
+                height: 16px;
             }
             '
         );
@@ -157,6 +165,45 @@ class DDW_Breakdance_QuickNav {
         }
     }
 
+    /**
+     * Number of templates/pages to query for. Can be tweaked via constant.
+     *   (Helper function)
+     *
+     * @return int Number of templates.
+     */
+    private function number_of_templates() {
+            
+        $number_of_templates = defined( 'BDQN_NUMBER_TEMPLATES' ) ? (int) BDQN_NUMBER_TEMPLATES : self::NUMBER_OF_TEMPLATES;
+        
+        return $number_of_templates;
+    }
+    
+    /**
+     * Get items of a Breakdance template type. (Helper function)
+     *
+     * @uses get_posts()
+     *
+     * @param string $post_type Slug of post type to query for.
+     */
+    private function get_breakdance_template_type( $post_type ) {
+        
+        /** only BD-edited pages have the key: '_breakdance_data' */
+        $pages_meta_query = ( 'page' === $post_type ) ? [ 'key' => '_breakdance_data', 'compare' => 'EXISTS' ] : [];
+            
+        $args = array(
+            'post_type'      => sanitize_key( $post_type ),
+            'posts_per_page' => absint( $this->number_of_templates() ),
+            'post_status'    => 'publish',
+            'orderby'        => 'modified',
+            'order'          => 'DESC',
+            'meta_query'     => [ $pages_meta_query ],  // optional
+        );
+        
+        apply_filters( 'ddw/quicknav/bd_get_template_type', $args, $post_type );
+        
+        return get_posts( $args );
+    }
+    
     /**
      * Adds the main Breakdance menu and its submenus to the Admin Bar.
      *
@@ -200,50 +247,47 @@ class DDW_Breakdance_QuickNav {
             'href'  => '#',
         ) );
 
-        /** Add submenus */
+        /** Add submenus (all group nodes!) */
+        $this->add_templates_group( $wp_admin_bar );
+        $this->add_settings_group( $wp_admin_bar );
+        $this->add_plugin_support_group( $wp_admin_bar );
+        $this->add_footer_group( $wp_admin_bar );
+    }
+
+    /**
+     * Add group node for BD-edited Pages and all BD Template types.
+     */
+    private function add_templates_group( $wp_admin_bar ) {
+        $wp_admin_bar->add_group( array(
+            'id'     => 'bdqn-group-templates',
+            'parent' => 'ddw-breakdance-quicknav',
+        ) );
+        
         $this->add_pages_submenu( $wp_admin_bar );
         $this->add_templates_submenu( $wp_admin_bar );
         $this->add_headers_submenu( $wp_admin_bar );
         $this->add_footers_submenu( $wp_admin_bar );
         $this->add_global_blocks_submenu( $wp_admin_bar );
         $this->add_popups_submenu( $wp_admin_bar );
-        $this->add_form_submissions_submenu( $wp_admin_bar );
-        $this->add_design_library_submenu( $wp_admin_bar );
-        $this->add_settings_submenu( $wp_admin_bar );
-        $this->add_plugin_support_group( $wp_admin_bar );  // group node
-        $this->add_headspin_submenu( $wp_admin_bar );
-        $this->add_yabe_webfont_submenu( $wp_admin_bar );
-        $this->add_wpsix_exporter_submenu( $wp_admin_bar );
-        $this->add_footer_group( $wp_admin_bar );  // group node
-        $this->add_links_submenu( $wp_admin_bar );
-        $this->add_about_submenu( $wp_admin_bar );
     }
-
+    
     /**
-     * Add Pages submenu (just regular WordPress Pages)
-     * NOTE: This sets the parent item; no Breakdance related stuff here, yet.
+     * Add Breakdance-edited Pages submenu (just regular WordPress Pages).
      */
     private function add_pages_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-pages',
-            'title'  => esc_html__( 'Pages', 'breakdance-quicknav' ),
+            'title'  => esc_html__( 'Pages (BD)', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'edit.php?post_type=page' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_breakdance_pages_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add up to 10 Breakdance-edited Pages
-     */
-    private function add_breakdance_pages_to_admin_bar( $wp_admin_bar ) {
-        $bd_pages = $this->get_breakdance_pages();
-
+        $bd_pages = $this->get_breakdance_template_type( 'page' );
+        
         if ( $bd_pages ) {
             foreach ( $bd_pages as $bd_page ) {
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $bd_page->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-page-' . intval( $bd_page->ID ),
                     'title'  => esc_html( $bd_page->post_title ),
@@ -253,90 +297,29 @@ class DDW_Breakdance_QuickNav {
             }  // end foreach
         }  // end if
     }
-
-    /**
-     * Number of templates/pages to query for. Can be tweaked via constant.
-     *   (Helper function)
-     *
-     * @return int Number of templates.
-     */
-    private function number_of_templates() {
-            
-        $number_of_templates = ( defined( 'BDQN_NUMBER_TEMPLATES' ) ) ? (int) BDQN_NUMBER_TEMPLATES : self::VERSION;
-        
-        return $number_of_templates;
-    }
     
     /**
-     * Get all Breakdance-edited Pages. Helper function.
-     */
-    private function get_breakdance_pages() {
-        $args = array(
-            'post_type'      => 'page',
-            'posts_per_page' => absint( $this->number_of_templates() ),
-            'post_status'    => 'publish',
-            'orderby'        => 'modified',
-            'order'          => 'DESC',
-            'meta_query'     => array(
-                array(
-                    'key'     => '_breakdance_data',  // only BD-edited pages have that
-                    'compare' => 'EXISTS',
-                ),
-            ),
-        );
-        return get_posts( $args );
-    }
-
-    /**
-     * Get items of a Breakdance template type. Helper function.
-     *
-     * @uses get_posts()
-     *
-     * @param string $post_type Slug of post type to query for.
-     */
-    private function get_breakdance_template_type( $post_type ) {
-        $args = array(
-            'post_type'      => sanitize_key( $post_type ),
-            'posts_per_page' => absint( $this->number_of_templates() ),
-            'post_status'    => 'publish',
-            'orderby'        => 'modified',
-            'order'          => 'DESC',
-        );
-        
-        apply_filters( 'ddw/quicknav/bd_get_template_type', $args, $post_type );
-        
-        return get_posts( $args );
-    }
-    
-    /**
-     * Add Breakdance Templates submenu (parent node)
+     * Add Breakdance Templates submenu.
      */
     private function add_templates_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-templates',
             'title'  => esc_html__( 'Templates', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_template' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_templates_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add Breakdance Templates (child nodes)
-     */
-    private function add_templates_to_admin_bar( $wp_admin_bar ) {
         $templates = $this->get_breakdance_template_type( 'breakdance_template' );
-
+        
         if ( $templates ) {
             foreach ( $templates as $template ) {
                 /** Skip the internal BD Fallback templates */
                 if ( strpos( $template->post_title, 'Fallback: ' ) === 0 ) {
                     continue;
                 }
-
+        
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $template->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-template-' . intval( $template->ID ),
                     'title'  => esc_html( $template->post_title ),
@@ -348,29 +331,22 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add Breakdance Headers submenu (parent node)
+     * Add Breakdance Headers submenu.
      */
     private function add_headers_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-headers',
             'title'  => esc_html__( 'Headers', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_header' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_headers_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add Breakdance Header templates (child nodes)
-     */
-    private function add_headers_to_admin_bar( $wp_admin_bar ) {
         $headers = $this->get_breakdance_template_type( 'breakdance_header' );
-
+        
         if ( $headers ) {
             foreach ( $headers as $header ) {
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $header->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-header-' . intval( $header->ID ),
                     'title'  => esc_html( $header->post_title ),
@@ -382,29 +358,22 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add Breakdance Footers submenu (parent node)
+     * Add Breakdance Footers submenu.
      */
     private function add_footers_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-footers',
             'title'  => esc_html__( 'Footers', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_footer' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_footers_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add Breakdance Footer templates (child nodes)
-     */
-    private function add_footers_to_admin_bar( $wp_admin_bar ) {
         $footers = $this->get_breakdance_template_type( 'breakdance_footer' );
-
+        
         if ( $footers ) {
             foreach ( $footers as $footer ) {
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $footer->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdn-footer-' . intval( $footer->ID ),
                     'title'  => esc_html( $footer->post_title ),
@@ -416,29 +385,22 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add Breakdance Global Blocks submenu (parent node)
+     * Add Breakdance Global Blocks submenu.
      */
     private function add_global_blocks_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-global-blocks',
             'title'  => esc_html__( 'Global Blocks', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_block' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_global_blocks_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add Breakdance Global Block templates (child nodes)
-     */
-    private function add_global_blocks_to_admin_bar( $wp_admin_bar ) {
         $blocks = $this->get_breakdance_template_type( 'breakdance_block' );
-
+        
         if ( $blocks ) {
             foreach ( $blocks as $block ) {
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $block->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-block-' . intval( $block->ID ),
                     'title'  => esc_html( $block->post_title ),
@@ -450,29 +412,22 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add Breakdance Popups submenu (parent node)
+     * Add Breakdance Popups submenu.
      */
     private function add_popups_submenu( $wp_admin_bar ) {
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-popups',
             'title'  => esc_html__( 'Popups', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_popup' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-templates',
         ) );
 
-        $this->add_popups_to_admin_bar( $wp_admin_bar );
-    }
-
-    /**
-     * Add Breakdance Popup templates (child nodes)
-     */
-    private function add_popups_to_admin_bar( $wp_admin_bar ) {
         $popups = $this->get_breakdance_template_type( 'breakdance_popup' );
-
+        
         if ( $popups ) {
             foreach ( $popups as $popup ) {
                 $edit_link = site_url( '/?breakdance=builder&id=' . intval( $popup->ID ) );
-
+        
                 $wp_admin_bar->add_node( array(
                     'id'     => 'bdqn-popup-' . intval( $popup->ID ),
                     'title'  => esc_html( $popup->post_title ),
@@ -484,26 +439,56 @@ class DDW_Breakdance_QuickNav {
     }
 
     /**
-     * Add Form Submissions submenu (for Breakdance Forms)
+     * Add group node for actions & settings.
      */
-    private function add_form_submissions_submenu( $wp_admin_bar ) {
-        $wp_admin_bar->add_node( array(
-            'id'     => 'bdqn-form-submissions',
-            'title'  => esc_html__( 'Form Submissions', 'breakdance-quicknav' ),
-            'href'   => esc_url( admin_url( 'edit.php?post_type=breakdance_form_res' ) ),
+    private function add_settings_group( $wp_admin_bar ) {
+        $wp_admin_bar->add_group( array(
+            'id'     => 'bdqn-group-settings',
             'parent' => 'ddw-breakdance-quicknav',
         ) );
+        
+        $this->add_actions_submenu( $wp_admin_bar );
+        $this->add_settings_submenu( $wp_admin_bar );
     }
-
+    
     /**
-     * Add Breakdance Design Library submenu
+     * Add actions submenu.
      */
-    private function add_design_library_submenu( $wp_admin_bar ) {
+    private function add_actions_submenu( $wp_admin_bar ) {
+        
+        $icon_styles = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C17.5222 2 22 5.97778 22 10.8889C22 13.9556 19.5111 16.4444 16.4444 16.4444H14.4778C13.5556 16.4444 12.8111 17.1889 12.8111 18.1111C12.8111 18.5333 12.9778 18.9222 13.2333 19.2111C13.5 19.5111 13.6667 19.9 13.6667 20.3333C13.6667 21.2556 12.9 22 12 22C6.47778 22 2 17.5222 2 12C2 6.47778 6.47778 2 12 2ZM10.8111 18.1111C10.8111 16.0843 12.451 14.4444 14.4778 14.4444H16.4444C18.4065 14.4444 20 12.851 20 10.8889C20 7.1392 16.4677 4 12 4C7.58235 4 4 7.58235 4 12C4 16.19 7.2226 19.6285 11.324 19.9718C10.9948 19.4168 10.8111 18.7761 10.8111 18.1111ZM7.5 12C6.67157 12 6 11.3284 6 10.5C6 9.67157 6.67157 9 7.5 9C8.32843 9 9 9.67157 9 10.5C9 11.3284 8.32843 12 7.5 12ZM16.5 12C15.6716 12 15 11.3284 15 10.5C15 9.67157 15.6716 9 16.5 9C17.3284 9 18 9.67157 18 10.5C18 11.3284 17.3284 12 16.5 12ZM12 9C11.1716 9 10.5 8.32843 10.5 7.5C10.5 6.67157 11.1716 6 12 6C12.8284 6 13.5 6.67157 13.5 7.5C13.5 8.32843 12.8284 9 12 9Z"></path></svg></span> ';
+        
+        $edit_styles_link = site_url( '/?breakdance=builder&&mode=browse&returnUrl=' . admin_url( 'admin.php?page=breakdance_settings&tab=global_styles' ) );
+        
+        /** Edit Global Styles */
+        $wp_admin_bar->add_node( array(
+            'id'     => 'bdqn-edit-global-styles',
+            'title'  => $icon_styles . esc_html__( 'Edit Global Styles', 'breakdance-quicknav' ),
+            'href'   => esc_url( $edit_styles_link ),
+            'parent' => 'bdqn-group-settings',
+            'meta'   => array( 'class' => 'has-icon', 'target' => '_blank' ),
+        ) );
+        
+        $icon_forms = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 2V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM9 16V18H7V16H9ZM9 13V15H7V13H9ZM9 10V12H7V10H9ZM15 4H9V6H15V4Z"></path></svg></span> ';
+        
+        /** Form Submissions (for Breakdance Forms) */
+        $wp_admin_bar->add_node( array(
+            'id'     => 'bdqn-form-submissions',
+            'title'  => $icon_forms . esc_html__( 'Form Submissions', 'breakdance-quicknav' ),
+            'href'   => esc_url( admin_url( 'edit.php?post_type=breakdance_form_res' ) ),
+            'parent' => 'bdqn-group-settings',
+            'meta'   => array( 'class' => 'has-icon' ),
+        ) );
+        
+        $icon_design = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20C20.5523 3 21 3.44772 21 4V20ZM11 5H5V19H11V5ZM19 13H13V19H19V13ZM19 5H13V11H19V5Z"></path></svg></span> ';
+        
+        /** Design Library */
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-design-library',
-            'title'  => esc_html__( 'Design Library', 'breakdance-quicknav' ),
+            'title'  => $icon_design . esc_html__( 'Design Library', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_design_library' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
+            'parent' => 'bdqn-group-settings',
+            'meta'   => array( 'class' => 'has-icon' ),
         ) );
     }
 
@@ -511,12 +496,15 @@ class DDW_Breakdance_QuickNav {
      * Add Breakdance Settings submenu (parent node)
      */
     private function add_settings_submenu( $wp_admin_bar ) {
+        
+        $icon_settings = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.32943 3.27158C6.56252 2.8332 7.9923 3.10749 8.97927 4.09446C10.1002 5.21537 10.3019 6.90741 9.5843 8.23385L20.293 18.9437L18.8788 20.3579L8.16982 9.64875C6.84325 10.3669 5.15069 10.1654 4.02952 9.04421C3.04227 8.05696 2.7681 6.62665 3.20701 5.39332L5.44373 7.63C6.02952 8.21578 6.97927 8.21578 7.56505 7.63C8.15084 7.04421 8.15084 6.09446 7.56505 5.50868L5.32943 3.27158ZM15.6968 5.15512L18.8788 3.38736L20.293 4.80157L18.5252 7.98355L16.7574 8.3371L14.6361 10.4584L13.2219 9.04421L15.3432 6.92289L15.6968 5.15512ZM8.97927 13.2868L10.3935 14.7011L5.09018 20.0044C4.69966 20.3949 4.06649 20.3949 3.67597 20.0044C3.31334 19.6417 3.28744 19.0699 3.59826 18.6774L3.67597 18.5902L8.97927 13.2868Z"></path></svg></span> ';
+        
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-settings',
-            'title'  => esc_html__( 'Settings', 'breakdance-quicknav' ),
+            'title'  => $icon_settings . esc_html__( 'Settings', 'breakdance-quicknav' ),
             'href'   => esc_url( admin_url( 'admin.php?page=breakdance_settings' ) ),
-            'parent' => 'ddw-breakdance-quicknav',
-            'meta'   => array( 'class' => 'bdn-settings-separator' ),
+            'parent' => 'bdqn-group-settings',
+            'meta'   => array( 'class' => 'has-icon bdn-settings-separator' ),
         ) );
 
         $settings_submenus = array(
@@ -573,13 +561,16 @@ class DDW_Breakdance_QuickNav {
             'id'     => 'bdqn-plugins',
             'parent' => 'ddw-breakdance-quicknav',
         ) );
+        
+        $this->maybe_add_plugin_submenus( $wp_admin_bar );
     }
     
     /**
-     * Add Headspin Copilot submenu if the plugin is active
+     * Add submenus for supported plugins - if they are active.
      */
-    private function add_headspin_submenu( $wp_admin_bar ) {
-
+    private function maybe_add_plugin_submenus( $wp_admin_bar ) {
+        
+        /**  Plugin: Headspin Copilot (free & Pro) */
         if ( defined( 'HSF_VERSION' ) ) {
             $wp_admin_bar->add_node( array(
                 'id'     => 'bdqn-headspin',
@@ -588,13 +579,8 @@ class DDW_Breakdance_QuickNav {
                 'parent' => 'bdqn-plugins',
             ) );
         }
-    }
-
-    /**
-     * Add Yabe Webfont (free & Pro) submenu if the plugin is active
-     */
-    private function add_yabe_webfont_submenu( $wp_admin_bar ) {
-    
+        
+        /** Plugin: Add Yabe Webfont (free & Pro) */
         if ( class_exists( '\Yabe\Webfont\Plugin' ) ) {
             $wp_admin_bar->add_node( array(
                 'id'     => 'bdqn-yabe-webfont',
@@ -603,18 +589,23 @@ class DDW_Breakdance_QuickNav {
                 'parent' => 'bdqn-plugins',
             ) );
         }
-    }
-    
-    /**
-     * Add WPSix Exporter submenu if the plugin is active
-     */
-    private function add_wpsix_exporter_submenu( $wp_admin_bar ) {
-    
+        
+        /** Plugin: WPSix Exporter (premium) */
         if ( defined( 'WPSIX_EXPORTER_URL' ) ) {
             $wp_admin_bar->add_node( array(
                 'id'     => 'bdqn-wpsix-exporter',
                 'title'  => esc_html__( 'WPSix Exporter', 'breakdance-quicknav' ),
                 'href'   => esc_url( admin_url( 'admin.php?page=wpsix_exporter' ) ),
+                'parent' => 'bdqn-plugins',
+            ) );
+        }
+        
+        /** Plugin: Breakdance Reading Time Calculator (free) */
+        if ( function_exists( 'bd_reading_time_menu' ) ) {
+            $wp_admin_bar->add_node( array(
+                'id'     => 'bdqn-bdrtc',
+                'title'  => esc_html__( 'Reading Time Calculator', 'breakdance-quicknav' ),
+                'href'   => esc_url( admin_url( 'admin.php?page=bd-reading-time' ) ),
                 'parent' => 'bdqn-plugins',
             ) );
         }
@@ -634,17 +625,24 @@ class DDW_Breakdance_QuickNav {
             'parent' => 'ddw-breakdance-quicknav',
             'meta'   => array( 'class' => 'ab-sub-secondary' ),
         ) );
+        
+        $this->add_links_submenu( $wp_admin_bar );
+        $this->add_about_submenu( $wp_admin_bar );
     }
     
     /**
      * Add Links submenu
      */
     private function add_links_submenu( $wp_admin_bar ) {
+        
+        $icon = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg></span> ';
+        
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-links',
-            'title'  => esc_html__( 'Links', 'breakdance-quicknav' ),
+            'title'  => $icon . esc_html__( 'Links', 'breakdance-quicknav' ),
             'href'   => '#',
             'parent' => 'bdqn-footer',
+            'meta'   => array( 'class' => 'has-icon' ),
         ) );
 
         $links = array(
@@ -713,11 +711,15 @@ class DDW_Breakdance_QuickNav {
      * Add About submenu
      */
     private function add_about_submenu( $wp_admin_bar ) {
+        
+        $icon = '<span class="icon-svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.841 15.659L18.017 15.836L18.1945 15.659C19.0732 14.7803 20.4978 14.7803 21.3765 15.659C22.2552 16.5377 22.2552 17.9623 21.3765 18.841L18.0178 22.1997L14.659 18.841C13.7803 17.9623 13.7803 16.5377 14.659 15.659C15.5377 14.7803 16.9623 14.7803 17.841 15.659ZM12 14V16C8.68629 16 6 18.6863 6 22H4C4 17.6651 7.44784 14.1355 11.7508 14.0038L12 14ZM12 1C15.315 1 18 3.685 18 7C18 10.2397 15.4357 12.8776 12.225 12.9959L12 13C8.685 13 6 10.315 6 7C6 3.76034 8.56434 1.12237 11.775 1.00414L12 1ZM12 3C9.78957 3 8 4.78957 8 7C8 9.21043 9.78957 11 12 11C14.2104 11 16 9.21043 16 7C16 4.78957 14.2104 3 12 3Z"></path></svg></span> ';
+        
         $wp_admin_bar->add_node( array(
             'id'     => 'bdqn-about',
-            'title'  => esc_html__( 'About', 'breakdance-quicknav' ),
+            'title'  => $icon . esc_html__( 'About', 'breakdance-quicknav' ),
             'href'   => '#',
             'parent' => 'bdqn-footer',
+            'meta'   => array( 'class' => 'has-icon' ),
         ) );
 
         $about_links = array(
@@ -855,6 +857,10 @@ class DDW_Breakdance_QuickNav {
                 'BDQN_ICON' => array(
                     'label' => 'BDQN_ICON',
                     'value' => ( ! defined( 'BDQN_ICON' ) ? $string_undefined : ( BDQN_ICON ? $string_enabled . $string_value . sanitize_key( BDQN_ICON ) : $string_disabled ) ),
+                ),
+                'BDQN_NUMBER_TEMPLATES' => array(
+                    'label' => 'BDQN_NUMBER_TEMPLATES',
+                    'value' => ( ! defined( 'BDQN_NUMBER_TEMPLATES' ) ? $string_undefined : ( BDQN_NUMBER_TEMPLATES ? $string_enabled . $string_value . absint( BDQN_NUMBER_TEMPLATES ) : $string_disabled ) ),
                 ),
                 'BDQN_DISABLE_FOOTER' => array(
                     'label' => 'BDQN_DISABLE_FOOTER',

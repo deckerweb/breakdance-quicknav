@@ -129,8 +129,11 @@ b) If for whatever reason you have already "Breakdance Navigator" installed and 
 
 ### 🎉 v1.1.0 – 2025-03-??
 * New: Show Admin Bar also in Block Editor full screen mode
+* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) 
 * New: Add info to Site Health Debug, useful for our constants for custom tweaking
+* New: Added support for "Breakdance Reading Time Calculator" plugin (third-party)
 * New: Added `.pot` file (to translate plugin into your language), plus packaged German translations
+* Improved: Improved and simplyfied code to make better maintainable
 * Plugin: Add meta links on WP Plugins page
 * Alternate install: Use "plugin" as Code Snippet version (see under [Installation](#installation))
 
