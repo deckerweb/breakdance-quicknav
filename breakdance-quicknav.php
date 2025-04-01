@@ -7,22 +7,24 @@ Original Copyright: © 2024, Peter Kulcsár
 */
  
 /*
-Plugin Name:  Breakdance QuickNav
-Plugin URI:   https://github.com/deckerweb/breakdance-quicknav
-Description:  Adds a quick-access navigator (aka QuickNav) to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, Global Blocks, Popups, and Pages edited with Breakdance, along with some other essential settings.
-Project:      Code Snippet: DDW Breakdance QuickNav
-Version:      1.1.0
-Author:       David Decker – DECKERWEB
-Author URI:   https://deckerweb.de/
-Text Domain:  breakdance-quicknav
-Domain Path:  /languages/
-License:      GPL-2.0-or-later 
-License URI:  https://www.gnu.org/licenses/gpl-2.0.html
-Requires WP:  6.7
-Requires PHP: 7.4
+Plugin Name:        Breakdance QuickNav
+Plugin URI:         https://github.com/deckerweb/breakdance-quicknav
+Description:        Adds a quick-access navigator (aka QuickNav) to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Templates, Headers, Footers, Global Blocks, Popups, and Pages edited with Breakdance, along with some other essential settings.
+Project:            Code Snippet: DDW Breakdance QuickNav
+Version:            1.1.0
+Author:             David Decker – DECKERWEB
+Author URI:         https://deckerweb.de/
+Text Domain:        breakdance-quicknav
+Domain Path:        /languages/
+License:            GPL-2.0-or-later 
+License URI:        https://www.gnu.org/licenses/gpl-2.0.html
+Requires WP:        6.7
+Requires PHP:       7.4
+GitHub Plugin URI:  deckerweb/breakdance-quicknav
+GitHub Branch:      master
 
 Original Copyright: © 2024 Peter Kulcsár
-Copyright:    © 2025, David Decker – DECKERWEB
+Copyright:          © 2025, David Decker – DECKERWEB
 
 TESTED WITH:
 Product			Versions
@@ -35,7 +37,7 @@ Breakdance Pro	2.3.0 ... 2.4.0 Beta
 VERSION HISTORY:
 Date        Version     Description
 --------------------------------------------------------------------------------------------------------------
-2025-03-??	1.1.0       New: Adjust the number of shown templates via constant (default: up to 20)
+2025-04-??	1.1.0       New: Adjust the number of shown templates via constant (default: up to 20)
                         New: Show Admin Bar also in Block Editor full screen mode
                         New: Add info to Site Health Debug, useful for our constants for custom tweaking
 2025-03-08	1.0.0	    Initial release
@@ -136,6 +138,7 @@ class DDW_Breakdance_QuickNav {
          * Depending on user color scheme get proper base and hover color values for the main item (svg) icon.
          */
         $user_color_scheme = get_user_option( 'admin_color' );
+        $user_color_scheme = is_network_admin() ? $user_color_scheme : 'fresh';
         $admin_scheme      = $this->get_scheme_colors();
         
         $base_color  = $admin_scheme[ $user_color_scheme ][ 'base' ];
@@ -210,6 +213,13 @@ class DDW_Breakdance_QuickNav {
      * @param WP_Admin_Bar $wp_admin_bar The WP_Admin_Bar instance.
      */
     public function add_admin_bar_menu( $wp_admin_bar ) {
+        
+        $enabled_users = defined( 'BDQN_ENABLED_USERS' ) ? (array) BDQN_ENABLED_USERS : [];
+        
+        /** Optional: let only defined user IDs access the plugin */
+        if ( defined( 'BDQN_ENABLED_USERS' ) && ! in_array( get_current_user_id(), $enabled_users ) ) {
+            return;
+        }
         
         /** Don't do anything if Breakdance Builder plugin is NOT active */
         if ( ! defined( '__BREAKDANCE_VERSION' ) ) return;
@@ -550,7 +560,7 @@ class DDW_Breakdance_QuickNav {
                 'href'   => esc_url( admin_url( 'admin.php?page=breakdance_settings&tab=' . urlencode( $tab ) ) ),
                 'parent' => 'bdqn-settings',
             ) );
-        }
+        }  // end foreach
     }
 
     /**
@@ -558,7 +568,7 @@ class DDW_Breakdance_QuickNav {
      */
     private function add_plugin_support_group( $wp_admin_bar ) {
         $wp_admin_bar->add_group( array(
-            'id'     => 'bdqn-plugins',
+            'id'     => 'bdqn-group-plugins',
             'parent' => 'ddw-breakdance-quicknav',
         ) );
         
@@ -576,7 +586,7 @@ class DDW_Breakdance_QuickNav {
                 'id'     => 'bdqn-headspin',
                 'title'  => esc_html__( 'Headspin Copilot', 'breakdance-quicknav' ),
                 'href'   => esc_url( admin_url( 'admin.php?page=headspin' ) ),
-                'parent' => 'bdqn-plugins',
+                'parent' => 'bdqn-group-plugins',
             ) );
         }
         
@@ -586,7 +596,7 @@ class DDW_Breakdance_QuickNav {
                 'id'     => 'bdqn-yabe-webfont',
                 'title'  => esc_html__( 'Yabe Webfont', 'breakdance-quicknav' ),
                 'href'   => esc_url( admin_url( 'themes.php?page=yabe_webfont' ) ),
-                'parent' => 'bdqn-plugins',
+                'parent' => 'bdqn-group-plugins',
             ) );
         }
         
@@ -596,7 +606,7 @@ class DDW_Breakdance_QuickNav {
                 'id'     => 'bdqn-wpsix-exporter',
                 'title'  => esc_html__( 'WPSix Exporter', 'breakdance-quicknav' ),
                 'href'   => esc_url( admin_url( 'admin.php?page=wpsix_exporter' ) ),
-                'parent' => 'bdqn-plugins',
+                'parent' => 'bdqn-group-plugins',
             ) );
         }
         
@@ -606,7 +616,7 @@ class DDW_Breakdance_QuickNav {
                 'id'     => 'bdqn-bdrtc',
                 'title'  => esc_html__( 'Reading Time Calculator', 'breakdance-quicknav' ),
                 'href'   => esc_url( admin_url( 'admin.php?page=bd-reading-time' ) ),
-                'parent' => 'bdqn-plugins',
+                'parent' => 'bdqn-group-plugins',
             ) );
         }
     }
@@ -621,7 +631,7 @@ class DDW_Breakdance_QuickNav {
         }
         
         $wp_admin_bar->add_group( array(
-            'id'     => 'bdqn-footer',
+            'id'     => 'bdqn-group-footer',
             'parent' => 'ddw-breakdance-quicknav',
             'meta'   => array( 'class' => 'ab-sub-secondary' ),
         ) );
@@ -641,7 +651,7 @@ class DDW_Breakdance_QuickNav {
             'id'     => 'bdqn-links',
             'title'  => $icon . esc_html__( 'Links', 'breakdance-quicknav' ),
             'href'   => '#',
-            'parent' => 'bdqn-footer',
+            'parent' => 'bdqn-group-footer',
             'meta'   => array( 'class' => 'has-icon' ),
         ) );
 
@@ -718,7 +728,7 @@ class DDW_Breakdance_QuickNav {
             'id'     => 'bdqn-about',
             'title'  => $icon . esc_html__( 'About', 'breakdance-quicknav' ),
             'href'   => '#',
-            'parent' => 'bdqn-footer',
+            'parent' => 'bdqn-group-footer',
             'meta'   => array( 'class' => 'has-icon' ),
         ) );
 
@@ -763,7 +773,7 @@ class DDW_Breakdance_QuickNav {
         
         $bg_color = $admin_scheme[ $user_color_scheme ][ 'bg' ];
         
-        $inline_css = sprintf(
+        $inline_css_block_editor = sprintf(
             '
                 @media (min-width: 600px) {
                     body.is-fullscreen-mode .block-editor__container {
@@ -802,7 +812,27 @@ class DDW_Breakdance_QuickNav {
             sanitize_hex_color( $bg_color )
         );
         
-        wp_add_inline_style( 'wp-block-editor', $inline_css );
+        wp_add_inline_style( 'wp-block-editor', $inline_css_block_editor );
+        
+        $inline_css_edit_site = sprintf(
+            '
+                body.is-fullscreen-mode .edit-site {
+                    top: var(--wp-admin--admin-bar--height);
+                }
+                
+                body.is-fullscreen-mode .edit-site-layout__canvas-container {
+                    top: calc( var(--wp-admin--admin-bar--height) * -1 );
+                }
+                
+                .edit-site-editor__view-mode-toggle .edit-site-editor__view-mode-toggle-icon img,
+                .edit-site-editor__view-mode-toggle .edit-site-editor__view-mode-toggle-icon svg {
+                        background: %s;
+                }
+            ',
+            sanitize_hex_color( $bg_color )
+        );
+        
+        wp_add_inline_style( 'wp-edit-site', $inline_css_edit_site );
         
         add_action( 'admin_bar_menu', array( $this, 'remove_adminbar_nodes' ), 999 );
     }
@@ -849,6 +879,10 @@ class DDW_Breakdance_QuickNav {
                 'BDQN_VIEW_CAPABILITY' => array(
                     'label' => 'BDQN_VIEW_CAPABILITY',
                     'value' => ( ! defined( 'BDQN_VIEW_CAPABILITY' ) ? $string_undefined : ( BDQN_VIEW_CAPABILITY ? $string_enabled : $string_disabled ) ),
+                ),
+                'BDQN_ENABLED_USERS' => array(
+                    'label' => 'BDQN_ENABLED_USERS',
+                    'value' => ( ! defined( 'BDQN_ENABLED_USERS' ) ? $string_undefined : ( BDQN_ENABLED_USERS ? $string_enabled . $string_value . implode( ', ', array_map( 'absint', BDQN_ENABLED_USERS ) ) : $string_disabled ) ),
                 ),
                 'BDQN_NAME_IN_ADMINBAR' => array(
                     'label' => 'BDQN_NAME_IN_ADMINBAR',

@@ -71,45 +71,58 @@ Therefore the default capability to see the new Admin Bar node is set to `activa
 define( 'BDQN_VIEW_CAPABILITY', 'edit_posts' );
 ```
 
-### 2) Shorter name of main menu item in Admin Bar, just named "BD".
+### 2) Restrict to defined user IDs only (since v1.1.0)
+You can define an array of user IDs (can also be only _one_ ID) and that way restrict showing the Breakdance Admin Bar item only for those users. Define that via `wp-config.php` or via a Code Snippet plugin:
+```
+define( 'BDQN_ENABLED_USERS', [ 1, 500, 867 ] );
+```
+This would enable only for the users with the IDs 1, 500 and 867. Note the square brackets around, and no single quotes, just the ID numbers.
+
+For example you are one of many admin users (role `administrator`) but _only you_ want to show it _for yourself_. Given you have user ID 1:
+```
+define( 'BDQN_ENABLED_USERS', [ 1 ] );
+```
+That way only you can see it, the other admins can't!
+
+### 3) Shorter name of main menu item in Admin Bar, just named "BD".
 This is way shorter than "Breakdance Nav" and takes much less of the precious space there. However, if you don't enjoy "BD" you can tweak that also via the constant `BDQN_NAME_IN_ADMINBAR` – define that also via `wp-config.php` or via a Code Snippet plugin:
 ```
 define( 'BDQN_NAME_IN_ADMINBAR', 'BD Nav' );
 ```
 
-### 3) Default icon of main menu item pulled directly from Breakdance plugin.
+### 4) Default icon of main menu item pulled directly from Breakdance plugin.
 The yellow default logo icon is awesome but a bit too yellow-ish for my taste – at least within the Admin Bar. Therefore I pull in the builder icon intended for dark mode (light logo on dark background). If that is not there for whatever reason it pulls in Peter's yellow icon (in local plugin folder). You can also tweak that via a constant in `wp-config.php` oder via a Code Snippets plugin:
 ```
 define( 'BDQN_ICON', 'yellow' );
 ```
 
-### 4) Adjust the number of displayed Templates/ Pages.
+### 5) Adjust the number of displayed Templates/ Pages.
 The default number of displayed Templates/ Pages got increased to 20 (instead of 10). That means up to 20 items, starting from latest (newest) down to older ones. And, now you can adjust that value via constant in `wp-config.php` or via a Code Snippets plugin:
 ```
 define( 'BDQN_NUMBER_TEMPLATES', 5 );
 ```
-In that example it would only display up to 5 items. NOTE: just add the number no quotes around it.
+In that example it would only display up to 5 items. NOTE: just add the number, no quotes around it.
 
-### 5) Increased plugin support.
+### 6) Increased plugin support.
 The supported plugins are increased compared to Peters original plugin. The "WPSix Exporter" is now supported by default. All supported plugins are checked if they are active or not.
 _Please note:_ I will ONLY add support for direct Breakdance add-on plugins. And I can only add support if I would own a license myself (for testing etc.). Therefore if there might be Breakdance plugins you want me to add integration for, please open an issue on the plugin page on GitHub so we might discuss that. (Thanks in advance!)
 
-### 6) Disable footer items (Links & About)
+### 7) Disable footer items (Links & About)
 To disable these menu items, just use another constant in `wp-config.php` or via a Code Snippets plugin:
 ```
 define( 'BDQN_DISABLE_FOOTER', 'yes' );
 ```
 
-### 7) Updated links.
+### 8) Updated links.
 I carefully updated the links from the Breakdance community, including plugin/ library/ tutorial sites.
 
-### 8) Show Admin Bar also in Block Editor full screen mode.
+### 9) Show Admin Bar also in Block Editor full screen mode.
 This an annoyance with WordPress default: the fullscreen mode isn't fullscreen anyways, however, it should at least show the Admin Bar as it makes total sense in this case. – Now it finally does! (since plugin version v1.1.0)
 
-### 9) Alternate Install: Snippet Version!
+### 10) Alternate Install: Snippet Version!
 You can use this "plugin" also as Code Snippet in your favorite snippet manager plugin. See here under ["Installation"](#installation)!
 
-### 10) Other tweaks.
+### 11) Other tweaks.
 a) There is another check for Breakdance plugin itself: if no Breakdance active then the whole Admin Bar addition is NOT loaded and displayed. Makes sense.
 
 b) If for whatever reason you have already "Breakdance Navigator" installed and ACTIVATED, my plugin (Breakdance QuickNav) will not display anything (even if activated). So it makes sense you decide for one or the other ... 🙂
@@ -127,13 +140,16 @@ b) If for whatever reason you have already "Breakdance Navigator" installed and 
 
 ## [Changelog / Releases](https://github.com/deckerweb/breakdance-quicknav/releases)
 
-### 🎉 v1.1.0 – 2025-03-??
+### 🎉 v1.1.0 – 2025-04-??
 * New: Show Admin Bar also in Block Editor full screen mode
-* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) 
+* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) (new custom tweak)
+* New: Optionally only enable for defined user IDs (new custom tweak)
 * New: Add info to Site Health Debug, useful for our constants for custom tweaking
 * New: Added support for "Breakdance Reading Time Calculator" plugin (third-party)
 * New: Added `.pot` file (to translate plugin into your language), plus packaged German translations
-* Improved: Improved and simplyfied code to make better maintainable
+* New: Installable and updateable via [Git Updater plugin](https://git-updater.com/)
+* Change: Remove packaged icon image file in favor of svg-ed version, inline – makes "plugin" usable as code snippet
+* Improved and simplified code to make better maintainable
 * Plugin: Add meta links on WP Plugins page
 * Alternate install: Use "plugin" as Code Snippet version (see under [Installation](#installation))
 
@@ -163,4 +179,4 @@ Official _Breakdance_ product logo icon: © Soflyy
 
 Icon used in promo graphics: © Remix Icon
 
-Copyright © 2025 David Decker – DECKERWEB.de
+Readme & Plugin Copyright: © 2025, David Decker – DECKERWEB.de
