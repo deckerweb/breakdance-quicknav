@@ -4,22 +4,25 @@
 
 The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Builder Templates, Headers, Footers, Global Blocks, Popups, and (regular WordPress) Pages edited with Breakdance, along with other essential settings.
 
-### Tested Compatibility
-- **Breakdance Pro**: 2.3.0+ / 2.4.0 Beta
-- **WordPress**: 6.7.2 / 6.8 Beta
-- **PHP**: 8.0 – 8.3
+* Contributors: [David Decker](https://github.com/deckerweb), [contributors](https://github.com/deckerweb/breakdance-quicknav/graphs/contributors)
+* Tags: breakdance, quicknav, admin bar, toolbar, breakdance builder, site builder, administrators
+* Requires at least: 6.7
+* Requires PHP: 7.4
+* Stable tag: [main](https://github.com/deckerweb/breakdance-quicknav/releases/latest)
+* Donate link: https://paypal.me/deckerweb
+* License: GPL v2 or later
 
 _Note:_ This plugin was originally developed by [Peter Kulcsár](https://github.com/beamkiller) under the name ["Breakdance Navigator"](https://github.com/beamkiller/breakdance-navigator). Since it is licensed GPL v2 or later, I decided to fork it to add some more/other links and tweak some things. – If you like the original version, fine! Use it and support the original author!
 
 ---
 
-## Quick Links
+## Quick Links 
 
-[Support Project](#support-the-project) | [Installation](#installation) | [Differences](#differences) | [How Plugin Works](#how-this-plugin-works) | [Changelog](#changelog--releases) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+[Support Project](#support-the-project) | [Installation](#installation) | [Updates](#updates) | [Description](#description) | [How Plugin Works](#how-this-plugin-works) | [FAQ](#frequently-asked-questions) | [Changelog](#changelog) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
 
 ---
 
-## Support the Project
+## Support the Project 
 
 If you find this project helpful, consider showing your support by buying me a coffee! Your contribution helps me keep developing and improving this plugin.
 
@@ -32,7 +35,7 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 
 ---
 
-## Installation
+## Installation 
 
 #### **Quick Install – as Plugin**
 1. **Download ZIP:** [**breakdance-quicknav.zip**](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip)
@@ -43,9 +46,9 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 1. Below, download the appropriate snippet version
 2. activate or deactivate in your snippets plugin
 
-[**Download .json**](https://github.com/deckerweb/oxygen-quicknav/releases/latest/download/ddw-breakdance-quicknav.code-snippets.json) version for: _Code Snippets_ (free & Pro), _Advanced Scripts_ (Premium), _Scripts Organizer_ (Premium)
---> just use their elegant script import features
---> in _Scripts Organizer_ use the "Code Snippets Import"
+[**Download .json**](https://github.com/deckerweb/oxygen-quicknav/releases/latest/download/ddw-breakdance-quicknav.code-snippets.json) version for: _Code Snippets_ (free & Pro), _Advanced Scripts_ (Premium), _Scripts Organizer_ (Premium)  
+--> just use their elegant script import features  
+--> in _Scripts Organizer_ use the "Code Snippets Import"  
 
 For all other snippet manager plugins just use our plugin's main .php file [`breakdance-quicknav.php`](https://github.com/deckerweb/breakdance-quicknav/blob/master/breakdance-quicknav.php) and use its content as snippet (bevor saving your snippet: please check for your plugin if the opening php tag needs to be removed or not!).
 
@@ -57,10 +60,32 @@ For all other snippet manager plugins just use our plugin's main .php file [`bre
 * MySQL version 8.0 or higher / OR MariaDB 10.1 or higher
 * Administrator user with capability `manage_options` and `activate_plugins`
 
+### Tested Compatibility
+- **Breakdance Pro**: 2.3.0+ / 2.4.0 Beta
+- **WordPress**: 6.7.2 / 6.8 Beta
+- **PHP**: 8.0 – 8.3
+
 ---
 
-## Differences
+## Updates 
 
+#### For Plugin Version:
+
+1) Alternative 1: Just download a new [ZIP file](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip) (see above), upload and override existing version. Done.
+
+2) Alternative 2: Use the (free) [**_Git Updater_ plugin**](https://git-updater.com/) and get updates automatically.
+
+3) Alternative 3: Upcoming! – In future I will built-in our own deckerweb updater. This is currently being worked on for my plugins. Stay tuned!
+
+#### For Code Snippet Version:
+
+Just manually: Download the latest Snippet version (see above) and import it in your favorite snippets manager plugin. – You can delete the old snippet; then just activate the new one. Done.
+
+---
+
+## Description 
+
+#### Differences 
 **What Does "Breakdance QuickNav" _Different_ than "Breakdance Navigator"?**
 
 _Good question, hehe :-)_
@@ -138,17 +163,33 @@ b) If for whatever reason you have already "Breakdance Navigator" installed and 
 
 ---
 
-## [Changelog / Releases](https://github.com/deckerweb/breakdance-quicknav/releases)
+## Frequently Asked Questions 
+
+### How can I change / tweak things?
+Please see here under [**Description**](#description) what is possible! (Custom tweaks via constants)
+
+### Why is this functionality not baked into Breakdance itself?
+I don't know. Not everything needs to be built-in. That's what plugins are for: those who _need_ this functionality can install and use them.
+
+### Why is this plugin not on wordpress.org plugin repository?
+Because the restrictions there for plugin authors are becoming more and more. It would be possible but I don't want that anymore. The same for limited support forums for plugin authors on .org. I have decided to leave this whole thing behind me.
+
+---
+
+## [Changelog](https://github.com/deckerweb/breakdance-quicknav/releases) 
+
+**The Releases**
 
 ### 🎉 v1.1.0 – 2025-04-??
 * New: Show Admin Bar also in Block Editor full screen mode
-* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) (new custom tweak)
-* New: Optionally only enable for defined user IDs (new custom tweak)
+* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) _(new custom tweak)_
+* New: Optionally only enable for defined user IDs _(new custom tweak)_
 * New: Add info to Site Health Debug, useful for our constants for custom tweaking
 * New: Added support for "Breakdance Reading Time Calculator" plugin (third-party)
-* New: Added `.pot` file (to translate plugin into your language), plus packaged German translations
+* New: Added `.pot` file (to translate plugin into your language), plus packaged German translations, including new `l10n.php` files!
 * New: Installable and updateable via [Git Updater plugin](https://git-updater.com/)
 * Change: Remove packaged icon image file in favor of svg-ed version, inline – makes "plugin" usable as code snippet
+* Fix: Minor styling issues for top-level item
 * Improved and simplified code to make better maintainable
 * Plugin: Add meta links on WP Plugins page
 * Alternate install: Use "plugin" as Code Snippet version (see under [Installation](#installation))
@@ -163,7 +204,7 @@ b) If for whatever reason you have already "Breakdance Navigator" installed and 
 
 ---
 
-## Plugin Scope / Disclaimer
+## Plugin Scope / Disclaimer 
 
 This plugin comes as is. I have no intention to add support for every little detail / third-party plugin / library etc. Its main focus is support for the template types and Breakdance settings. Plugin support is added where it makes sense for the daily work of an Administrator and Site Builder.
 
@@ -177,6 +218,9 @@ _Most of all:_ Have fun building great Breakdance powered sites!!! ;-)
 
 Official _Breakdance_ product logo icon: © Soflyy
 
-Icon used in promo graphics: © Remix Icon
+Icons used in Admin Bar items: [© Remix Icon](https://remixicon.com/)
 
+Icon used in promo graphics: [© Remix Icon](https://remixicon.com/)
+
+Original Copyright: © 2024, Peter Kulcsár  
 Readme & Plugin Copyright: © 2025, David Decker – DECKERWEB.de

@@ -20,10 +20,10 @@ License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 Requires WP:        6.7
 Requires PHP:       7.4
-GitHub Plugin URI:  deckerweb/breakdance-quicknav
-GitHub Branch:      master
+GitHub Plugin URI:  https://github.com/deckerweb/breakdance-quicknav
+Primary Branch:     main
 
-Original Copyright: © 2024 Peter Kulcsár
+Original Copyright: © 2024, Peter Kulcsár
 Copyright:          © 2025, David Decker – DECKERWEB
 
 TESTED WITH:
@@ -138,7 +138,7 @@ class DDW_Breakdance_QuickNav {
          * Depending on user color scheme get proper base and hover color values for the main item (svg) icon.
          */
         $user_color_scheme = get_user_option( 'admin_color' );
-        $user_color_scheme = is_network_admin() ? $user_color_scheme : 'fresh';
+        $user_color_scheme = ( is_admin() || is_network_admin() ) ? $user_color_scheme : 'fresh';
         $admin_scheme      = $this->get_scheme_colors();
         
         $base_color  = $admin_scheme[ $user_color_scheme ][ 'base' ];
