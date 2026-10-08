@@ -119,3 +119,5 @@ Das Plugin entstand als Fork von [Breakdance Navigator](https://github.com/beamk
 Copyright © 2025–2026 David Decker – DECKERWEB. GPL v2 or later. Das bestehende Breakdance-Logo gehört Soflyy. Das neue Navigationssymbol ist eine eigene Vektorgrafik. deckerweb Updater 2.1.0 und Library 0.8.1: © 2026 David Decker – DECKERWEB, GPL-2.0-or-later.
 
 Historische Grafiken enthalten Symbole von [Remix Icon](https://remixicon.com/), © Remix Icon. Die aktuellen Grafiken sind eigene Vektorgrafiken.
+
+Einstellungsoberfläche und Host-Anbindung verwenden GPL-2.0-or-later-Code aus [Oxygen QuickNav 2.0.0](https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0), © 2025–2026 David Decker – DECKERWEB.

@@ -1,5 +1,9 @@
 <?php
-/** Pinned release updater adapter and isolated package checks. @package BreakdanceQuickNav */
+/**
+ * Host integration. @package BreakdanceQuickNav
+ * Adapted from Oxygen QuickNav 2.0.0, © 2025–2026 David Decker – DECKERWEB.
+ * GPL-2.0-or-later. https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0
+ */
 namespace Deckerweb\BreakdanceQuickNav;
 
 defined( 'ABSPATH' ) || exit;

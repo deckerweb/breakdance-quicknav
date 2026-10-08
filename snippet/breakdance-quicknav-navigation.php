@@ -11,7 +11,11 @@ if ( defined( 'DDW_BDQN_VERSION' ) || class_exists( 'DDW_Breakdance_QuickNav' ) 
 
 if ( ! class_exists( __NAMESPACE__ . '\SnippetPlugin', false ) ) {
 
-/** Website and personal configuration. @package BreakdanceQuickNav */
+/**
+ * Host integration. @package BreakdanceQuickNav
+ * Adapted from Oxygen QuickNav 2.0.0, © 2025–2026 David Decker – DECKERWEB.
+ * GPL-2.0-or-later. https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0
+ */
 
 
 defined( 'ABSPATH' ) || exit;
