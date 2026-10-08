@@ -81,6 +81,7 @@ foreach ( array( 'de_DE' => 'Deine Direktwege. Breakdance 2 & 3.', 'de_DE_formal
 }
 $history = require DDW_BDQN_DIR . '/includes/plugin-history.php'; bdqn_assert( false !== strpos( $history( true ), 'Neu:' ) && false === strpos( $history( true ), '<pre>' ), 'escaped structured German history' );
 ob_start(); $plugin->page(); $html = ob_get_clean(); bdqn_assert( false !== strpos( $html, 'action="options.php"' ) && false !== strpos( $html, '<dialog' ), 'native settings form and history dialog' );
+bdqn_assert( false !== strpos( $html, '</header><hr class="wp-header-end">' ) && false === strpos( $html, 'bdqn-footer-icon' ), 'native notice anchor follows the complete header; footer has no icon' );
 bdqn_assert( false === strpos( $html, 'Classic' ) && false === strpos( $html, 'is-fullscreen-mode' ), 'reference/editor artifacts removed' );
 if ( version_compare( PHP_VERSION, '8.1', '>=' ) ) { bdqn_assert( '2.1.0' === \Deckerweb\GitHubReleaseUpdater\V2\Updater::IMPLEMENTATION_VERSION, 'updater 2.1.0 registered' ); }
 else { bdqn_assert( \Deckerweb\BreakdanceQuickNav\Updates::$error && ! class_exists( '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater' ), 'updater safely paused on PHP 7.4' ); }
