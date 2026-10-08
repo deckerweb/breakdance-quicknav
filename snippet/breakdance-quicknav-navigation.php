@@ -300,7 +300,7 @@ final class SnippetPlugin {
 	}
 
 	/** @param string $hook Admin screen hook. @return void Adds minimal toolbar-only styling. */
-	public function assets( $hook = '' ) { if ( SnippetBuilder::active() && $this->visible( SnippetSettings::get() ) ) { wp_add_inline_style( 'admin-bar', '#wpadminbar .bdqn-icon{width:16px;height:16px;vertical-align:middle;margin-right:6px}' ); } }
+	public function assets( $hook = '' ) { if ( SnippetBuilder::active() && $this->visible( SnippetSettings::get() ) ) { wp_add_inline_style( 'admin-bar', '#wpadminbar .bdqn-icon{width:16px;height:16px;vertical-align:middle;margin-right:6px}#wpadminbar .bdqn-status-heading>.ab-empty-item,#wpadminbar .bdqn-status-label{font-size:11px;color:#a7aaad}#wpadminbar .bdqn-status-heading>.ab-empty-item{cursor:default}' ); } }
 
 	/**
 	 * Render authorized Breakdance content and settings while preserving native editor behavior.
@@ -338,6 +338,7 @@ final class SnippetPlugin {
 		if ( in_array( 'settings', $settings['groups'], true ) ) {
 			if ( post_type_exists( 'breakdance_form_res' ) && function_exists( '\Breakdance\Forms\Submission\canViewSubmissions' ) && \Breakdance\Forms\Submission\canViewSubmissions() ) {
 				$bar->add_node( array( 'id' => 'bdqn-form-submissions', 'parent' => $root, 'title' => esc_html__( 'Form Submissions', 'breakdance-quicknav' ), 'href' => admin_url( 'edit.php?post_type=breakdance_form_res' ) ) );
+				$this->form_nodes( $bar, $settings['limit'] );
 			}
 			if ( current_user_can( 'manage_options' ) && SnippetBuilder::full_access() ) {
 				$url = SnippetBuilder::styles_url();
@@ -418,10 +419,25 @@ final class SnippetPlugin {
 	 */
 	private function content_group( $bar, $id, $parent, $label, $url, $type, $generation, $group, $settings ) {
 		$bar->add_node( array( 'id' => $id, 'parent' => $parent, 'title' => esc_html( $label ), 'href' => esc_url( $url ) ) );
-		foreach ( SnippetBuilder::posts( $type, $generation, $group, $settings ) as $post ) {
-			$title = '' !== trim( $post->post_title ) ? $post->post_title : __( '(no title)', 'breakdance-quicknav' );
-			if ( 'publish' !== $post->post_status ) { $status = get_post_status_object( $post->post_status ); $title .= ' — ' . ( $status ? $status->label : $post->post_status ); }
-			$bar->add_node( array( 'id' => $id . '-' . $post->ID, 'parent' => $id, 'title' => esc_html( $title ), 'href' => esc_url( SnippetBuilder::edit_url( $post->ID, $generation ) ) ) );
+		$posts = SnippetBuilder::posts( $type, $generation, $group, $settings );
+		$buckets = array( 'published' => array(), 'unpublished' => array() );
+		foreach ( $posts as $post ) { $buckets[ 'publish' === $post->post_status ? 'published' : 'unpublished' ][] = $post; }
+		foreach ( $buckets as $bucket => $items ) {
+			if ( ! $items ) { continue; }
+			$node_parent = $id;
+			if ( 'content' === $group ) {
+				$node_parent = $id . '-' . $bucket;
+				$bar->add_group( array( 'id' => $node_parent, 'parent' => $id ) );
+				$bar->add_node( array( 'id' => $node_parent . '-heading', 'parent' => $node_parent, 'title' => esc_html( 'published' === $bucket ? __( 'Published', 'breakdance-quicknav' ) : __( 'Unpublished', 'breakdance-quicknav' ) ), 'meta' => array( 'class' => 'bdqn-status-heading' ) ) );
+			}
+			foreach ( $items as $post ) {
+				$title = esc_html( '' !== trim( $post->post_title ) ? $post->post_title : __( '(no title)', 'breakdance-quicknav' ) );
+				if ( 'publish' !== $post->post_status ) {
+					$status = get_post_status_object( $post->post_status );
+					$title .= ' <span class="bdqn-status-label">(' . esc_html( $status ? $status->label : $post->post_status ) . ')</span>';
+				}
+				$bar->add_node( array( 'id' => $id . '-' . $post->ID, 'parent' => $node_parent, 'title' => $title, 'href' => esc_url( SnippetBuilder::edit_url( $post->ID, $generation ) ) ) );
+			}
 		}
 	}
 
@@ -442,6 +458,30 @@ final class SnippetPlugin {
 		}
 		if ( function_exists( 'bd_reading_time_menu' ) ) { $nodes['bdrtc'] = array( __( 'Reading Time Calculator', 'breakdance-quicknav' ), $this->addon_url( array( 'bd-reading-time' ), 'bd-reading-time' ) ); }
 		foreach ( $nodes as $id => $node ) { if ( $node[1] ) { $bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $parent, 'title' => esc_html( $node[0] ), 'href' => esc_url( $node[1] ) ) ); } }
+	}
+
+	/** Add the same per-form destinations offered by Breakdance's submissions filter. */
+	private function form_nodes( $bar, $limit ) {
+		if ( ! function_exists( '\Breakdance\Forms\getFormSettings' ) || ! function_exists( '\Breakdance\Forms\Submission\getFormNameFromLatestSubmissionSettings' ) ) { return; }
+		global $wpdb;
+		// Bound the query and ignore trash; no request parameters are interpolated.
+		$forms = $wpdb->get_results( $wpdb->prepare(
+			"SELECT DISTINCT p1.meta_value AS formId, p2.meta_value AS postId FROM {$wpdb->postmeta} p1 INNER JOIN {$wpdb->postmeta} p2 ON p1.post_id = p2.post_id INNER JOIN {$wpdb->posts} p ON p.ID = p1.post_id WHERE p1.meta_key = %s AND p2.meta_key = %s AND p.post_type = %s AND p.post_status NOT IN ('trash', 'auto-draft') ORDER BY p2.meta_value, p1.meta_value LIMIT %d",
+			'_breakdance_form_id', '_breakdance_post_id', 'breakdance_form_res', max( 1, min( 100, absint( $limit ) ) )
+		), ARRAY_A );
+		$seen = array();
+		foreach ( $forms as $form ) {
+			$post_id = absint( $form['postId'] ?? 0 ); $form_id = absint( $form['formId'] ?? 0 );
+			$key = $post_id . '_' . $form_id;
+			if ( ! $post_id || ! $form_id || isset( $seen[ $key ] ) ) { continue; }
+			$seen[ $key ] = true;
+			$settings = \Breakdance\Forms\getFormSettings( $post_id, $form_id );
+			$name = $settings ? ( $settings['form']['form_name'] ?? '' ) : \Breakdance\Forms\Submission\getFormNameFromLatestSubmissionSettings( $post_id, $form_id );
+			$name = is_scalar( $name ) ? trim( (string) $name ) : '';
+			$title = ( $name ?: __( 'Form Submissions', 'breakdance-quicknav' ) ) . ' (' . $post_id . '/' . $form_id . ')';
+			$bar->add_node( array( 'id' => 'bdqn-form-' . $key, 'parent' => 'bdqn-form-submissions', 'title' => esc_html( $title ), 'href' => esc_url( add_query_arg( array( 'post_type' => 'breakdance_form_res', 'form_id' => $key ), admin_url( 'edit.php' ) ) ) ) );
+			if ( count( $seen ) >= $limit ) { break; }
+		}
 	}
 
 }

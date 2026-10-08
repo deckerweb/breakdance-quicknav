@@ -21,7 +21,7 @@ final class Plugin {
 		add_action( 'init', array( $this, 'translations' ), 5 );
 		add_action( 'init', array( '\Deckerweb\BreakdanceQuickNav\Updates', 'register' ), 20 );
 		add_action( 'admin_bar_menu', array( $this, 'toolbar' ), 999 );
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menu' ), 100 );
 		add_action( 'admin_notices', array( $this, 'builder_notice' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
@@ -42,12 +42,16 @@ final class Plugin {
 
 	/** @return string Website-scoped settings URL. */
 	public static function url() {
-		return admin_url( 'options-general.php?page=breakdance-quicknav' );
+		return admin_url( ( Builder::active() ? 'admin.php' : 'options-general.php' ) . '?page=breakdance-quicknav' );
 	}
 
 	/** @return void Adds a native settings page even when Breakdance is inactive. */
 	public function admin_menu() {
-		add_options_page( 'Breakdance QuickNav', 'Breakdance QuickNav', 'manage_options', 'breakdance-quicknav', array( $this, 'page' ) );
+		if ( Builder::active() ) {
+			add_submenu_page( 'breakdance', 'Breakdance QuickNav', 'QuickNav', 'manage_options', 'breakdance-quicknav', array( $this, 'page' ) );
+		} else {
+			add_options_page( 'Breakdance QuickNav', 'Breakdance QuickNav', 'manage_options', 'breakdance-quicknav', array( $this, 'page' ) );
+		}
 	}
 
 	/** @return void Explains inactive navigation within the website's native plugin screen. */
@@ -96,7 +100,7 @@ final class Plugin {
 	 * @return void Enqueues scoped CSS and settings-only accessible dialog JS.
 	 */
 	public function assets( $hook = '' ) {
-		$page = 'settings_page_breakdance-quicknav' === $hook;
+		$page = in_array( $hook, array( 'settings_page_breakdance-quicknav', 'breakdance_page_breakdance-quicknav' ), true );
 		if ( ! $page && ( ! $this->visible( Settings::get() ) || ! Builder::active() ) ) { return; }
 		wp_enqueue_style( 'ddw-bdqn', plugins_url( 'assets/quicknav.css', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION );
 		if ( $page ) { wp_enqueue_script( 'ddw-bdqn-dialog', plugins_url( 'assets/dialog.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); }
@@ -162,6 +166,7 @@ final class Plugin {
 		if ( in_array( 'settings', $settings['groups'], true ) ) {
 			if ( post_type_exists( 'breakdance_form_res' ) && function_exists( '\Breakdance\Forms\Submission\canViewSubmissions' ) && \Breakdance\Forms\Submission\canViewSubmissions() ) {
 				$bar->add_node( array( 'id' => 'bdqn-form-submissions', 'parent' => $root, 'title' => esc_html__( 'Form Submissions', 'breakdance-quicknav' ), 'href' => admin_url( 'edit.php?post_type=breakdance_form_res' ) ) );
+				$this->form_nodes( $bar, $settings['limit'] );
 			}
 			if ( current_user_can( 'manage_options' ) && Builder::full_access() ) {
 				$url = Builder::styles_url();
@@ -243,10 +248,25 @@ final class Plugin {
 	 */
 	private function content_group( $bar, $id, $parent, $label, $url, $type, $generation, $group, $settings ) {
 		$bar->add_node( array( 'id' => $id, 'parent' => $parent, 'title' => esc_html( $label ), 'href' => esc_url( $url ) ) );
-		foreach ( Builder::posts( $type, $generation, $group, $settings ) as $post ) {
-			$title = '' !== trim( $post->post_title ) ? $post->post_title : __( '(no title)', 'breakdance-quicknav' );
-			if ( 'publish' !== $post->post_status ) { $status = get_post_status_object( $post->post_status ); $title .= ' — ' . ( $status ? $status->label : $post->post_status ); }
-			$bar->add_node( array( 'id' => $id . '-' . $post->ID, 'parent' => $id, 'title' => esc_html( $title ), 'href' => esc_url( Builder::edit_url( $post->ID, $generation ) ) ) );
+		$posts = Builder::posts( $type, $generation, $group, $settings );
+		$buckets = array( 'published' => array(), 'unpublished' => array() );
+		foreach ( $posts as $post ) { $buckets[ 'publish' === $post->post_status ? 'published' : 'unpublished' ][] = $post; }
+		foreach ( $buckets as $bucket => $items ) {
+			if ( ! $items ) { continue; }
+			$node_parent = $id;
+			if ( 'content' === $group ) {
+				$node_parent = $id . '-' . $bucket;
+				$bar->add_group( array( 'id' => $node_parent, 'parent' => $id ) );
+				$bar->add_node( array( 'id' => $node_parent . '-heading', 'parent' => $node_parent, 'title' => esc_html( 'published' === $bucket ? __( 'Published', 'breakdance-quicknav' ) : __( 'Unpublished', 'breakdance-quicknav' ) ), 'meta' => array( 'class' => 'bdqn-status-heading' ) ) );
+			}
+			foreach ( $items as $post ) {
+				$title = esc_html( '' !== trim( $post->post_title ) ? $post->post_title : __( '(no title)', 'breakdance-quicknav' ) );
+				if ( 'publish' !== $post->post_status ) {
+					$status = get_post_status_object( $post->post_status );
+					$title .= ' <span class="bdqn-status-label">(' . esc_html( $status ? $status->label : $post->post_status ) . ')</span>';
+				}
+				$bar->add_node( array( 'id' => $id . '-' . $post->ID, 'parent' => $node_parent, 'title' => $title, 'href' => esc_url( Builder::edit_url( $post->ID, $generation ) ) ) );
+			}
 		}
 	}
 
@@ -269,6 +289,30 @@ final class Plugin {
 		foreach ( $nodes as $id => $node ) { if ( $node[1] ) { $bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $parent, 'title' => esc_html( $node[0] ), 'href' => esc_url( $node[1] ) ) ); } }
 	}
 
+	/** Add the same per-form destinations offered by Breakdance's submissions filter. */
+	private function form_nodes( $bar, $limit ) {
+		if ( ! function_exists( '\Breakdance\Forms\getFormSettings' ) || ! function_exists( '\Breakdance\Forms\Submission\getFormNameFromLatestSubmissionSettings' ) ) { return; }
+		global $wpdb;
+		// Bound the query and ignore trash; no request parameters are interpolated.
+		$forms = $wpdb->get_results( $wpdb->prepare(
+			"SELECT DISTINCT p1.meta_value AS formId, p2.meta_value AS postId FROM {$wpdb->postmeta} p1 INNER JOIN {$wpdb->postmeta} p2 ON p1.post_id = p2.post_id INNER JOIN {$wpdb->posts} p ON p.ID = p1.post_id WHERE p1.meta_key = %s AND p2.meta_key = %s AND p.post_type = %s AND p.post_status NOT IN ('trash', 'auto-draft') ORDER BY p2.meta_value, p1.meta_value LIMIT %d",
+			'_breakdance_form_id', '_breakdance_post_id', 'breakdance_form_res', max( 1, min( 100, absint( $limit ) ) )
+		), ARRAY_A );
+		$seen = array();
+		foreach ( $forms as $form ) {
+			$post_id = absint( $form['postId'] ?? 0 ); $form_id = absint( $form['formId'] ?? 0 );
+			$key = $post_id . '_' . $form_id;
+			if ( ! $post_id || ! $form_id || isset( $seen[ $key ] ) ) { continue; }
+			$seen[ $key ] = true;
+			$settings = \Breakdance\Forms\getFormSettings( $post_id, $form_id );
+			$name = $settings ? ( $settings['form']['form_name'] ?? '' ) : \Breakdance\Forms\Submission\getFormNameFromLatestSubmissionSettings( $post_id, $form_id );
+			$name = is_scalar( $name ) ? trim( (string) $name ) : '';
+			$title = ( $name ?: __( 'Form Submissions', 'breakdance-quicknav' ) ) . ' (' . $post_id . '/' . $form_id . ')';
+			$bar->add_node( array( 'id' => 'bdqn-form-' . $key, 'parent' => 'bdqn-form-submissions', 'title' => esc_html( $title ), 'href' => esc_url( add_query_arg( array( 'post_type' => 'breakdance_form_res', 'form_id' => $key ), admin_url( 'edit.php' ) ) ) ) );
+			if ( count( $seen ) >= $limit ) { break; }
+		}
+	}
+
 	/**
 	 * Publish dataminimal builder and component versions in Site Health.
 	 * @param array $info Existing debug sections.
@@ -283,7 +327,7 @@ final class Plugin {
 		$fields['library-bundled'] = array( 'label' => __( 'Bundled Library', 'breakdance-quicknav' ), 'value' => '0.8.1' );
 		$fields['updater'] = array( 'label' => 'deckerweb Updater', 'value' => Updates::$error ? __( 'Not loaded', 'breakdance-quicknav' ) : '2.1.0' );
 		$settings = Settings::get( false );
-		$fields['display'] = array( 'label' => __( 'Website display', 'breakdance-quicknav' ), 'value' => sprintf( 'backend=%d, frontend=%d, footer=%d', $settings['backend'], $settings['frontend'], $settings['footer'] ) );
+		$fields['display'] = array( 'label' => __( 'Website display', 'breakdance-quicknav' ), 'value' => sprintf( __( 'Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s', 'breakdance-quicknav' ), $settings['backend'] ? __( 'Enabled', 'breakdance-quicknav' ) : __( 'Disabled', 'breakdance-quicknav' ), $settings['frontend'] ? __( 'Enabled', 'breakdance-quicknav' ) : __( 'Disabled', 'breakdance-quicknav' ), $settings['footer'] ? __( 'Enabled', 'breakdance-quicknav' ) : __( 'Disabled', 'breakdance-quicknav' ) ) );
 		$fields['limit'] = array( 'label' => __( 'Items per group', 'breakdance-quicknav' ), 'value' => (string) $settings['limit'] );
 		$fields['overrides'] = array( 'label' => __( 'Configuration overrides', 'breakdance-quicknav' ), 'value' => implode( ', ', array_filter( Settings::constant_map(), 'defined' ) ) ?: __( 'None', 'breakdance-quicknav' ) );
 		$info['breakdance-quicknav'] = array( 'label' => 'Breakdance QuickNav', 'fields' => $fields );
@@ -295,7 +339,9 @@ final class Plugin {
 		if ( ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'You do not have permission to manage these settings.', 'breakdance-quicknav' ) ); }
 		$s = Settings::get( false );
 		echo '<div class="wrap bdqn-settings"><header class="bdqn-header"><img src="' . esc_url( plugins_url( 'assets/brand/icon.svg', DDW_BDQN_FILE ) ) . '" width="52" height="52" alt=""><div><h1>Breakdance QuickNav</h1><p>' . esc_html__( 'Your shortcuts. Breakdance 2 & 3.', 'breakdance-quicknav' ) . '</p></div></header><hr class="wp-header-end">';
-		settings_errors();
+		// WordPress already renders Settings API notices for options-general.php pages.
+		global $parent_file;
+		if ( 'options-general.php' !== $parent_file ) { settings_errors(); }
 		if ( ! Builder::active() ) { echo '<div class="notice notice-info inline"><p>' . esc_html__( 'No supported Breakdance builder (2.x or 3.x) is active. QuickNav settings remain available; toolbar navigation resumes when a supported builder is active.', 'breakdance-quicknav' ) . '</p></div>'; }
 		if ( version_compare( PHP_VERSION, '8.1', '<' ) || Updates::$error ) { echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Navigation remains available. The bundled Library needs PHP 8.0; the updater integration needs PHP 8.1 and a compatible deckerweb Updater. Update manually while a component is unavailable.', 'breakdance-quicknav' ) . '</p></div>'; }
 		echo '<form method="post" action="options.php">';

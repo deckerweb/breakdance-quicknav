@@ -46,6 +46,9 @@ msgstr ""
 msgid "Admin Dashboard toolbar"
 msgstr ""
 
+msgid "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s"
+msgstr ""
+
 msgid "All"
 msgstr ""
 
@@ -202,6 +205,9 @@ msgstr ""
 msgid "Detected components"
 msgstr ""
 
+msgid "Disabled"
+msgstr ""
+
 msgid "Disabled by default. When enabled, uninstall removes this website’s QuickNav settings and personal QuickNav preferences. Breakdance content and other plugins’ data are always retained. Network uninstall applies each website’s own choice."
 msgstr ""
 
@@ -221,6 +227,9 @@ msgid "Done. The plugin is active."
 msgstr ""
 
 msgid "Edit Global Styles"
+msgstr ""
+
+msgid "Enabled"
 msgstr ""
 
 msgid "Enter a catalog URL first."
@@ -580,6 +589,9 @@ msgstr ""
 msgid "Product website"
 msgstr ""
 
+msgid "Published"
+msgstr ""
+
 msgid "Quick access to Breakdance content, templates, settings, and official add-ons from the WordPress toolbar."
 msgstr ""
 
@@ -803,6 +815,9 @@ msgid "Tue"
 msgstr ""
 
 msgid "Tuesday"
+msgstr ""
+
+msgid "Unpublished"
 msgstr ""
 
 msgid "Unsafe archive path."

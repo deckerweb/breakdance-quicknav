@@ -6,3 +6,5 @@
 .bdqn-settings .bdqn-choices{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;max-width:600px}.bdqn-settings .form-table .bdqn-choices .bdqn-choice{display:flex;align-items:flex-start;gap:10px;padding:4px 0;margin:0;line-height:1.5}.bdqn-settings .bdqn-choice input[type=checkbox]{flex:0 0 auto;margin:2px 0 0}.bdqn-settings .bdqn-choice span{min-width:0;overflow-wrap:anywhere}.bdqn-settings .bdqn-choices .description{margin:8px 0 0}
 
 .bdqn-history-new{background:#edf6f0;color:#285f3b;border-color:#b5d5c0}.bdqn-history-fixed{background:#fff5e8;color:#79571e;border-color:#e4cfaa}.bdqn-history-misc{background:#f1f2f4;color:#4c5360;border-color:#c9cdd3}
+
+#wpadminbar .bdqn-status-heading>.ab-empty-item{font-size:11px;font-weight:600;color:#a7aaad;letter-spacing:.03em;cursor:default}#wpadminbar .bdqn-status-label{font-size:11px;color:#a7aaad;margin-inline-start:5px}#wpadminbar .bdqn-status-heading:hover>.ab-empty-item{background:transparent;color:#a7aaad}

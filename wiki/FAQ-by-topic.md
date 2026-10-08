@@ -6,7 +6,7 @@
 
 ### Where are the settings?
 
-Open Settings → Breakdance QuickNav or use Settings beside Deactivate in the plugin list. Personal preferences are in your profile.
+Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav) or use Settings beside Deactivate in the plugin list. Personal preferences are in your profile.
 
 ### Why is QuickNav missing?
 

@@ -40,6 +40,31 @@
         "category": "misc",
         "en": "Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.",
         "de": "Plugin-Einstellungen bleiben erhalten, sofern das Löschen nicht ausdrücklich aktiviert wurde. Das optionale Snippet bietet ausschließlich Navigation."
+      },
+      {
+        "category": "new",
+        "en": "Per-form shortcuts beneath Form Submissions for forms with stored submissions.",
+        "de": "Direktlinks je Formular unter Formular-Einsendungen für Formulare mit gespeicherten Einsendungen."
+      },
+      {
+        "category": "improved",
+        "en": "QuickNav settings appear beneath Breakdance when a supported builder is active; otherwise beneath WordPress Settings.",
+        "de": "QuickNav-Einstellungen stehen bei aktivem unterstütztem Builder unter Breakdance, sonst unter den WordPress-Einstellungen."
+      },
+      {
+        "category": "fixed",
+        "en": "Show the save confirmation exactly once, below the complete settings header.",
+        "de": "Speicherbestätigung genau einmal unter dem vollständigen Einstellungsheader anzeigen."
+      },
+      {
+        "category": "improved",
+        "en": "Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.",
+        "de": "Inhalts-Direktlinks sind nach veröffentlichten und unveröffentlichten Einträgen gruppiert; unveröffentlichte Inhalte zeigen ihren konkreten Status."
+      },
+      {
+        "category": "improved",
+        "en": "Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.",
+        "de": "Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte."
       }
     ]
   },

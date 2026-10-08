@@ -11,6 +11,11 @@
 - **Neu:** deckerweb Updater 2.1.0 und Library 0.8.1 mit deutschen Du- und Sie-Übersetzungen.
 - **Sonstiges:** WordPress steuert die Toolbar-Anzeige im Editor; QuickNav verändert das Editorlayout nicht mehr und entfernt das WordPress-Logo nicht.
 - **Sonstiges:** Plugin-Einstellungen bleiben erhalten, sofern das Löschen nicht ausdrücklich aktiviert wurde. Das optionale Snippet bietet ausschließlich Navigation.
+- **Neu:** Direktlinks je Formular unter Formular-Einsendungen für Formulare mit gespeicherten Einsendungen.
+- **Verbessert:** QuickNav-Einstellungen stehen bei aktivem unterstütztem Builder unter Breakdance, sonst unter den WordPress-Einstellungen.
+- **Behoben:** Speicherbestätigung genau einmal unter dem vollständigen Einstellungsheader anzeigen.
+- **Verbessert:** Inhalts-Direktlinks sind nach veröffentlichten und unveröffentlichten Einträgen gruppiert; unveröffentlichte Inhalte zeigen ihren konkreten Status.
+- **Verbessert:** Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte.
 
 ### 1.1.0 · 7. April 2025 · Repository-Stand
 

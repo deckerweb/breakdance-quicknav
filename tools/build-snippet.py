@@ -11,7 +11,7 @@ for name in ['class-settings.php','class-builder.php','class-plugin.php']:
   a=s.index('\t\t$saved = get_option');b=s.index('\t\t$map = self::constant_map();',a)
   s=s[:a]+"\t\t$out = self::defaults();\n"+s[b:]
  if name=='class-plugin.php':
-  keep=['__construct','visible','assets','toolbar','resources','addon_url','content_group','addon_nodes'];blocks=[]
+  keep=['__construct','visible','assets','toolbar','resources','addon_url','content_group','addon_nodes','form_nodes'];blocks=[]
   for m in re.finditer(r'\n\t/\*\*',s):
    a=m.start();b=s.find('\n\t/**',a+1)
    if b<0:b=s.rfind('\n}')
@@ -19,7 +19,7 @@ for name in ['class-settings.php','class-builder.php','class-plugin.php']:
    if not f or f.group(1) not in keep:continue
    name=f.group(1)
    if name=='__construct':block="\n\t/** @return void Registers navigation and toolbar styles only. */\n\tpublic function __construct() { add_action( 'admin_bar_menu', array( $this, 'toolbar' ), 999 ); add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) ); add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) ); }\n"
-   if name=='assets':block="\n\t/** @param string $hook Admin screen hook. @return void Adds minimal toolbar-only styling. */\n\tpublic function assets( $hook = '' ) { if ( SnippetBuilder::active() && $this->visible( SnippetSettings::get() ) ) { wp_add_inline_style( 'admin-bar', '#wpadminbar .bdqn-icon{width:16px;height:16px;vertical-align:middle;margin-right:6px}' ); } }\n"
+   if name=='assets':block="\n\t/** @param string $hook Admin screen hook. @return void Adds minimal toolbar-only styling. */\n\tpublic function assets( $hook = '' ) { if ( SnippetBuilder::active() && $this->visible( SnippetSettings::get() ) ) { wp_add_inline_style( 'admin-bar', '#wpadminbar .bdqn-icon{width:16px;height:16px;vertical-align:middle;margin-right:6px}#wpadminbar .bdqn-status-heading>.ab-empty-item,#wpadminbar .bdqn-status-label{font-size:11px;color:#a7aaad}#wpadminbar .bdqn-status-heading>.ab-empty-item{cursor:default}' ); } }\n"
    if name=='toolbar':
     block=block.replace("'href' => current_user_can( 'manage_options' ) ? self::url() : '#'", "'href' => '#'")
     block='\n'.join(line for line in block.split('\n') if "'bdqn-own-settings'" not in line)

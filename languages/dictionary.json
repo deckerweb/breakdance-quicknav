@@ -160,7 +160,12 @@
     "Your shortcuts. Breakdance 2 & 3.": "Deine Direktwege. Breakdance 2 & 3.",
     "No supported Breakdance builder (2.x or 3.x) is active. QuickNav settings remain available; toolbar navigation resumes when a supported builder is active.": "Kein unterstütztes Breakdance (2.x oder 3.x) ist aktiv. Die QuickNav-Einstellungen bleiben erreichbar; die Toolbar-Navigation ist mit einem aktiven unterstützten Builder wieder verfügbar.",
     "Quick access to Breakdance content, templates, settings, and official add-ons from the WordPress toolbar.": "Schneller Zugriff auf Breakdance-Inhalte, Templates, Einstellungen und Hersteller-Addons über die WordPress-Toolbar.",
-    "Reading Time Calculator": "Lesezeit-Rechner"
+    "Reading Time Calculator": "Lesezeit-Rechner",
+    "Published": "Veröffentlicht",
+    "Unpublished": "Unveröffentlicht",
+    "Enabled": "Aktiviert",
+    "Disabled": "Deaktiviert",
+    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s"
   },
   "de_DE_formal": {
     "(no title)": "(ohne Titel)",
@@ -323,6 +328,11 @@
     "Your shortcuts. Breakdance 2 & 3.": "Ihre Direktwege. Breakdance 2 & 3.",
     "No supported Breakdance builder (2.x or 3.x) is active. QuickNav settings remain available; toolbar navigation resumes when a supported builder is active.": "Kein unterstütztes Breakdance (2.x oder 3.x) ist aktiv. Die QuickNav-Einstellungen bleiben erreichbar; die Toolbar-Navigation ist mit einem aktiven unterstützten Builder wieder verfügbar.",
     "Quick access to Breakdance content, templates, settings, and official add-ons from the WordPress toolbar.": "Schneller Zugriff auf Breakdance-Inhalte, Templates, Einstellungen und Hersteller-Addons über die WordPress-Toolbar.",
-    "Reading Time Calculator": "Lesezeit-Rechner"
+    "Reading Time Calculator": "Lesezeit-Rechner",
+    "Published": "Veröffentlicht",
+    "Unpublished": "Unveröffentlicht",
+    "Enabled": "Aktiviert",
+    "Disabled": "Deaktiviert",
+    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s"
   }
 }

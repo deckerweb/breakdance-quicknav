@@ -14,7 +14,7 @@ Quick access to Breakdance pages, templates, headers, footers, global blocks, po
 
 **Version:** 2.0.0-beta.1 (test version). **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
 
-* Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Settings → Breakdance QuickNav.
+* Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).
 * Website and personal settings; Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions.
 * Breakdance settings and addons; Read registered settings tabs, including Agents & MCP in Breakdance 3. Retain AI, Migration Mode, Headspin Copilot, Yabe Webfont, WPSix Exporter and Reading Time Calculator support. WPSix Elements and Image Replacer appear in diagnostics without invented menu destinations.
 * Resources and legacy configuration; Preserve every existing Links/About destination and all six BDQN constants. Defined constants override saved settings. An explicitly empty BDQN_ENABLED_USERS array denies all users.
@@ -24,14 +24,14 @@ Quick access to Breakdance pages, templates, headers, footers, global blocks, po
 == Installation ==
 
 1. Upload the provided breakdance-quicknav-2.0.0-beta.1.zip under Plugins → Add New → Upload Plugin. Install this test version on a test website first.
-2. Activate QuickNav. Open Settings → Breakdance QuickNav; activate a supported Breakdance version to enable toolbar navigation.
+2. Activate QuickNav. Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav); activate a supported Breakdance version to enable toolbar navigation.
 3. Set personal visibility and item count under Users → Profile. Existing BDQN constants remain authoritative.
 
 == Frequently Asked Questions ==
 
 = Where are the settings? =
 
-Open Settings → Breakdance QuickNav or use Settings beside Deactivate in the plugin list. Personal preferences are in your profile.
+Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav) or use Settings beside Deactivate in the plugin list. Personal preferences are in your profile.
 
 = Why is QuickNav missing? =
 
@@ -68,6 +68,11 @@ Settings and preferences are retained by default. The deletion option removes on
 * New: deckerweb Updater 2.1.0 and Library 0.8.1, with German informal and formal translations.
 * Misc: WordPress controls editor toolbar visibility; QuickNav no longer changes the editor layout or removes the WordPress logo.
 * Misc: Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.
+* New: Per-form shortcuts beneath Form Submissions for forms with stored submissions.
+* Improved: QuickNav settings appear beneath Breakdance when a supported builder is active; otherwise beneath WordPress Settings.
+* Fixed: Show the save confirmation exactly once, below the complete settings header.
+* Improved: Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.
+* Improved: Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.
 
 = 1.1.0 =
 

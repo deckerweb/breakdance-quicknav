@@ -16,7 +16,7 @@ Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Block
 
 ## Auf einen Blick
 
-- Inhalte direkt erreichen; Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Einstellungen → Breakdance QuickNav auswählen.
+- Inhalte direkt erreichen; Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) auswählen.
 - Website und persönliche Einstellungen; Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen.
 - Breakdance-Einstellungen und Addons; Registrierte Einstellungsreiter einschließlich Agents & MCP in Breakdance 3 werden berücksichtigt. AI, Migration Mode, Headspin Copilot, Yabe Webfont, WPSix Exporter und Reading Time Calculator bleiben unterstützt. WPSix Elements und Image Replacer erscheinen in der Diagnose ohne erfundene Menüziele.
 - Ressourcen und bisherige Konfiguration; Alle bisherigen Links-/About-Ziele und sechs BDQN-Konstanten bleiben erhalten. Definierte Konstanten überschreiben gespeicherte Einstellungen. Ein ausdrücklich leeres BDQN_ENABLED_USERS-Array sperrt weiterhin alle Benutzer.
@@ -26,14 +26,14 @@ Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Block
 ## Installation
 
 1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.1.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
-2. QuickNav aktivieren und Einstellungen → Breakdance QuickNav öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.
+2. QuickNav aktivieren und Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.
 3. Persönliche Sichtbarkeit und Eintragszahl unter Benutzer → Profil einstellen. Bestehende BDQN-Konstanten behalten Vorrang.
 
 ## Funktionen
 
 ### Inhalte direkt erreichen
 
-Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Einstellungen → Breakdance QuickNav auswählen.
+Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) auswählen.
 
 ### Website und persönliche Einstellungen
 
@@ -59,7 +59,7 @@ QuickNav pausiert ohne passenden Breakdance-Builder; die Einstellungen bleiben e
 
 ### Wo sind die Einstellungen?
 
-Unter Einstellungen → Breakdance QuickNav oder über Einstellungen neben Deaktivieren in der Pluginliste. Persönliche Vorlieben stehen im Benutzerprofil.
+Unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) oder über Einstellungen neben Deaktivieren in der Pluginliste. Persönliche Vorlieben stehen im Benutzerprofil.
 
 ### Warum fehlt QuickNav?
 
@@ -98,6 +98,11 @@ Einstellungen und Vorlieben bleiben standardmäßig erhalten. Die Löschoption e
 - **Neu:** deckerweb Updater 2.1.0 und Library 0.8.1 mit deutschen Du- und Sie-Übersetzungen.
 - **Sonstiges:** WordPress steuert die Toolbar-Anzeige im Editor; QuickNav verändert das Editorlayout nicht mehr und entfernt das WordPress-Logo nicht.
 - **Sonstiges:** Plugin-Einstellungen bleiben erhalten, sofern das Löschen nicht ausdrücklich aktiviert wurde. Das optionale Snippet bietet ausschließlich Navigation.
+- **Neu:** Direktlinks je Formular unter Formular-Einsendungen für Formulare mit gespeicherten Einsendungen.
+- **Verbessert:** QuickNav-Einstellungen stehen bei aktivem unterstütztem Builder unter Breakdance, sonst unter den WordPress-Einstellungen.
+- **Behoben:** Speicherbestätigung genau einmal unter dem vollständigen Einstellungsheader anzeigen.
+- **Verbessert:** Inhalts-Direktlinks sind nach veröffentlichten und unveröffentlichten Einträgen gruppiert; unveröffentlichte Inhalte zeigen ihren konkreten Status.
+- **Verbessert:** Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte.
 
 ### 1.1.0 · 7. April 2025 · Repository-Stand
 

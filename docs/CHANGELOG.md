@@ -11,6 +11,11 @@
 - **New:** deckerweb Updater 2.1.0 and Library 0.8.1, with German informal and formal translations.
 - **Misc:** WordPress controls editor toolbar visibility; QuickNav no longer changes the editor layout or removes the WordPress logo.
 - **Misc:** Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.
+- **New:** Per-form shortcuts beneath Form Submissions for forms with stored submissions.
+- **Improved:** QuickNav settings appear beneath Breakdance when a supported builder is active; otherwise beneath WordPress Settings.
+- **Fixed:** Show the save confirmation exactly once, below the complete settings header.
+- **Improved:** Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.
+- **Improved:** Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.
 
 ### 1.1.0 · April 7, 2025 · Repository version
 

@@ -46,6 +46,9 @@ msgstr "Administration"
 msgid "Admin Dashboard toolbar"
 msgstr "Toolbar im Admin-Dashboard"
 
+msgid "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s"
+msgstr "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s"
+
 msgid "All"
 msgstr "Alle"
 
@@ -202,6 +205,9 @@ msgstr "Erkannt"
 msgid "Detected components"
 msgstr "Erkannte Komponenten"
 
+msgid "Disabled"
+msgstr "Deaktiviert"
+
 msgid "Disabled by default. When enabled, uninstall removes this website’s QuickNav settings and personal QuickNav preferences. Breakdance content and other plugins’ data are always retained. Network uninstall applies each website’s own choice."
 msgstr "Standardmäßig ausgeschaltet. Bei Aktivierung entfernt die Deinstallation die QuickNav-Einstellungen und persönlichen QuickNav-Vorlieben dieser Website. Breakdance-Inhalte und Daten anderer Plugins bleiben immer erhalten. Bei Netzwerk-Deinstallation gilt die jeweilige Entscheidung jeder Website."
 
@@ -222,6 +228,9 @@ msgstr "Erledigt. Das Plugin ist aktiv."
 
 msgid "Edit Global Styles"
 msgstr "Globale Stile bearbeiten"
+
+msgid "Enabled"
+msgstr "Aktiviert"
 
 msgid "Enter a catalog URL first."
 msgstr "Bitte zuerst eine Katalog-URL eintragen."
@@ -580,6 +589,9 @@ msgstr "Der Private-Modus muss ein boolescher Wert sein."
 msgid "Product website"
 msgstr "Produktwebsite"
 
+msgid "Published"
+msgstr "Veröffentlicht"
+
 msgid "Quick access to Breakdance content, templates, settings, and official add-ons from the WordPress toolbar."
 msgstr "Schneller Zugriff auf Breakdance-Inhalte, Templates, Einstellungen und Hersteller-Addons über die WordPress-Toolbar."
 
@@ -804,6 +816,9 @@ msgstr "Di"
 
 msgid "Tuesday"
 msgstr "Dienstag"
+
+msgid "Unpublished"
+msgstr "Unveröffentlicht"
 
 msgid "Unsafe archive path."
 msgstr "Unsicherer Archivpfad."

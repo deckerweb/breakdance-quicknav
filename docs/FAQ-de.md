@@ -6,7 +6,7 @@
 
 ### Wo sind die Einstellungen?
 
-Unter Einstellungen → Breakdance QuickNav oder über Einstellungen neben Deaktivieren in der Pluginliste. Persönliche Vorlieben stehen im Benutzerprofil.
+Unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) oder über Einstellungen neben Deaktivieren in der Pluginliste. Persönliche Vorlieben stehen im Benutzerprofil.
 
 ### Warum fehlt QuickNav?
 

@@ -37,7 +37,7 @@ bdqn_assert( array() === get_user_option( Settings::USER_OPTION, 1 ), 'cannot ch
 $bar = new WP_Admin_Bar(); $plugin->toolbar( $bar ); bdqn_assert( ! $bar->get_node( 'ddw-breakdance-quicknav' ), 'subscriber toolbar denied' );
 wp_set_current_user( 1 );
 $links = $plugin->action_links( array( 'deactivate' => '<a>Deactivate</a>' ) );
-bdqn_assert( false !== strpos( reset( $links ), 'options-general.php?page=breakdance-quicknav' ), 'settings link precedes deactivate' );
+bdqn_assert( false !== strpos( reset( $links ), ( $active ? 'admin.php' : 'options-general.php' ) . '?page=breakdance-quicknav' ), 'settings link precedes deactivate' );
 bdqn_assert( false === strpos( implode( ' ', $plugin->row_meta( array(), plugin_basename( DDW_BDQN_FILE ) ) ), 'MERGE0' ), 'newsletter contains no personal parameters' );
 bdqn_assert( ! isset( $plugin->diagnostics( array() )['breakdance-quicknav']['fields']['BDQN_ENABLED_USERS'] ), 'diagnostics exclude user IDs' );
 if ( $active ) {
