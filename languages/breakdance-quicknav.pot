@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.1\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n"
+msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.2\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr ""
@@ -35,6 +35,15 @@ msgid "Activating…"
 msgstr ""
 
 msgid "Active builder"
+msgstr ""
+
+msgid "Active; admin destination available"
+msgstr ""
+
+msgid "Active; admin destination unavailable (permissions, dependencies or disabled module)"
+msgstr ""
+
+msgid "Active; no separate admin page"
 msgstr ""
 
 msgid "Add-ons"
@@ -151,6 +160,9 @@ msgstr ""
 msgid "Checking status…"
 msgstr ""
 
+msgid "Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links."
+msgstr ""
+
 msgid "Close"
 msgstr ""
 
@@ -235,6 +247,9 @@ msgstr ""
 msgid "Enter a catalog URL first."
 msgstr ""
 
+msgid "Existing integration retained"
+msgstr ""
+
 msgid "Expanded archive is too large."
 msgstr ""
 
@@ -317,6 +332,9 @@ msgid "Installation failed."
 msgstr ""
 
 msgid "Installed"
+msgstr ""
+
+msgid "Installed, inactive"
 msgstr ""
 
 msgid "Installed: "
@@ -502,6 +520,9 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+msgid "Not installed or not detected"
+msgstr ""
+
 msgid "Not installed. You can try again."
 msgstr ""
 
@@ -535,6 +556,9 @@ msgstr ""
 msgid "Only groups available in the active builder are displayed."
 msgstr ""
 
+msgid "Open addon admin page"
+msgstr ""
+
 msgid "Open catalog"
 msgstr ""
 
@@ -548,6 +572,9 @@ msgid "PHP ZIP support is required."
 msgstr ""
 
 msgid "POST required."
+msgstr ""
+
+msgid "Package verification pending"
 msgstr ""
 
 msgid "Permission denied."
@@ -685,6 +712,12 @@ msgstr ""
 msgid "Show Links & About"
 msgstr ""
 
+msgid "Show QuickNav links for this addon"
+msgstr ""
+
+msgid "Show addon submenus"
+msgstr ""
+
 msgid "Show deckerweb under Add Plugins"
 msgstr ""
 
@@ -784,6 +817,9 @@ msgstr ""
 msgid "These defaults apply to this website. Personal toolbar preferences are available in your user profile."
 msgstr ""
 
+msgid "Third-party integrations"
+msgstr ""
+
 msgid "This catalog requires a newer Library."
 msgstr ""
 
@@ -839,6 +875,9 @@ msgid "View plugins"
 msgstr ""
 
 msgid "Visibility"
+msgstr ""
+
+msgid "Waiting for a supported Breakdance builder"
 msgstr ""
 
 msgid "Website display"

@@ -24,7 +24,7 @@ Nur bei aktivierter Anzeige unveröffentlichter Inhalte sowie vorhandenen WordPr
 
 ### Welche Addons werden unterstützt?
 
-Die bisherigen Integrationen bleiben erhalten. Die gelieferten AI- und WPSix-Pakete werden geprüft; die vertiefte Prüfung von Headspin, Yabe, Reading Time Calculator und Migration Mode folgt nach der ersten Testversion. Siehe docs/ADDONS-de.md.
+Bestehende Integrationen bleiben erhalten. Die gelieferten Pakete sowie die frei verfügbaren SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync sind für die Navigation geprüft. Weitere Premium-Pakete und WPML-Abhängigkeiten benötigen noch eigene Prüfungen. Siehe docs/ADDONS-de.md.
 
 ## Kompatibilität & Daten
 

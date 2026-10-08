@@ -8,3 +8,5 @@
 .bdqn-history-new{background:#edf6f0;color:#285f3b;border-color:#b5d5c0}.bdqn-history-fixed{background:#fff5e8;color:#79571e;border-color:#e4cfaa}.bdqn-history-misc{background:#f1f2f4;color:#4c5360;border-color:#c9cdd3}
 
 #wpadminbar .bdqn-status-heading>.ab-empty-item{font-size:11px;font-weight:600;color:#a7aaad;letter-spacing:.03em;cursor:default}#wpadminbar .bdqn-status-label{font-size:11px;color:#a7aaad;margin-inline-start:5px}#wpadminbar .bdqn-status-heading:hover>.ab-empty-item{background:transparent;color:#a7aaad}
+
+.bdqn-integration-list{max-width:900px}.bdqn-integration{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid #dcdcde}.bdqn-integration label{display:block;margin-top:10px}.bdqn-integration>div:last-child{text-align:right}.bdqn-integration strong+span{color:#646970;font-size:12px}@media(max-width:600px){.bdqn-integration{display:block}.bdqn-integration>div:last-child{text-align:left;margin-top:10px}}

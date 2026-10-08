@@ -1,5 +1,34 @@
 [
   {
+    "version": "2.0.0-beta.2",
+    "date": {
+      "en": "October 8, 2026 · Test version",
+      "de": "8. Oktober 2026 · Testversion"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Website controls for individual addon integrations, availability explanations and optional addon submenus.",
+        "de": "Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs."
+      },
+      {
+        "category": "new",
+        "en": "Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.",
+        "de": "Navigation für SiteCare Builder Tools, Elements Hive, Express Add On und BreakColorUI Sync."
+      },
+      {
+        "category": "fixed",
+        "en": "Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.",
+        "de": "Jooosi Fon erkennen und seine aktuelle Admin-Adresse verwenden; Unterstützung für bisheriges Yabe Webfont erhalten."
+      },
+      {
+        "category": "improved",
+        "en": "Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.",
+        "de": "Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links."
+      }
+    ]
+  },
+  {
     "version": "2.0.0-beta.1",
     "date": {
       "en": "October 8, 2026 · Test version",

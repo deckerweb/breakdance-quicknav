@@ -177,10 +177,9 @@ final class Builder {
 	/** @return array Detected addon names mapped to version/status strings. */
 	public static function addons() {
 		$out = array();
-		foreach ( array( 'BREAKDANCE_AI_VERSION' => 'Breakdance AI', 'WPSIX_EXPORTER_VERSION' => 'WPSix Exporter', 'WPSIX_ELEMENTS_VERSION' => 'WPSix Elements', 'IMAGE_REPLACE_VERSION' => 'Image Replacer', 'HSF_VERSION' => 'Headspin Copilot' ) as $constant => $name ) {
-			if ( defined( $constant ) && is_scalar( constant( $constant ) ) ) { $out[ $name ] = sanitize_text_field( (string) constant( $constant ) ); }
+		foreach ( Integrations::rows() as $row ) {
+			if ( $row['active'] ) { $out[ $row['label'] ] = $row['version'] ?: __( 'Detected', 'breakdance-quicknav' ); }
 		}
-		foreach ( array( 'Breakdance Migration Mode' => function_exists( '\Breakdance\MigrationMode\saveActivatingUserIp' ), 'Yabe Webfont' => class_exists( '\Yabe\Webfont\Plugin' ), 'Reading Time Calculator' => function_exists( 'bd_reading_time_menu' ) ) as $name => $active ) { if ( $active ) { $out[ $name ] = __( 'Detected', 'breakdance-quicknav' ); } }
 		return $out;
 	}
 }

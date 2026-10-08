@@ -20,6 +20,8 @@ $other = $context; $other['plugin'] = 'other/other.php';
 bdqn_package_assert( '/missing' === Updates::validate_update_source( '/missing', '/missing', $upgrader, $other ), 'foreign update untouched' );
 $upgrader->bulk = true;
 bdqn_package_assert( $source === Updates::validate_update_source( $source, $source, $upgrader, array( 'plugin' => $basename ) ), 'native bulk context accepted' );
+$registry = $source . '/includes/class-integrations.php'; $contents = file_get_contents( $registry ); unlink( $registry );
+bdqn_package_assert( is_wp_error( Updates::validate_update_source( $source, $source, $upgrader, $context ) ), 'missing addon registry rejected' ); file_put_contents( $registry, $contents );
 $history = $source . '/includes/history.json'; $contents = file_get_contents( $history ); unlink( $history );
 bdqn_package_assert( is_wp_error( Updates::validate_update_source( $source, $source, $upgrader, $context ) ), 'missing local history rejected' ); file_put_contents( $history, $contents );
 $library = $source . '/includes/deckerweb-plugin-library/src/Library.php'; $contents = file_get_contents( $library ); file_put_contents( $library, $contents . "\n// changed\n" );

@@ -2,6 +2,13 @@
 
 [English](CHANGELOG.md)
 
+### 2.0.0-beta.2 · 8. Oktober 2026 · Testversion
+
+- **Neu:** Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs.
+- **Neu:** Navigation für SiteCare Builder Tools, Elements Hive, Express Add On und BreakColorUI Sync.
+- **Behoben:** Jooosi Fon erkennen und seine aktuelle Admin-Adresse verwenden; Unterstützung für bisheriges Yabe Webfont erhalten.
+- **Verbessert:** Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links.
+
 ### 2.0.0-beta.1 · 8. Oktober 2026 · Testversion
 
 - **Neu:** Website-Einstellungen und persönliche Toolbar-Vorlieben.

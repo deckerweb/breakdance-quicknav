@@ -165,7 +165,20 @@
     "Unpublished": "Unveröffentlicht",
     "Enabled": "Aktiviert",
     "Disabled": "Deaktiviert",
-    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s"
+    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s",
+    "Package verification pending": "Paketprüfung ausstehend",
+    "Not installed or not detected": "Nicht installiert oder nicht erkannt",
+    "Installed, inactive": "Installiert, nicht aktiv",
+    "Waiting for a supported Breakdance builder": "Wartet auf einen unterstützten Breakdance-Builder",
+    "Active; no separate admin page": "Aktiv; keine eigene Admin-Seite",
+    "Active; admin destination available": "Aktiv; Admin-Seite verfügbar",
+    "Active; admin destination unavailable (permissions, dependencies or disabled module)": "Aktiv; Admin-Seite derzeit nicht verfügbar (Berechtigungen, Abhängigkeiten oder deaktiviertes Modul)",
+    "Third-party integrations": "Drittanbieter-Integrationen",
+    "Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links.": "Wähle, welche Addon-Direktlinks QuickNav auf dieser Website anzeigt. Die Schalter aktivieren, deaktivieren oder konfigurieren die Addons selbst nicht. Für fehlende Addons erscheinen keine Toolbar-Links.",
+    "Show addon submenus": "Addon-Untermenüs anzeigen",
+    "Show QuickNav links for this addon": "QuickNav-Links für dieses Addon anzeigen",
+    "Existing integration retained": "Bestehende Integration erhalten",
+    "Open addon admin page": "Admin-Seite des Addons öffnen"
   },
   "de_DE_formal": {
     "(no title)": "(ohne Titel)",
@@ -333,6 +346,19 @@
     "Unpublished": "Unveröffentlicht",
     "Enabled": "Aktiviert",
     "Disabled": "Deaktiviert",
-    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s"
+    "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s": "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s",
+    "Package verification pending": "Paketprüfung ausstehend",
+    "Not installed or not detected": "Nicht installiert oder nicht erkannt",
+    "Installed, inactive": "Installiert, nicht aktiv",
+    "Waiting for a supported Breakdance builder": "Wartet auf einen unterstützten Breakdance-Builder",
+    "Active; no separate admin page": "Aktiv; keine eigene Admin-Seite",
+    "Active; admin destination available": "Aktiv; Admin-Seite verfügbar",
+    "Active; admin destination unavailable (permissions, dependencies or disabled module)": "Aktiv; Admin-Seite derzeit nicht verfügbar (Berechtigungen, Abhängigkeiten oder deaktiviertes Modul)",
+    "Third-party integrations": "Drittanbieter-Integrationen",
+    "Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links.": "Wählen Sie, welche Addon-Direktlinks QuickNav auf dieser Website anzeigt. Die Schalter aktivieren, deaktivieren oder konfigurieren die Addons selbst nicht. Für fehlende Addons erscheinen keine Toolbar-Links.",
+    "Show addon submenus": "Addon-Untermenüs anzeigen",
+    "Show QuickNav links for this addon": "QuickNav-Links für dieses Addon anzeigen",
+    "Existing integration retained": "Bestehende Integration erhalten",
+    "Open addon admin page": "Admin-Seite des Addons öffnen"
   }
 }

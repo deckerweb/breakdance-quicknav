@@ -8,7 +8,7 @@
 
 Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Blocks, Popups, Einstellungen und unterstützte Addons über die WordPress-Toolbar.
 
-**Version:** 2.0.0-beta.1 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
+**Version:** 2.0.0-beta.2 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
 
 [FAQ](#faq) · [Änderungsverlauf](#änderungsverlauf) · [GitHub](https://github.com/deckerweb/breakdance-quicknav)
 
@@ -18,14 +18,14 @@ Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Block
 
 - Inhalte direkt erreichen; Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) auswählen.
 - Website und persönliche Einstellungen; Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen.
-- Breakdance-Einstellungen und Addons; Registrierte Einstellungsreiter einschließlich Agents & MCP in Breakdance 3 werden berücksichtigt. AI, Migration Mode, Headspin Copilot, Yabe Webfont, WPSix Exporter und Reading Time Calculator bleiben unterstützt. WPSix Elements und Image Replacer erscheinen in der Diagnose ohne erfundene Menüziele.
+- Breakdance-Einstellungen und Addons; Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge.
 - Ressourcen und bisherige Konfiguration; Alle bisherigen Links-/About-Ziele und sechs BDQN-Konstanten bleiben erhalten. Definierte Konstanten überschreiben gespeicherte Einstellungen. Ein ausdrücklich leeres BDQN_ENABLED_USERS-Array sperrt weiterhin alle Benutzer.
 - Updates und weitere Plugins; deckerweb Updater 2.1.0 bietet Updates stabiler GitHub-Veröffentlichungen. Library 0.8.1 ergänzt die optionale Plugin-Entdeckung. Der Online-Katalog ist standardmäßig ausgeschaltet. Keine Telemetrie.
 - Datenhaltung und native Editoren; QuickNav pausiert ohne passenden Breakdance-Builder; die Einstellungen bleiben erreichbar. Deaktivierung erhält Daten, Deinstallation folgt der Löschentscheidung jeder Website. WordPress steuert die Toolbar-Anzeige im Editor.
 
 ## Installation
 
-1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.1.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
+1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.2.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
 2. QuickNav aktivieren und Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.
 3. Persönliche Sichtbarkeit und Eintragszahl unter Benutzer → Profil einstellen. Bestehende BDQN-Konstanten behalten Vorrang.
 
@@ -41,7 +41,7 @@ Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtig
 
 ### Breakdance-Einstellungen und Addons
 
-Registrierte Einstellungsreiter einschließlich Agents & MCP in Breakdance 3 werden berücksichtigt. AI, Migration Mode, Headspin Copilot, Yabe Webfont, WPSix Exporter und Reading Time Calculator bleiben unterstützt. WPSix Elements und Image Replacer erscheinen in der Diagnose ohne erfundene Menüziele.
+Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge.
 
 ### Ressourcen und bisherige Konfiguration
 
@@ -75,7 +75,7 @@ Nur bei aktivierter Anzeige unveröffentlichter Inhalte sowie vorhandenen WordPr
 
 ### Welche Addons werden unterstützt?
 
-Die bisherigen Integrationen bleiben erhalten. Die gelieferten AI- und WPSix-Pakete werden geprüft; die vertiefte Prüfung von Headspin, Yabe, Reading Time Calculator und Migration Mode folgt nach der ersten Testversion. Siehe docs/ADDONS-de.md.
+Bestehende Integrationen bleiben erhalten. Die gelieferten Pakete sowie die frei verfügbaren SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync sind für die Navigation geprüft. Weitere Premium-Pakete und WPML-Abhängigkeiten benötigen noch eigene Prüfungen. Siehe docs/ADDONS-de.md.
 
 ### Funktioniert das Plugin in Multisite?
 
@@ -88,6 +88,13 @@ Einstellungen und Vorlieben bleiben standardmäßig erhalten. Die Löschoption e
 [Fragen nach Themen](Fragen-nach-Themen)
 
 ## Änderungsverlauf
+
+### 2.0.0-beta.2 · 8. Oktober 2026 · Testversion
+
+- **Neu:** Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs.
+- **Neu:** Navigation für SiteCare Builder Tools, Elements Hive, Express Add On und BreakColorUI Sync.
+- **Behoben:** Jooosi Fon erkennen und seine aktuelle Admin-Adresse verwenden; Unterstützung für bisheriges Yabe Webfont erhalten.
+- **Verbessert:** Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links.
 
 ### 2.0.0-beta.1 · 8. Oktober 2026 · Testversion
 

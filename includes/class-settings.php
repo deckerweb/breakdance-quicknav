@@ -20,7 +20,7 @@ final class Settings {
 			'backend' => true, 'frontend' => true, 'footer' => true, 'drafts' => false,
 			'capability' => 'activate_plugins', 'users' => array(), 'post_types' => array( 'page' ),
 			'groups' => array( 'content', 'templates', 'headers', 'footers', 'global-blocks', 'popups', 'settings', 'addons' ),
-			'delete_data' => false,
+			'delete_data' => false, 'integrations' => array(), 'integration_children' => true,
 		);
 	}
 
@@ -32,7 +32,7 @@ final class Settings {
 	public static function sanitize( $input ) {
 		$input = is_array( $input ) ? $input : array();
 		$out = self::defaults();
-		foreach ( array( 'backend', 'frontend', 'footer', 'drafts', 'delete_data' ) as $key ) {
+		foreach ( array( 'backend', 'frontend', 'footer', 'drafts', 'delete_data', 'integration_children' ) as $key ) {
 			$out[ $key ] = ! empty( $input[ $key ] );
 		}
 		$out['name'] = isset( $input['name'] ) && is_scalar( $input['name'] ) ? sanitize_text_field( (string) $input['name'] ) : 'BD';
@@ -49,6 +49,9 @@ final class Settings {
 		$types = get_post_types( array( 'public' => true ), 'names' );
 		$out['post_types'] = is_array( $input['post_types'] ?? null ) ? array_values( array_intersect( array_filter( $input['post_types'], 'is_string' ), $types ) ) : array( 'page' );
 		$out['groups'] = is_array( $input['groups'] ?? null ) ? array_values( array_intersect( array_filter( $input['groups'], 'is_string' ), self::defaults()['groups'] ) ) : self::defaults()['groups'];
+		foreach ( is_array( $input['integrations'] ?? null ) ? array_slice( $input['integrations'], 0, 100, true ) : array() as $id => $enabled ) {
+			if ( is_string( $id ) && sanitize_key( $id ) === $id && in_array( $enabled, array( true, false, 1, 0, '1', '0' ), true ) ) { $out['integrations'][ $id ] = (bool) $enabled; }
+		}
 		return $out;
 	}
 

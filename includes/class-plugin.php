@@ -78,6 +78,7 @@ final class Plugin {
 		$input = is_array( $input ) ? $input : array();
 		$old = get_option( Settings::OPTION, Settings::defaults() );
 		$old = is_array( $old ) ? array_merge( Settings::defaults(), $old ) : Settings::defaults();
+		foreach ( array( 'integrations', 'integration_children' ) as $key ) { if ( ! array_key_exists( $key, $input ) ) { $input[ $key ] = $old[ $key ]; } }
 		foreach ( Settings::constant_map() as $key => $constant ) { if ( defined( $constant ) ) { $input[ $key ] = $old[ $key ]; } }
 		return Settings::sanitize( $input );
 	}
@@ -173,7 +174,7 @@ final class Plugin {
 				if ( $url ) { $bar->add_node( array( 'id' => 'bdqn-edit-global-styles', 'parent' => $root, 'title' => esc_html__( 'Edit Global Styles', 'breakdance-quicknav' ), 'href' => esc_url( $url ), 'meta' => array( 'target' => '_blank', 'rel' => 'noopener noreferrer' ) ) ); }
 				if ( function_exists( '\Breakdance\DesignLibrary\hideDesignLibrary' ) && ! \Breakdance\DesignLibrary\hideDesignLibrary() ) { $bar->add_node( array( 'id' => 'bdqn-design-library', 'parent' => $root, 'title' => esc_html__( 'Design Library', 'breakdance-quicknav' ), 'href' => admin_url( 'admin.php?page=breakdance_design_library' ) ) ); }
 				$bar->add_node( array( 'id' => 'bdqn-settings', 'parent' => $root, 'title' => esc_html__( 'Breakdance Settings', 'breakdance-quicknav' ), 'href' => Builder::settings_url( 'breakdance' ) ) );
-				foreach ( Builder::tabs( 'breakdance' ) as $tab => $label ) { $bar->add_node( array( 'id' => 'bdqn-settings-' . $tab, 'parent' => 'bdqn-settings', 'title' => esc_html( $label ), 'href' => esc_url( Builder::settings_url( 'breakdance', $tab ) ) ) ); }
+				foreach ( Builder::tabs( 'breakdance' ) as $tab => $label ) { if ( in_array( $tab, array( 'ai', 'migration-mode' ), true ) && ! Integrations::enabled( $tab, $settings ) ) { continue; } $bar->add_node( array( 'id' => 'bdqn-settings-' . $tab, 'parent' => 'bdqn-settings', 'title' => esc_html( $label ), 'href' => esc_url( Builder::settings_url( 'breakdance', $tab ) ) ) ); }
 			}
 		}
 		if ( in_array( 'addons', $settings['groups'], true ) ) { $this->addon_nodes( $bar, $root ); }
@@ -277,16 +278,23 @@ final class Plugin {
 	 * @return void Adds supported addon menus; addons without a menu remain diagnostic entries.
 	 */
 	private function addon_nodes( $bar, $parent ) {
-		if ( ! current_user_can( 'manage_options' ) || ! Builder::full_access() ) { return; }
-		$nodes = array();
-		if ( defined( 'HSF_VERSION' ) ) { $nodes['headspin'] = array( 'Headspin Copilot', $this->addon_url( array( 'headspin' ), 'headspin' ) ); }
-		if ( class_exists( '\Yabe\Webfont\Plugin' ) && current_user_can( 'edit_theme_options' ) ) { $nodes['yabe-webfont'] = array( 'Yabe Webfont', $this->addon_url( array( 'yabe_webfont' ), 'yabe_webfont', 'themes.php' ) ); }
-		if ( defined( 'WPSIX_EXPORTER_URL' ) && current_user_can( 'administrator' ) ) {
-			$current = defined( 'WPSIX_EXPORTER_VERSION' ) && is_scalar( WPSIX_EXPORTER_VERSION ) && version_compare( WPSIX_EXPORTER_VERSION, '2.0.0', '>=' );
-			$nodes['wpsix-exporter'] = array( 'WPSix Exporter', $this->addon_url( array( 'wpsix-exporter', 'wpsix_exporter' ), $current ? 'wpsix-exporter' : 'wpsix_exporter' ) );
+		if ( ! Builder::full_access() || is_network_admin() || is_user_admin() ) { return; }
+		$settings = Settings::get(); $seen = array();
+		foreach ( Integrations::rows() as $id => $row ) {
+			if ( ! Integrations::enabled( $id, $settings ) ) { continue; }
+			foreach ( $row['links'] as $link ) {
+				if ( ! empty( $link['tab'] ) || isset( $seen[ $link['url'] ] ) ) { continue; }
+				$seen[ $link['url'] ] = true;
+				$bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $parent, 'title' => esc_html( $link['label'] ), 'href' => esc_url( $link['url'] ) ) );
+				if ( ! empty( $settings['integration_children'] ) ) {
+					foreach ( $row['children'] as $child ) {
+						if ( isset( $seen[ $child['url'] ] ) ) { continue; }
+						$seen[ $child['url'] ] = true;
+						$bar->add_node( array( 'id' => 'bdqn-' . $id . '-' . substr( md5( $child['url'] ), 0, 10 ), 'parent' => 'bdqn-' . $id, 'title' => esc_html( $child['label'] ), 'href' => esc_url( $child['url'] ) ) );
+					}
+				}
+			}
 		}
-		if ( function_exists( 'bd_reading_time_menu' ) ) { $nodes['bdrtc'] = array( __( 'Reading Time Calculator', 'breakdance-quicknav' ), $this->addon_url( array( 'bd-reading-time' ), 'bd-reading-time' ) ); }
-		foreach ( $nodes as $id => $node ) { if ( $node[1] ) { $bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $parent, 'title' => esc_html( $node[0] ), 'href' => esc_url( $node[1] ) ) ); } }
 	}
 
 	/** Add the same per-form destinations offered by Breakdance's submissions filter. */
@@ -362,6 +370,7 @@ final class Plugin {
 		echo '</table><p>' . esc_html__( 'Leave user IDs empty to allow all eligible users. Separate IDs with commas. WordPress and Breakdance permissions always apply to each destination.', 'breakdance-quicknav' ) . '</p><h2>' . esc_html__( 'Data', 'breakdance-quicknav' ) . '</h2><table class="form-table" role="presentation">';
 		$this->field( 'delete_data', __( 'Delete QuickNav settings when uninstalling', 'breakdance-quicknav' ), 'checkbox', $s );
 		echo '</table><p>' . esc_html__( 'Disabled by default. When enabled, uninstall removes this website’s QuickNav settings and personal QuickNav preferences. Breakdance content and other plugins’ data are always retained. Network uninstall applies each website’s own choice.', 'breakdance-quicknav' ) . '</p>';
+		$this->integration_settings( $s );
 		submit_button();
 		echo '</form><h2>' . esc_html__( 'Detected components', 'breakdance-quicknav' ) . '</h2><dl class="bdqn-diagnostics">';
 		foreach ( $this->diagnostics( array() )['breakdance-quicknav']['fields'] as $field ) { echo '<dt>' . esc_html( $field['label'] ) . '</dt><dd>' . esc_html( $field['value'] ) . '</dd>'; }
@@ -370,6 +379,27 @@ final class Plugin {
 		$history = require DDW_BDQN_DIR . '/includes/plugin-history.php';
 		echo $history( 0 === strpos( determine_locale(), 'de' ) ); // All source values escaped in the renderer.
 		echo '</dialog></div>';
+	}
+
+	/** @param array $settings Website settings. @return void Displays addon availability and site-scoped navigation switches. */
+	private function integration_settings( $settings ) {
+		echo '<h2 id="bdqn-integrations">' . esc_html__( 'Third-party integrations', 'breakdance-quicknav' ) . '</h2><p>' . esc_html__( 'Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links.', 'breakdance-quicknav' ) . '</p><table class="form-table" role="presentation">';
+		$this->field( 'integration_children', __( 'Show addon submenus', 'breakdance-quicknav' ), 'checkbox', $settings );
+		echo '</table><div class="bdqn-integration-list">';
+		foreach ( Integrations::rows() as $id => $row ) {
+			$control = 'bdqn-integration-' . $id;
+			echo '<div class="bdqn-integration"><div><strong>' . esc_html( $row['label'] ) . '</strong>';
+			if ( $row['version'] ) { echo ' <span>' . esc_html( $row['version'] ) . '</span>'; }
+			echo '<p class="description">' . esc_html( Integrations::status_label( $row['status'] ) ) . '</p>';
+			if ( ! $row['pending'] && 'no-menu' !== $row['status'] ) {
+				echo '<input type="hidden" name="ddw_bdqn_settings[integrations][' . esc_attr( $id ) . ']" value="0"><label for="' . esc_attr( $control ) . '"><input type="checkbox" id="' . esc_attr( $control ) . '" name="ddw_bdqn_settings[integrations][' . esc_attr( $id ) . ']" value="1"' . checked( Integrations::enabled( $id, $settings ), true, false ) . '> ' . esc_html__( 'Show QuickNav links for this addon', 'breakdance-quicknav' ) . '</label>';
+			}
+			echo '</div><div>';
+			if ( $row['legacy'] ) { echo '<span class="description">' . esc_html__( 'Existing integration retained', 'breakdance-quicknav' ) . '</span>'; }
+			if ( $row['links'] ) { echo '<p><a href="' . esc_url( $row['links'][0]['url'] ) . '">' . esc_html__( 'Open addon admin page', 'breakdance-quicknav' ) . '</a></p>'; }
+			echo '</div></div>';
+		}
+		echo '</div>';
 	}
 
 	/**

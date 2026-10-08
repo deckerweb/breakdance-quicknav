@@ -7,3 +7,5 @@ Website settings: `ddw_bdqn_settings`. Personal preferences: the website-prefixe
 Library 0.8.1 owns shared network/site options, catalog caches and lifecycle data. Its standard last-host cleanup protects even inactive installed host copies. Its separate deletion choice defaults off and never removes installed plugins or their content.
 
 Updater requests public metadata and release packages from GitHub over HTTPS; platform/version metadata may be sent by WordPress during updates. Library online catalog access defaults off. Enabling it requests public catalog metadata and approved package information from GitHub. No telemetry or analytics. Local icons, CSS and JavaScript are bundled. Resource links connect to their destination only when followed; newsletter URLs contain no personalized account parameters.
+
+Individual integration switches and the submenu preference are stored in the existing website-scoped `ddw_bdqn_settings` option. Discovery performs no external HTTP requests and stores no addon licenses or credentials. It never changes addon activation or configuration.

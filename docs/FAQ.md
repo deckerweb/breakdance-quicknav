@@ -24,7 +24,7 @@ Only when unpublished content is enabled and the user has both WordPress object-
 
 ### Which addons are supported?
 
-Existing integrations remain. The supplied AI and WPSix packages are checked; deeper verification of Headspin, Yabe, Reading Time Calculator and Migration Mode follows the first test version. See docs/ADDONS.md.
+Existing integrations remain, with verified navigation for the supplied packages and freely available SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Other premium packages and WPML dependencies await their own checks. See docs/ADDONS.md.
 
 ## Compatibility & data
 

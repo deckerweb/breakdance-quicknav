@@ -4,7 +4,7 @@ Tags: breakdance, toolbar, navigation
 Requires at least: 6.7
 Tested up to: 7.1.3
 Requires PHP: 7.4
-Stable tag: 2.0.0-beta.1
+Stable tag: 2.0.0-beta.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,18 +12,18 @@ Quick access to Breakdance pages, templates, headers, footers, global blocks, po
 
 == Description ==
 
-**Version:** 2.0.0-beta.1 (test version). **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
+**Version:** 2.0.0-beta.2 (test version). **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
 
 * Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).
 * Website and personal settings; Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions.
-* Breakdance settings and addons; Read registered settings tabs, including Agents & MCP in Breakdance 3. Retain AI, Migration Mode, Headspin Copilot, Yabe Webfont, WPSix Exporter and Reading Time Calculator support. WPSix Elements and Image Replacer appear in diagnostics without invented menu destinations.
+* Breakdance settings and addons; Registered settings tabs, existing addon integrations and verified shortcuts for SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Control individual integrations and optional submenus in QuickNav settings. Addons without separate admin pages remain diagnostic entries.
 * Resources and legacy configuration; Preserve every existing Links/About destination and all six BDQN constants. Defined constants override saved settings. An explicitly empty BDQN_ENABLED_USERS array denies all users.
 * Updates and discovery; Bundled deckerweb Updater 2.1.0 offers stable GitHub release updates. Library 0.8.1 adds optional plugin discovery. Online catalog access is off by default. No telemetry.
 * Safe lifecycle and native editors; QuickNav pauses when Breakdance is unavailable. Settings stay accessible. Deactivation retains data; uninstall follows each website’s deletion choice. WordPress controls editor toolbar visibility.
 
 == Installation ==
 
-1. Upload the provided breakdance-quicknav-2.0.0-beta.1.zip under Plugins → Add New → Upload Plugin. Install this test version on a test website first.
+1. Upload the provided breakdance-quicknav-2.0.0-beta.2.zip under Plugins → Add New → Upload Plugin. Install this test version on a test website first.
 2. Activate QuickNav. Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav); activate a supported Breakdance version to enable toolbar navigation.
 3. Set personal visibility and item count under Users → Profile. Existing BDQN constants remain authoritative.
 
@@ -47,7 +47,7 @@ Only when unpublished content is enabled and the user has both WordPress object-
 
 = Which addons are supported? =
 
-Existing integrations remain. The supplied AI and WPSix packages are checked; deeper verification of Headspin, Yabe, Reading Time Calculator and Migration Mode follows the first test version. See docs/ADDONS.md.
+Existing integrations remain, with verified navigation for the supplied packages and freely available SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Other premium packages and WPML dependencies await their own checks. See docs/ADDONS.md.
 
 = Does it support Multisite? =
 
@@ -58,6 +58,13 @@ Website and network activation are supported. Website settings and personal pref
 Settings and preferences are retained by default. The deletion option removes only this website’s QuickNav data; network uninstall applies each website’s choice. Breakdance content remains. A separately generated navigation-only snippet is optional; do not activate it beside the plugin.
 
 == Changelog ==
+
+= 2.0.0-beta.2 =
+
+* New: Website controls for individual addon integrations, availability explanations and optional addon submenus.
+* New: Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.
+* Fixed: Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.
+* Improved: Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.
 
 = 2.0.0-beta.1 =
 

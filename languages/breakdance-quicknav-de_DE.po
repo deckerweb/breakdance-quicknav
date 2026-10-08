@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.1\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.2\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr "%s ist installiert, aber inaktiv. Bitte zuerst aktivieren."
@@ -36,6 +36,15 @@ msgstr "Wird aktiviert…"
 
 msgid "Active builder"
 msgstr "Aktiver Builder"
+
+msgid "Active; admin destination available"
+msgstr "Aktiv; Admin-Seite verfügbar"
+
+msgid "Active; admin destination unavailable (permissions, dependencies or disabled module)"
+msgstr "Aktiv; Admin-Seite derzeit nicht verfügbar (Berechtigungen, Abhängigkeiten oder deaktiviertes Modul)"
+
+msgid "Active; no separate admin page"
+msgstr "Aktiv; keine eigene Admin-Seite"
 
 msgid "Add-ons"
 msgstr "Addons"
@@ -151,6 +160,9 @@ msgstr "Status prüfen"
 msgid "Checking status…"
 msgstr "Status wird geprüft…"
 
+msgid "Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links."
+msgstr "Wähle, welche Addon-Direktlinks QuickNav auf dieser Website anzeigt. Die Schalter aktivieren, deaktivieren oder konfigurieren die Addons selbst nicht. Für fehlende Addons erscheinen keine Toolbar-Links."
+
 msgid "Close"
 msgstr "Schließen"
 
@@ -235,6 +247,9 @@ msgstr "Aktiviert"
 msgid "Enter a catalog URL first."
 msgstr "Bitte zuerst eine Katalog-URL eintragen."
 
+msgid "Existing integration retained"
+msgstr "Bestehende Integration erhalten"
+
 msgid "Expanded archive is too large."
 msgstr "Das entpackte Archiv ist zu groß."
 
@@ -318,6 +333,9 @@ msgstr "Installation fehlgeschlagen."
 
 msgid "Installed"
 msgstr "Installiert"
+
+msgid "Installed, inactive"
+msgstr "Installiert, nicht aktiv"
 
 msgid "Installed: "
 msgstr "Installiert: "
@@ -502,6 +520,9 @@ msgstr "Kein unterstütztes Breakdance (2.x oder 3.x) ist aktiv. Die QuickNav-Ei
 msgid "None"
 msgstr "Keine"
 
+msgid "Not installed or not detected"
+msgstr "Nicht installiert oder nicht erkannt"
+
 msgid "Not installed. You can try again."
 msgstr "Nicht installiert. Ein erneuter Versuch ist möglich."
 
@@ -535,6 +556,9 @@ msgstr "Nur freigegebene Releases"
 msgid "Only groups available in the active builder are displayed."
 msgstr "Es erscheinen nur Gruppen, die im aktiven Builder verfügbar sind."
 
+msgid "Open addon admin page"
+msgstr "Admin-Seite des Addons öffnen"
+
 msgid "Open catalog"
 msgstr "Katalog öffnen"
 
@@ -549,6 +573,9 @@ msgstr "PHP-ZIP-Unterstützung wird benötigt."
 
 msgid "POST required."
 msgstr "Eine POST-Anfrage ist erforderlich."
+
+msgid "Package verification pending"
+msgstr "Paketprüfung ausstehend"
 
 msgid "Permission denied."
 msgstr "Keine Berechtigung."
@@ -685,6 +712,12 @@ msgstr "Shop"
 msgid "Show Links & About"
 msgstr "Links & Über das Plugin anzeigen"
 
+msgid "Show QuickNav links for this addon"
+msgstr "QuickNav-Links für dieses Addon anzeigen"
+
+msgid "Show addon submenus"
+msgstr "Addon-Untermenüs anzeigen"
+
 msgid "Show deckerweb under Add Plugins"
 msgstr "deckerweb unter „Plugins hinzufügen“ anzeigen"
 
@@ -784,6 +817,9 @@ msgstr "Das Updatepaket benötigt eine neuere WordPress- oder PHP-Version."
 msgid "These defaults apply to this website. Personal toolbar preferences are available in your user profile."
 msgstr "Diese Standardwerte gelten für diese Website. Persönliche Toolbar-Vorlieben findest Du in Deinem Benutzerprofil."
 
+msgid "Third-party integrations"
+msgstr "Drittanbieter-Integrationen"
+
 msgid "This catalog requires a newer Library."
 msgstr "Dieser Katalog benötigt eine neuere Library."
 
@@ -840,6 +876,9 @@ msgstr "Plugins ansehen"
 
 msgid "Visibility"
 msgstr "Sichtbarkeit"
+
+msgid "Waiting for a supported Breakdance builder"
+msgstr "Wartet auf einen unterstützten Breakdance-Builder"
 
 msgid "Website display"
 msgstr "Website-Anzeige"

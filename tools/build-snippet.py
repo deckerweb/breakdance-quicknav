@@ -3,10 +3,10 @@ from pathlib import Path
 import re,json,base64
 root=Path(__file__).resolve().parents[1]
 parts=[]
-for name in ['class-settings.php','class-builder.php','class-plugin.php']:
+for name in ['class-settings.php','class-builder.php','class-integrations.php','class-plugin.php']:
  s=(root/'includes'/name).read_text().removeprefix('<?php')
  s=s.replace('namespace Deckerweb\\BreakdanceQuickNav;', '')
- for a,b in [('final class Settings','final class SnippetSettings'),('final class Builder','final class SnippetBuilder'),('final class Plugin','final class SnippetPlugin'),('Settings::','SnippetSettings::'),('Builder::','SnippetBuilder::')]:s=s.replace(a,b)
+ for a,b in [('final class Settings','final class SnippetSettings'),('final class Builder','final class SnippetBuilder'),('final class Plugin','final class SnippetPlugin'),('Settings::','SnippetSettings::'),('Builder::','SnippetBuilder::'),('final class Integrations','final class SnippetIntegrations'),('Integrations::','SnippetIntegrations::')]:s=s.replace(a,b)
  if name=='class-settings.php':
   a=s.index('\t\t$saved = get_option');b=s.index('\t\t$map = self::constant_map();',a)
   s=s[:a]+"\t\t$out = self::defaults();\n"+s[b:]
