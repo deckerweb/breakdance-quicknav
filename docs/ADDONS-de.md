@@ -44,3 +44,30 @@ Der Filter `ddw/quicknav/bd_integrations` nimmt eine Registry mit eindeutigen kl
 Vier Reiter teilen sich ein natives Formular mit fester Speicherleiste und Hinweis auf ungespeicherte Änderungen. Addons stehen gesammelt unter Add-ons; einzelne Addons können samt Untermenüs direkt im Hauptmenü erscheinen. Installierte Addons stehen zuerst, fehlende und ausstehende Einträge sind eingeklappt. Native registrierte Addon-Untermenüs ergänzen im Admin die geprüften Unterseiten; doppelte oder unberechtigte Links entfallen.
 
 Elements Hive Pro 1.7.0 wurde mit dem realen Paket geprüft: Hauptseite, Lizenz und Werkzeuge. Destiny Elements 1.8.7 erhält einen quellbasierten Adapter für Einstellungen und Lizenz; Dancepad meldet intern 2.1.0 und erhält einen Adapter für sein Breakdance-Untermenü. Diese beiden Pakete enthalten Code, der Lizenzzustände festschreibt oder ersetzt; sie wurden gelesen, aber nicht ausgeführt. Ihre Adapter-Verträge wurden simuliert, echte Laufzeittests warten auf unveränderte Herstellerpakete. Das Destiny-Archiv ist trotz ZIP-Endung ein RAR-Archiv.
+
+## Eigenes Addon anmelden
+
+Den Filter im Startcode des eigenen Addons registrieren; QuickNav muss dafür nicht aktiv sein. Das Beispiel verwendet fiktive Kennungen: Plugin-Datei, Ladebedingung und Menü-Slug durch die tatsächlichen Werte ersetzen. Immer die gesamte Registrierung zurückgeben und eine eindeutige kleingeschriebene Anbieter-ID verwenden. Die Erkennung kann mehrfach laufen; der Callback soll keine Daten schreiben und keine HTTP-Aufrufe ausführen.
+
+```php
+// Beispiel im eigenen Addon. Kennungen durch das echte Menü und die Ladebedingung ersetzen.
+add_filter( 'ddw/quicknav/bd_integrations', static function ( $integrations ) {
+    $ready = function_exists( 'my_addon_render_settings' );
+    $integrations['my-vendor-addon'] = array(
+        'label'    => 'My Addon',
+        'files'    => array( 'my-addon/my-addon.php' ),
+        'loaded'   => $ready,
+        'targets'  => array(
+            array(
+                'slug'       => 'my-addon-settings',
+                'file'       => 'admin.php',
+                'capability' => 'manage_options',
+                'ready'      => $ready,
+            ),
+        ),
+    );
+    return $integrations;
+} );
+```
+
+Bestehende Websites erlauben eine neu angemeldete Integration standardmäßig. Benutzer können sie in QuickNav abschalten oder direkt im Hauptmenü anzeigen. Im Admin werden tatsächlich registrierte Unterseiten des Hauptmenüs automatisch gesammelt. Für die Frontend-Navigation quellgeprüfte `children` mit denselben Zielfeldern und einem übersetzten `label` angeben. Optional liefert `constant` die Version; andernfalls liest QuickNav den Header der angegebenen Plugin-Datei. Bei fehlender Ladebedingung oder Berechtigung erscheint kein Link. QuickNav aktiviert oder konfiguriert das Addon nicht. Die internen Kennungen `legacy`/`fallback` für neue Integrationen nicht setzen.

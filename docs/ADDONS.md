@@ -38,3 +38,30 @@ BreakMade, Smithy Portal/Connect, Phox Elements and Builder Languages are listed
 ## Custom integrations
 
 The `ddw/quicknav/bd_integrations` filter accepts a registry keyed by unique lowercase IDs. Each adapter defines `label`, optional plugin `files` and version `constant`, a boolean `loaded` runtime condition, and `targets` plus optional `children`. Each target defines a validated local page `slug`, admin `file`, required `capability`, boolean `ready` endpoint condition and optional submenu `label`. A registered admin menu's capability and parent are checked again. Missing new admin menus are omitted; frontend requests use only source-verified loaded targets. External URLs and malformed entries are rejected, and duplicate destinations are omitted. Register adapters only for packages whose activation conditions and endpoints have been verified.
+
+## Register your own addon
+
+Register the filter in your addon bootstrap, without requiring QuickNav to be active. The example uses fictional identifiers: replace the plugin file, loader condition and menu slug with your actual values. Return the whole registry and use a unique vendor-prefixed lowercase ID. Discovery may run more than once; keep the callback free of writes and HTTP requests.
+
+```php
+// Example in your own addon. Replace the identifiers with your real menu and loader.
+add_filter( 'ddw/quicknav/bd_integrations', static function ( $integrations ) {
+    $ready = function_exists( 'my_addon_render_settings' );
+    $integrations['my-vendor-addon'] = array(
+        'label'    => 'My Addon',
+        'files'    => array( 'my-addon/my-addon.php' ),
+        'loaded'   => $ready,
+        'targets'  => array(
+            array(
+                'slug'       => 'my-addon-settings',
+                'file'       => 'admin.php',
+                'capability' => 'manage_options',
+                'ready'      => $ready,
+            ),
+        ),
+    );
+    return $integrations;
+} );
+```
+
+Existing websites enable a newly registered integration by default. Users can disable it or promote it to the main menu in QuickNav settings. In admin requests, registered child pages under your primary menu are collected automatically. For frontend navigation, declare source-verified `children` using the same target fields plus a translated `label`. Optional `constant` supplies the version; otherwise QuickNav reads the supplied plugin file header. Unavailable loaders and unauthorized destinations produce no links. QuickNav never activates or configures your addon. Do not set internal `legacy`/`fallback` flags for new integrations.
