@@ -117,3 +117,5 @@ David Decker – DECKERWEB. QuickNav.
 Das Plugin entstand als Fork von [Breakdance Navigator](https://github.com/beamkiller/breakdance-navigator), Peter Kulcsár, © 2024, GPL v2 or later.
 
 Copyright © 2025–2026 David Decker – DECKERWEB. GPL v2 or later. Das bestehende Breakdance-Logo gehört Soflyy. Das neue Navigationssymbol ist eine eigene Vektorgrafik. deckerweb Updater 2.1.0 und Library 0.8.1: © 2026 David Decker – DECKERWEB, GPL-2.0-or-later.
+
+Historische Grafiken enthalten Symbole von [Remix Icon](https://remixicon.com/), © Remix Icon. Die aktuellen Grafiken sind eigene Vektorgrafiken.
