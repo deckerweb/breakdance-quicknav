@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.2\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n"
+msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.3\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr ""
@@ -23,6 +23,9 @@ msgid "About"
 msgstr ""
 
 msgid "Access"
+msgstr ""
+
+msgid "Access & Data"
 msgstr ""
 
 msgid "Activate"
@@ -59,6 +62,9 @@ msgid "Admin Dashboard: %1$s · Website: %2$s · Links & About: %3$s"
 msgstr ""
 
 msgid "All"
+msgstr ""
+
+msgid "All changes saved"
 msgstr ""
 
 msgid "Already active"
@@ -176,6 +182,9 @@ msgid "Configuration overrides"
 msgstr ""
 
 msgid "Content"
+msgstr ""
+
+msgid "Content lists"
 msgstr ""
 
 msgid "Content types"
@@ -334,6 +343,9 @@ msgstr ""
 msgid "Installed"
 msgstr ""
 
+msgid "Installed add-ons"
+msgstr ""
+
 msgid "Installed, inactive"
 msgstr ""
 
@@ -448,6 +460,9 @@ msgstr ""
 msgid "Library settings saved."
 msgstr ""
 
+msgid "License"
+msgstr ""
+
 msgid "Links"
 msgstr ""
 
@@ -493,6 +508,9 @@ msgstr ""
 msgid "Multisite"
 msgstr ""
 
+msgid "Navigation groups"
+msgstr ""
+
 msgid "Navigation remains available. The bundled Library needs PHP 8.0; the updater integration needs PHP 8.1 and a compatible deckerweb Updater. Update manually while a component is unavailable."
 msgstr ""
 
@@ -518,6 +536,9 @@ msgid "No supported Breakdance builder (2.x or 3.x) is active. QuickNav settings
 msgstr ""
 
 msgid "None"
+msgstr ""
+
+msgid "Not installed"
 msgstr ""
 
 msgid "Not installed or not detected"
@@ -679,6 +700,12 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
+msgid "Save Changes"
+msgstr ""
+
+msgid "Save changes to apply your settings."
+msgstr ""
+
 msgid "Save settings"
 msgstr ""
 
@@ -706,6 +733,9 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "Settings sections"
+msgstr ""
+
 msgid "Shop"
 msgstr ""
 
@@ -719,6 +749,9 @@ msgid "Show addon submenus"
 msgstr ""
 
 msgid "Show deckerweb under Add Plugins"
+msgstr ""
+
+msgid "Show directly in the main QuickNav menu"
 msgstr ""
 
 msgid "Show in the Admin Dashboard"
@@ -746,6 +779,9 @@ msgid "Sunday"
 msgstr ""
 
 msgid "Support this plugin"
+msgstr ""
+
+msgid "System information"
 msgstr ""
 
 msgid "Templates"
@@ -841,6 +877,9 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Toolbar & Content"
+msgstr ""
+
 msgid "Toolbar label"
 msgstr ""
 
@@ -857,6 +896,9 @@ msgid "Unpublished"
 msgstr ""
 
 msgid "Unsafe archive path."
+msgstr ""
+
+msgid "Unsaved changes"
 msgstr ""
 
 msgid "Untrusted release URL."

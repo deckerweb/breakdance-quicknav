@@ -14,6 +14,9 @@ final class Integrations {
 			'yabe-webfont' => array( 'label' => $font ? 'Jooosi Fon (Yabe Webfont)' : 'Yabe Webfont / Jooosi Fon', 'files' => array( 'yabe-webfont/jooosi-fon.php', 'yabe-webfont/yabe-webfont.php' ), 'loaded' => $font || class_exists( '\Yabe\Webfont\Plugin' ), 'targets' => array( self::target( $font ? 'jooosi_fon' : 'yabe_webfont', $font ? 'admin.php' : 'themes.php', $font ? 'manage_options' : 'edit_theme_options', $font || class_exists( '\Yabe\Webfont\Plugin' ) ) ), 'legacy' => ! $font, 'fallback' => ! $font ),
 			'sitecare' => array( 'label' => 'SiteCare Builder Tools', 'files' => array( 'sitecare-builder-tools-for-breakdance/sitecare-builder-tools-for-breakdance.php' ), 'constant' => 'SBHT_VERSION', 'targets' => array( self::target( 'sitecare-breakdance-hide-topbar', Builder::active() ? 'admin.php' : 'options-general.php', 'manage_options', function_exists( 'sbht_render_page' ) ) ) ),
 			'elements-hive' => array( 'label' => 'Elements Hive', 'files' => array( 'elements-hive-for-breakdance/elements_hive_for_breakdance.php' ), 'loaded' => class_exists( '\EHForBreakdance', false ), 'targets' => array( self::target( 'elements_hive', 'admin.php', 'manage_options', function_exists( '\ElementsHiveForBreakdance\Admin\Pages\Home\render' ) ) ), 'children' => array( self::target( 'elements_hive_cloudflare_turnstile', 'admin.php', 'manage_options', function_exists( '\ElementsHiveForBreakdance\Admin\Pages\CloudflareTurnstile\render' ), 'Cloudflare Turnstile' ) ) ),
+			'elements-hive-pro' => array( 'label' => 'Elements Hive Pro', 'files' => array( 'elements-hive-for-breakdance-pro/elements_hive_for_breakdance_pro.php' ), 'constant' => 'ELEMENTS_HIVE_PRO_VERSION', 'targets' => array( self::target( 'elements_hive_pro', 'admin.php', 'manage_options', function_exists( '\ElementsHiveForBreakdancePro\Admin\render' ) ) ), 'children' => array( self::target( 'elements_hive_pro_license', 'admin.php', 'manage_options', function_exists( '\ElementsHiveForBreakdancePro\Admin\LicensePage\render' ), __( 'License', 'breakdance-quicknav' ) ), self::target( 'elements_hive_pro_tools', 'admin.php', 'manage_options', function_exists( '\ElementsHiveForBreakdancePro\Admin\ToolsPage\render' ), __( 'Tools', 'breakdance-quicknav' ) ) ) ),
+			'destiny-elements' => array( 'label' => 'Destiny Elements', 'files' => array( 'destiny-elements/destiny-elements.php' ), 'loaded' => function_exists( 'destiny_elements_menu' ), 'targets' => array( self::target( 'destiny-elements.php', 'admin.php', 'manage_options', function_exists( 'destiny_elements' ) ) ), 'children' => array( self::target( 'destiny_elements_license', 'admin.php', 'manage_options', function_exists( 'destiny_elements_menu' ) && class_exists( '\Appsero\License', false ), __( 'License', 'breakdance-quicknav' ) ) ) ),
+			'dancepad' => array( 'label' => 'Dancepad', 'files' => array( 'dancepad/dancepad.php' ), 'constant' => 'DANCEPAD_VERSION', 'targets' => array( self::target( 'dancepad', 'admin.php', 'manage_options', class_exists( '\Dancepad\Initialize', false ) ) ) ),
 			'express' => array( 'label' => 'Express Add On', 'files' => array( 'express-add-on/vxn-express.php' ), 'loaded' => defined( 'VXN_EXPRESS_ADDON_PLUGIN_FILE' ), 'targets' => self::express_targets(), 'children' => self::express_targets( true ) ),
 			'breakcolorui' => array( 'label' => 'BreakColorUI Sync', 'files' => array( 'breakcolorui-sync/breakcolorui-sync.php' ), 'constant' => 'BCUI_SYNC_VERSION', 'targets' => array( self::target( 'breakcolorui-sync', 'admin.php', 'manage_options', class_exists( '\BCUI_Sync_Plugin', false ) ) ) ),
 			'wpml' => array( 'label' => 'Breakdance WPML Integration', 'files' => array( 'integration-for-breakdance-and-wpml/integration-for-breakdance-and-wpml.php' ), 'constant' => 'BDWPML_VERSION', 'targets' => array( self::target( 'template-translations', 'admin.php', 'manage_options', class_exists( '\FranNieto\BreakdanceWpmlIntegration\Plugin', false ) && defined( 'ICL_SITEPRESS_VERSION' ) && defined( 'WPML_ST_VERSION' ) ) ) ),
@@ -24,7 +27,7 @@ final class Integrations {
 			'wpsix-elements' => array( 'label' => 'WPSix Elements', 'files' => array( 'wpsix-elements/plugin.php' ), 'constant' => 'WPSIX_ELEMENTS_VERSION', 'no_menu' => true ),
 			'image-replace' => array( 'label' => 'Image Replacer', 'files' => array( 'image-replace/plugin.php' ), 'constant' => 'IMAGE_REPLACE_VERSION', 'no_menu' => true ),
 		);
-		foreach ( array( 'breakmade' => 'BreakMade', 'dancepad' => 'Dancepad', 'smithy' => 'Smithy Portal / Connect', 'phox' => 'Phox Elements', 'builder-languages' => 'Builder Languages for Breakdance' ) as $id => $label ) { $defs[ $id ] = array( 'label' => $label, 'pending' => true ); }
+		foreach ( array( 'breakmade' => 'BreakMade', 'smithy' => 'Smithy Portal / Connect', 'phox' => 'Phox Elements', 'builder-languages' => 'Builder Languages for Breakdance' ) as $id => $label ) { $defs[ $id ] = array( 'label' => $label, 'pending' => true ); }
 		/**
 		 * Register custom integrations with loaded, files, targets, children and capability checks.
 		 * @since 2.0.0
@@ -62,7 +65,7 @@ final class Integrations {
 	public static function destination( $target, $legacy = false ) {
 		if ( ! is_array( $target ) ) { return ''; }
 		$slug = $target['slug'] ?? ''; $file = $target['file'] ?? 'admin.php'; $cap = $target['capability'] ?? '';
-		if ( ! is_string( $slug ) || ! preg_match( '/^[a-zA-Z0-9_-]+$/', $slug ) || ! in_array( $file, array( 'admin.php', 'themes.php', 'options-general.php', 'tools.php' ), true ) || ! is_string( $cap ) || ! $cap || ! current_user_can( $cap ) || true !== ( $target['ready'] ?? false ) || is_network_admin() || is_user_admin() ) { return ''; }
+		if ( ! is_string( $slug ) || ! preg_match( '/^[a-zA-Z0-9_-]+(?:\.php)?$/', $slug ) || ! in_array( $file, array( 'admin.php', 'themes.php', 'options-general.php', 'tools.php' ), true ) || ! is_string( $cap ) || ! $cap || ! current_user_can( $cap ) || true !== ( $target['ready'] ?? false ) || is_network_admin() || is_user_admin() ) { return ''; }
 		global $menu, $submenu;
 		foreach ( is_array( $submenu ) ? $submenu : array() as $parent => $items ) {
 			foreach ( $items as $item ) {
@@ -99,6 +102,20 @@ final class Integrations {
 			}
 			$children = array();
 			if ( $links ) { foreach ( array_slice( is_array( $def['children'] ?? null ) ? $def['children'] : array(), 0, 20 ) as $target ) { $url = self::destination( $target ); if ( $url && is_string( $target['label'] ?? null ) && $target['label'] ) { $children[] = array( 'label' => $target['label'], 'url' => $url ); } } }
+			// Native addon submenus supplement audited frontend targets after admin registration.
+			if ( $links && empty( $links[0]['tab'] ) && is_admin() && did_action( 'admin_menu' ) ) {
+				global $submenu;
+				$query = array(); parse_str( (string) wp_parse_url( $links[0]['url'], PHP_URL_QUERY ), $query );
+				$parent_slug = $query['page'] ?? '';
+				foreach ( array_slice( is_array( $submenu[ $parent_slug ] ?? null ) ? $submenu[ $parent_slug ] : array(), 0, 20 ) as $item ) {
+					if ( ! is_string( $item[0] ?? null ) || ! is_string( $item[1] ?? null ) || ! is_string( $item[2] ?? null ) ) { continue; }
+					$url = self::destination( self::target( $item[2], 'admin.php', $item[1], true ) );
+					$label = trim( wp_strip_all_tags( $item[0] ) );
+					if ( $url && $url !== $links[0]['url'] && $label ) { $children[] = array( 'label' => $label, 'url' => $url ); }
+				}
+			}
+			$unique = array(); foreach ( $children as $child ) { if ( ! isset( $unique[ $child['url'] ] ) && $child['url'] !== $links[0]['url'] ) { $unique[ $child['url'] ] = $child; } }
+			$children = array_slice( array_values( $unique ), 0, 20 );
 			$status = ! empty( $def['pending'] ) ? 'pending' : ( ! $installed ? 'missing' : ( ! $active ? 'inactive' : ( ! Builder::active() ? 'builder' : ( ! empty( $def['no_menu'] ) ? 'no-menu' : ( $links ? 'available' : 'unavailable' ) ) ) ) );
 			$out[ $id ] = array( 'label' => $def['label'], 'version' => $version, 'active' => $active, 'status' => $status, 'links' => $links, 'children' => $children, 'pending' => ! empty( $def['pending'] ), 'legacy' => ! empty( $def['legacy'] ) );
 		}

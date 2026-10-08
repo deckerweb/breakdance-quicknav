@@ -78,7 +78,7 @@ final class Plugin {
 		$input = is_array( $input ) ? $input : array();
 		$old = get_option( Settings::OPTION, Settings::defaults() );
 		$old = is_array( $old ) ? array_merge( Settings::defaults(), $old ) : Settings::defaults();
-		foreach ( array( 'integrations', 'integration_children' ) as $key ) { if ( ! array_key_exists( $key, $input ) ) { $input[ $key ] = $old[ $key ]; } }
+		foreach ( array( 'integrations', 'integration_children', 'integration_direct' ) as $key ) { if ( ! array_key_exists( $key, $input ) ) { $input[ $key ] = $old[ $key ]; } }
 		foreach ( Settings::constant_map() as $key => $constant ) { if ( defined( $constant ) ) { $input[ $key ] = $old[ $key ]; } }
 		return Settings::sanitize( $input );
 	}
@@ -104,7 +104,7 @@ final class Plugin {
 		$page = in_array( $hook, array( 'settings_page_breakdance-quicknav', 'breakdance_page_breakdance-quicknav' ), true );
 		if ( ! $page && ( ! $this->visible( Settings::get() ) || ! Builder::active() ) ) { return; }
 		wp_enqueue_style( 'ddw-bdqn', plugins_url( 'assets/quicknav.css', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION );
-		if ( $page ) { wp_enqueue_script( 'ddw-bdqn-dialog', plugins_url( 'assets/dialog.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); }
+		if ( $page ) { wp_enqueue_script( 'ddw-bdqn-settings', plugins_url( 'assets/settings.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); wp_enqueue_script( 'ddw-bdqn-dialog', plugins_url( 'assets/dialog.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); }
 	}
 
 	/**
@@ -279,13 +279,18 @@ final class Plugin {
 	 */
 	private function addon_nodes( $bar, $parent ) {
 		if ( ! Builder::full_access() || is_network_admin() || is_user_admin() ) { return; }
-		$settings = Settings::get(); $seen = array();
+		$settings = Settings::get(); $seen = array(); $group_added = false;
 		foreach ( Integrations::rows() as $id => $row ) {
 			if ( ! Integrations::enabled( $id, $settings ) ) { continue; }
 			foreach ( $row['links'] as $link ) {
 				if ( ! empty( $link['tab'] ) || isset( $seen[ $link['url'] ] ) ) { continue; }
 				$seen[ $link['url'] ] = true;
-				$bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $parent, 'title' => esc_html( $link['label'] ), 'href' => esc_url( $link['url'] ) ) );
+				$addon_parent = $parent;
+				if ( empty( $settings['integration_direct'][ $id ] ) ) {
+					if ( ! $group_added ) { $bar->add_node( array( 'id' => 'bdqn-addons', 'parent' => $parent, 'title' => esc_html__( 'Add-ons', 'breakdance-quicknav' ) ) ); $group_added = true; }
+					$addon_parent = 'bdqn-addons';
+				}
+				$bar->add_node( array( 'id' => 'bdqn-' . $id, 'parent' => $addon_parent, 'title' => esc_html( $link['label'] ), 'href' => esc_url( $link['url'] ) ) );
 				if ( ! empty( $settings['integration_children'] ) ) {
 					foreach ( $row['children'] as $child ) {
 						if ( isset( $seen[ $child['url'] ] ) ) { continue; }
@@ -352,29 +357,38 @@ final class Plugin {
 		if ( 'options-general.php' !== $parent_file ) { settings_errors(); }
 		if ( ! Builder::active() ) { echo '<div class="notice notice-info inline"><p>' . esc_html__( 'No supported Breakdance builder (2.x or 3.x) is active. QuickNav settings remain available; toolbar navigation resumes when a supported builder is active.', 'breakdance-quicknav' ) . '</p></div>'; }
 		if ( version_compare( PHP_VERSION, '8.1', '<' ) || Updates::$error ) { echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Navigation remains available. The bundled Library needs PHP 8.0; the updater integration needs PHP 8.1 and a compatible deckerweb Updater. Update manually while a component is unavailable.', 'breakdance-quicknav' ) . '</p></div>'; }
-		echo '<form method="post" action="options.php">';
+		echo '<nav class="nav-tab-wrapper bdqn-tabs" aria-label="' . esc_attr__( 'Settings sections', 'breakdance-quicknav' ) . '">';
+		foreach ( array( 'toolbar' => __( 'Toolbar & Content', 'breakdance-quicknav' ), 'addons' => __( 'Add-ons', 'breakdance-quicknav' ), 'access' => __( 'Access & Data', 'breakdance-quicknav' ), 'system' => __( 'System information', 'breakdance-quicknav' ) ) as $id => $label ) { echo '<a class="nav-tab" id="bdqn-tab-' . esc_attr( $id ) . '" href="#bdqn-panel-' . esc_attr( $id ) . '">' . esc_html( $label ) . '</a>'; }
+		echo '</nav><form id="bdqn-settings-form" method="post" action="options.php">';
 		settings_fields( 'ddw_bdqn' );
-		echo '<h2>' . esc_html__( 'Display & Content', 'breakdance-quicknav' ) . '</h2><p>' . esc_html__( 'These defaults apply to this website. Personal toolbar preferences are available in your user profile.', 'breakdance-quicknav' ) . '</p><table class="form-table" role="presentation">';
+		echo '<section class="bdqn-panel" id="bdqn-panel-toolbar" aria-labelledby="bdqn-tab-toolbar"><h2>' . esc_html__( 'Display & Content', 'breakdance-quicknav' ) . '</h2><p>' . esc_html__( 'These defaults apply to this website. Personal toolbar preferences are available in your user profile.', 'breakdance-quicknav' ) . '</p><table class="form-table" role="presentation">';
 		$this->field( 'name', __( 'Toolbar label', 'breakdance-quicknav' ), 'text', $s );
 		$this->field( 'icon', __( 'Icon', 'breakdance-quicknav' ), array( 'auto' => __( 'Breakdance icon', 'breakdance-quicknav' ), 'yellow' => __( 'Original yellow icon', 'breakdance-quicknav' ), 'none' => __( 'No icon', 'breakdance-quicknav' ) ), $s );
+		foreach ( array( 'backend' => __( 'Show in the Admin Dashboard', 'breakdance-quicknav' ), 'frontend' => __( 'Show on the website', 'breakdance-quicknav' ), 'footer' => __( 'Show Links & About', 'breakdance-quicknav' ) ) as $key => $label ) { $this->field( $key, $label, 'checkbox', $s ); }
+		echo '</table><h3>' . esc_html__( 'Content lists', 'breakdance-quicknav' ) . '</h3><table class="form-table" role="presentation">';
 		$this->field( 'limit', __( 'Items per group', 'breakdance-quicknav' ), 'number', $s );
 		$this->field( 'orderby', __( 'Sort by', 'breakdance-quicknav' ), array( 'modified' => __( 'Recently modified', 'breakdance-quicknav' ), 'title' => __( 'Title', 'breakdance-quicknav' ) ), $s );
-		foreach ( array( 'backend' => __( 'Show in the Admin Dashboard', 'breakdance-quicknav' ), 'frontend' => __( 'Show on the website', 'breakdance-quicknav' ), 'footer' => __( 'Show Links & About', 'breakdance-quicknav' ), 'drafts' => __( 'Include unpublished content you can edit', 'breakdance-quicknav' ) ) as $key => $label ) { $this->field( $key, $label, 'checkbox', $s ); }
+		$this->field( 'drafts', __( 'Include unpublished content you can edit', 'breakdance-quicknav' ), 'checkbox', $s );
 		echo '<tr><th scope="row" id="bdqn-content-types-label">' . esc_html__( 'Content types', 'breakdance-quicknav' ) . '</th><td><fieldset class="bdqn-choices" aria-labelledby="bdqn-content-types-label"><input type="hidden" name="ddw_bdqn_settings[post_types][]" value="">';
 		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $type => $object ) { $this->choice( 'post_types', $type, $object->labels->name, $s['post_types'] ); }
-		echo '</fieldset></td></tr><tr><th scope="row" id="bdqn-menu-groups-label">' . esc_html__( 'Menu groups', 'breakdance-quicknav' ) . '</th><td><fieldset class="bdqn-choices" aria-labelledby="bdqn-menu-groups-label"><input type="hidden" name="ddw_bdqn_settings[groups][]" value="">';
+		echo '</fieldset></td></tr></table><h3>' . esc_html__( 'Navigation groups', 'breakdance-quicknav' ) . '</h3><table class="form-table" role="presentation"><tr><th scope="row" id="bdqn-menu-groups-label">' . esc_html__( 'Menu groups', 'breakdance-quicknav' ) . '</th><td><fieldset class="bdqn-choices" aria-labelledby="bdqn-menu-groups-label"><input type="hidden" name="ddw_bdqn_settings[groups][]" value="">';
 		foreach ( array( 'content' => __( 'Content', 'breakdance-quicknav' ), 'templates' => __( 'Templates', 'breakdance-quicknav' ), 'headers' => __( 'Headers', 'breakdance-quicknav' ), 'footers' => __( 'Footers', 'breakdance-quicknav' ), 'global-blocks' => __( 'Global Blocks', 'breakdance-quicknav' ), 'popups' => __( 'Popups', 'breakdance-quicknav' ), 'settings' => __( 'Breakdance Settings', 'breakdance-quicknav' ), 'addons' => __( 'Add-ons', 'breakdance-quicknav' ) ) as $key => $label ) { $this->choice( 'groups', $key, $label, $s['groups'] ); }
-		echo '<p class="description">' . esc_html__( 'Only groups available in the active builder are displayed.', 'breakdance-quicknav' ) . '</p></fieldset></td></tr></table><h2>' . esc_html__( 'Access', 'breakdance-quicknav' ) . '</h2><table class="form-table" role="presentation">';
+		echo '<p class="description">' . esc_html__( 'Only groups available in the active builder are displayed.', 'breakdance-quicknav' ) . '</p></fieldset></td></tr></table></section>';
+		echo '<section class="bdqn-panel" id="bdqn-panel-addons" aria-labelledby="bdqn-tab-addons">';
+		$this->integration_settings( $s );
+		echo '</section>';
+		echo '<section class="bdqn-panel" id="bdqn-panel-access" aria-labelledby="bdqn-tab-access"><h2>' . esc_html__( 'Access', 'breakdance-quicknav' ) . '</h2><table class="form-table" role="presentation">';
 		$this->field( 'capability', __( 'Required toolbar capability', 'breakdance-quicknav' ), 'text', $s );
 		$this->field( 'users', __( 'Restrict to user IDs', 'breakdance-quicknav' ), 'text', $s );
 		echo '</table><p>' . esc_html__( 'Leave user IDs empty to allow all eligible users. Separate IDs with commas. WordPress and Breakdance permissions always apply to each destination.', 'breakdance-quicknav' ) . '</p><h2>' . esc_html__( 'Data', 'breakdance-quicknav' ) . '</h2><table class="form-table" role="presentation">';
 		$this->field( 'delete_data', __( 'Delete QuickNav settings when uninstalling', 'breakdance-quicknav' ), 'checkbox', $s );
 		echo '</table><p>' . esc_html__( 'Disabled by default. When enabled, uninstall removes this website’s QuickNav settings and personal QuickNav preferences. Breakdance content and other plugins’ data are always retained. Network uninstall applies each website’s own choice.', 'breakdance-quicknav' ) . '</p>';
-		$this->integration_settings( $s );
-		submit_button();
-		echo '</form><h2>' . esc_html__( 'Detected components', 'breakdance-quicknav' ) . '</h2><dl class="bdqn-diagnostics">';
+		echo '</section>';
+		echo '<section class="bdqn-panel" id="bdqn-panel-system" aria-labelledby="bdqn-tab-system"><h2>' . esc_html__( 'Detected components', 'breakdance-quicknav' ) . '</h2><dl class="bdqn-diagnostics">';
 		foreach ( $this->diagnostics( array() )['breakdance-quicknav']['fields'] as $field ) { echo '<dt>' . esc_html( $field['label'] ) . '</dt><dd>' . esc_html( $field['value'] ) . '</dd>'; }
-		echo '</dl><footer class="bdqn-footer" aria-label="' . esc_attr__( 'Plugin information', 'breakdance-quicknav' ) . '"><div><strong>Breakdance QuickNav</strong> <span>' . esc_html__( 'Version', 'breakdance-quicknav' ) . ' ' . esc_html( DDW_BDQN_VERSION ) . '</span> · <button type="button" class="button-link" data-bdqn-open="bdqn-history">' . esc_html__( 'Changelog', 'breakdance-quicknav' ) . '</button> · <a href="https://github.com/deckerweb/breakdance-quicknav">' . esc_html__( 'Documentation', 'breakdance-quicknav' ) . '</a><p>' . esc_html__( 'Your shortcuts. Breakdance 2 & 3.', 'breakdance-quicknav' ) . '</p></div><div><span>© 2025–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="https://github.com/deckerweb/breakdance-quicknav" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'breakdance-quicknav' ) . '</a></div></footer>';
+		echo '</dl></section><div class="bdqn-savebar"><span id="bdqn-unsaved-status" role="status" aria-live="polite" data-saved="' . esc_attr__( 'All changes saved', 'breakdance-quicknav' ) . '" data-dirty="' . esc_attr__( 'Unsaved changes', 'breakdance-quicknav' ) . '">' . esc_html__( 'Save changes to apply your settings.', 'breakdance-quicknav' ) . '</span>';
+		submit_button( __( 'Save Changes', 'breakdance-quicknav' ), 'primary', 'submit', false );
+		echo '</div></form><footer class="bdqn-footer" aria-label="' . esc_attr__( 'Plugin information', 'breakdance-quicknav' ) . '"><div><strong>Breakdance QuickNav</strong> <span>' . esc_html__( 'Version', 'breakdance-quicknav' ) . ' ' . esc_html( DDW_BDQN_VERSION ) . '</span> · <button type="button" class="button-link" data-bdqn-open="bdqn-history">' . esc_html__( 'Changelog', 'breakdance-quicknav' ) . '</button> · <a href="https://github.com/deckerweb/breakdance-quicknav">' . esc_html__( 'Documentation', 'breakdance-quicknav' ) . '</a><p>' . esc_html__( 'Your shortcuts. Breakdance 2 & 3.', 'breakdance-quicknav' ) . '</p></div><div><span>© 2025–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="https://github.com/deckerweb/breakdance-quicknav" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'breakdance-quicknav' ) . '</a></div></footer>';
 		echo '<dialog id="bdqn-history" aria-labelledby="bdqn-history-title"><button type="button" class="button bdqn-close" data-bdqn-close>' . esc_html__( 'Close', 'breakdance-quicknav' ) . '</button><h2 id="bdqn-history-title">' . esc_html__( 'Changelog', 'breakdance-quicknav' ) . '</h2>';
 		$history = require DDW_BDQN_DIR . '/includes/plugin-history.php';
 		echo $history( 0 === strpos( determine_locale(), 'de' ) ); // All source values escaped in the renderer.
@@ -386,21 +400,39 @@ final class Plugin {
 		echo '<h2 id="bdqn-integrations">' . esc_html__( 'Third-party integrations', 'breakdance-quicknav' ) . '</h2><p>' . esc_html__( 'Choose which addon shortcuts QuickNav displays on this website. These switches do not activate, deactivate or configure the addons themselves. Missing addons never produce toolbar links.', 'breakdance-quicknav' ) . '</p><table class="form-table" role="presentation">';
 		$this->field( 'integration_children', __( 'Show addon submenus', 'breakdance-quicknav' ), 'checkbox', $settings );
 		echo '</table><div class="bdqn-integration-list">';
-		foreach ( Integrations::rows() as $id => $row ) {
+		$groups = array( 'installed' => array(), 'missing' => array(), 'pending' => array() );
+		foreach ( Integrations::rows() as $id => $row ) { $groups[ $row['pending'] ? 'pending' : ( 'missing' === $row['status'] ? 'missing' : 'installed' ) ][ $id ] = $row; }
+		echo '<h3>' . esc_html__( 'Installed add-ons', 'breakdance-quicknav' ) . '</h3>';
+		$this->integration_rows( $groups['installed'], $settings );
+		foreach ( array( 'missing' => __( 'Not installed', 'breakdance-quicknav' ), 'pending' => __( 'Package verification pending', 'breakdance-quicknav' ) ) as $group => $label ) {
+			if ( ! $groups[ $group ] ) { continue; }
+			echo '<details class="bdqn-addon-details"><summary>' . esc_html( $label ) . ' (' . count( $groups[ $group ] ) . ')</summary>';
+			$this->integration_rows( $groups[ $group ], $settings );
+			echo '</details>';
+		}
+		echo '</div>';
+	}
+
+	/** @param array $rows Discovery rows. @param array $settings Website settings. @return void Outputs escaped addon controls. */
+	private function integration_rows( $rows, $settings ) {
+		foreach ( $rows as $id => $row ) {
 			$control = 'bdqn-integration-' . $id;
-			echo '<div class="bdqn-integration"><div><strong>' . esc_html( $row['label'] ) . '</strong>';
+			echo '<div class="bdqn-integration" role="group" aria-labelledby="bdqn-addon-label-' . esc_attr( $id ) . '"><div><strong id="bdqn-addon-label-' . esc_attr( $id ) . '">' . esc_html( $row['label'] ) . '</strong>';
 			if ( $row['version'] ) { echo ' <span>' . esc_html( $row['version'] ) . '</span>'; }
 			echo '<p class="description">' . esc_html( Integrations::status_label( $row['status'] ) ) . '</p>';
 			if ( ! $row['pending'] && 'no-menu' !== $row['status'] ) {
 				echo '<input type="hidden" name="ddw_bdqn_settings[integrations][' . esc_attr( $id ) . ']" value="0"><label for="' . esc_attr( $control ) . '"><input type="checkbox" id="' . esc_attr( $control ) . '" name="ddw_bdqn_settings[integrations][' . esc_attr( $id ) . ']" value="1"' . checked( Integrations::enabled( $id, $settings ), true, false ) . '> ' . esc_html__( 'Show QuickNav links for this addon', 'breakdance-quicknav' ) . '</label>';
+			}
+			if ( ! $row['pending'] && 'no-menu' !== $row['status'] && ! in_array( $id, array( 'ai', 'migration-mode' ), true ) ) {
+				echo '<input type="hidden" name="ddw_bdqn_settings[integration_direct][' . esc_attr( $id ) . ']" value="0"><label for="bdqn-direct-' . esc_attr( $id ) . '"><input type="checkbox" id="bdqn-direct-' . esc_attr( $id ) . '" name="ddw_bdqn_settings[integration_direct][' . esc_attr( $id ) . ']" value="1"' . checked( ! empty( $settings['integration_direct'][ $id ] ), true, false ) . '> ' . esc_html__( 'Show directly in the main QuickNav menu', 'breakdance-quicknav' ) . '</label>';
 			}
 			echo '</div><div>';
 			if ( $row['legacy'] ) { echo '<span class="description">' . esc_html__( 'Existing integration retained', 'breakdance-quicknav' ) . '</span>'; }
 			if ( $row['links'] ) { echo '<p><a href="' . esc_url( $row['links'][0]['url'] ) . '">' . esc_html__( 'Open addon admin page', 'breakdance-quicknav' ) . '</a></p>'; }
 			echo '</div></div>';
 		}
-		echo '</div>';
 	}
+
 
 	/**
 	 * Render an accessible native setting control with visible constant overrides.

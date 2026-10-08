@@ -18,13 +18,17 @@ try {
  integration_assert( 1 === count( $rows['elements-hive']['children'] ) && false !== strpos( $rows['elements-hive']['children'][0]['url'], 'elements_hive_cloudflare_turnstile' ), 'Elements Hive submenu verified' );
  integration_assert( 'unavailable' === $rows['wpml']['status'] && ! $rows['wpml']['links'], 'WPML integration waits for actual WPML dependencies' );
  foreach ( array( 'wpsix-elements', 'image-replace' ) as $id ) { integration_assert( 'no-menu' === $rows[$id]['status'] && ! $rows[$id]['links'], $id . ' remains diagnostic without invented menu' ); }
- foreach ( array( 'breakmade', 'dancepad', 'smithy', 'phox', 'builder-languages' ) as $id ) { integration_assert( 'pending' === $rows[$id]['status'] && ! $rows[$id]['links'], $id . ' pending package produces no link' ); }
+ foreach ( array( 'breakmade', 'smithy', 'phox', 'builder-languages' ) as $id ) { integration_assert( 'pending' === $rows[$id]['status'] && ! $rows[$id]['links'], $id . ' pending package produces no link' ); }
  $bad = Settings::sanitize( array_merge( $settings, array( 'integrations' => array( 'sitecare' => '0', 'express' => array(), 'bad id' => true, 'unknown' => 'yes' ) ) ) );
  integration_assert( array( 'sitecare' => false ) === $bad['integrations'], 'malformed integration preferences rejected' );
  integration_assert( Integrations::enabled( 'sitecare', $settings ), 'existing sites default to enabled integrations' );
  $http_calls = 0; $http_guard = static function( $pre ) use ( &$http_calls ) { $http_calls++; return $pre; }; add_filter( 'pre_http_request', $http_guard );
  $plugin = new Plugin(); $bar = new WP_Admin_Bar(); $plugin->toolbar( $bar );
  integration_assert( 0 === $http_calls, 'addon toolbar discovery performs no HTTP requests' ); remove_filter( 'pre_http_request', $http_guard );
+ integration_assert( 'bdqn-addons' === $bar->get_node( 'bdqn-sitecare' )->parent && (bool) $bar->get_node( 'bdqn-addons' ), 'default addon collection reduces main toolbar entries' );
+ $settings['integration_direct'] = array( 'sitecare' => true, 'elements-hive' => true ); update_option( Settings::OPTION, $settings ); $bar = new WP_Admin_Bar(); $plugin->toolbar( $bar );
+ integration_assert( 'ddw-breakdance-quicknav' === $bar->get_node( 'bdqn-sitecare' )->parent && 'ddw-breakdance-quicknav' === $bar->get_node( 'bdqn-elements-hive' )->parent, 'individual addon promotion keeps stable nodes' );
+ $settings['integration_direct'] = array(); update_option( Settings::OPTION, $settings );
  integration_assert( (bool) $bar->get_node( 'bdqn-sitecare' ) && (bool) $bar->get_node( 'bdqn-yabe-webfont' ), 'new and renamed addons in toolbar' );
  integration_assert( (bool) $bar->get_node( 'bdqn-settings-ai' ) && ! $bar->get_node( 'bdqn-ai' ), 'AI remains one settings tab without duplicate addon entry' );
  $children = array_filter( (array) $bar->get_nodes(), static function ( $node ) { return 'bdqn-elements-hive' === $node->parent; } ); integration_assert( 1 === count( $children ), 'addon child appears once' );

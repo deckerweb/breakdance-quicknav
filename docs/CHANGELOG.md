@@ -2,6 +2,12 @@
 
 [Deutsch](CHANGELOG-de.md)
 
+### 2.0.0-beta.3 · October 8, 2026 · Test version
+
+- **Improved:** Four accessible settings sections, a fixed save bar and unsaved-change protection with a shared native form.
+- **Improved:** Collect addon shortcuts in one menu; optionally promote individual addons with their submenus. Group installed, missing and pending integrations.
+- **New:** Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.
+
 ### 2.0.0-beta.2 · October 8, 2026 · Test version
 
 - **New:** Website controls for individual addon integrations, availability explanations and optional addon submenus.

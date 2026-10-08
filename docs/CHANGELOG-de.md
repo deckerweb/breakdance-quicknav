@@ -2,6 +2,12 @@
 
 [English](CHANGELOG.md)
 
+### 2.0.0-beta.3 · 8. Oktober 2026 · Testversion
+
+- **Verbessert:** Vier zugängliche Einstellungsbereiche, feste Speicherleiste und Hinweis auf ungespeicherte Änderungen mit gemeinsamem nativem Formular.
+- **Verbessert:** Addon-Direktlinks in einem Menü sammeln; einzelne Addons samt Untermenüs optional direkt anzeigen. Installierte, fehlende und ausstehende Integrationen getrennt darstellen.
+- **Neu:** Elements-Hive-Pro-Navigation mit Lizenz und Werkzeugen. Quellbasierte Adapter für Destiny Elements und Dancepad; ihre gelieferten Pakete sind nicht durch Laufzeittests bestätigt.
+
 ### 2.0.0-beta.2 · 8. Oktober 2026 · Testversion
 
 - **Neu:** Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs.

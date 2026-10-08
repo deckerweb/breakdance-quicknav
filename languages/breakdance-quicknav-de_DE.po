@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.2\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.3\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr "%s ist installiert, aber inaktiv. Bitte zuerst aktivieren."
@@ -25,6 +25,9 @@ msgstr "Über"
 msgid "Access"
 msgstr "Zugriff"
 
+msgid "Access & Data"
+msgstr "Zugriff & Daten"
+
 msgid "Activate"
 msgstr "Aktivieren"
 
@@ -47,7 +50,7 @@ msgid "Active; no separate admin page"
 msgstr "Aktiv; keine eigene Admin-Seite"
 
 msgid "Add-ons"
-msgstr "Addons"
+msgstr "Add-ons"
 
 msgid "Admin"
 msgstr "Administration"
@@ -60,6 +63,9 @@ msgstr "Admin-Dashboard: %1$s · Website: %2$s · Links & Über das Plugin: %3$s
 
 msgid "All"
 msgstr "Alle"
+
+msgid "All changes saved"
+msgstr "Alle Änderungen gespeichert"
 
 msgid "Already active"
 msgstr "Bereits aktiv"
@@ -177,6 +183,9 @@ msgstr "Konfigurationsvorgaben"
 
 msgid "Content"
 msgstr "Inhalte"
+
+msgid "Content lists"
+msgstr "Inhaltslisten"
 
 msgid "Content types"
 msgstr "Inhaltstypen"
@@ -334,6 +343,9 @@ msgstr "Installation fehlgeschlagen."
 msgid "Installed"
 msgstr "Installiert"
 
+msgid "Installed add-ons"
+msgstr "Installierte Add-ons"
+
 msgid "Installed, inactive"
 msgstr "Installiert, nicht aktiv"
 
@@ -448,6 +460,9 @@ msgstr "Library-Einstellungen"
 msgid "Library settings saved."
 msgstr "Library-Einstellungen gespeichert."
 
+msgid "License"
+msgstr "Lizenz"
+
 msgid "Links"
 msgstr "Links"
 
@@ -493,6 +508,9 @@ msgstr "Moreblocks"
 msgid "Multisite"
 msgstr "Multisite"
 
+msgid "Navigation groups"
+msgstr "Navigationsgruppen"
+
 msgid "Navigation remains available. The bundled Library needs PHP 8.0; the updater integration needs PHP 8.1 and a compatible deckerweb Updater. Update manually while a component is unavailable."
 msgstr "Die Navigation bleibt verfügbar. Die mitgelieferte Library benötigt PHP 8.0; die Updater-Anbindung benötigt PHP 8.1 und einen kompatiblen deckerweb Updater. Aktualisiere das Plugin manuell, solange eine Komponente nicht verfügbar ist."
 
@@ -519,6 +537,9 @@ msgstr "Kein unterstütztes Breakdance (2.x oder 3.x) ist aktiv. Die QuickNav-Ei
 
 msgid "None"
 msgstr "Keine"
+
+msgid "Not installed"
+msgstr "Nicht installiert"
 
 msgid "Not installed or not detected"
 msgstr "Nicht installiert oder nicht erkannt"
@@ -679,6 +700,12 @@ msgstr "Sa"
 msgid "Saturday"
 msgstr "Samstag"
 
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+msgid "Save changes to apply your settings."
+msgstr "Änderungen speichern, um die Einstellungen anzuwenden."
+
 msgid "Save settings"
 msgstr "Einstellungen speichern"
 
@@ -706,6 +733,9 @@ msgstr "Festgelegt durch die Konfiguration:"
 msgid "Settings"
 msgstr "Einstellungen"
 
+msgid "Settings sections"
+msgstr "Einstellungsbereiche"
+
 msgid "Shop"
 msgstr "Shop"
 
@@ -720,6 +750,9 @@ msgstr "Addon-Untermenüs anzeigen"
 
 msgid "Show deckerweb under Add Plugins"
 msgstr "deckerweb unter „Plugins hinzufügen“ anzeigen"
+
+msgid "Show directly in the main QuickNav menu"
+msgstr "Direkt im QuickNav-Hauptmenü anzeigen"
 
 msgid "Show in the Admin Dashboard"
 msgstr "Im Admin-Dashboard anzeigen"
@@ -747,6 +780,9 @@ msgstr "Sonntag"
 
 msgid "Support this plugin"
 msgstr "Dieses Plugin unterstützen"
+
+msgid "System information"
+msgstr "Systeminfo"
 
 msgid "Templates"
 msgstr "Templates"
@@ -841,6 +877,9 @@ msgstr "Donnerstag"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Toolbar & Content"
+msgstr "Toolbar & Inhalte"
+
 msgid "Toolbar label"
 msgstr "Toolbar-Bezeichnung"
 
@@ -858,6 +897,9 @@ msgstr "Unveröffentlicht"
 
 msgid "Unsafe archive path."
 msgstr "Unsicherer Archivpfad."
+
+msgid "Unsaved changes"
+msgstr "Ungespeicherte Änderungen"
 
 msgid "Untrusted release URL."
 msgstr "Nicht vertrauenswürdige Release-URL."

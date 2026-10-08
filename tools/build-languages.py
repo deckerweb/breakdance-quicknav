@@ -11,7 +11,7 @@ messages=json.loads((root/'includes/deckerweb-plugin-library/messages.json').rea
 strings.update(messages)
 for lang,mapping in dictionary.items():
  for message,translations in messages.items():mapping.setdefault(message,translations[lang])
-header='Project-Id-Version: Breakdance QuickNav 2.0.0-beta.2\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n'
+header='Project-Id-Version: Breakdance QuickNav 2.0.0-beta.3\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\n'
 quote=lambda x:json.dumps(x,ensure_ascii=False)
 def mo(entries):
  keys=sorted(entries);n=len(keys);offset=28+16*n

@@ -2,7 +2,7 @@
 
 [Deutsch](ADDONS-de.md)
 
-QuickNav links only to addon administration pages. It does not activate addons, change their settings, validate licenses or request external services while rendering the toolbar. The website settings offer one switch per navigation integration and an optional submenu switch. These switches affect QuickNav alone. Existing websites retain enabled navigation by default.
+QuickNav links only to addon administration pages. It does not activate addons, change their settings, validate licenses or request external services while rendering the toolbar. The website settings offer one switch per navigation integration and an optional submenu switch. These switches affect QuickNav alone. Existing websites retain enabled navigation by default. Addons are collected under one Add-ons menu; individual addons may be promoted to the main QuickNav menu with their children. Installed addons appear first; missing and pending entries are collapsed. The four settings sections share one form with a fixed save bar and an unsaved-change indicator. Native registered addon submenus supplement the audited child destinations in admin requests; duplicate or unauthorized links are omitted.
 
 | Integration | Checked package | Destination / scope |
 | --- | --- | --- |
@@ -11,6 +11,9 @@ QuickNav links only to addon administration pages. It does not activate addons, 
 | SiteCare Builder Tools | 2.3.0 | Registered Builder Tools page; respects its Breakdance/WordPress Settings parent |
 | Jooosi Fon / Yabe Webfont | Jooosi Fon 1.1.5 | Current `jooosi_fon` admin page; previous Yabe detection and destination retained |
 | Elements Hive Free | 1.7.1 | Home plus optional Cloudflare Turnstile submenu |
+| Elements Hive Pro | 1.7.0 | Home, License and Tools; tested with the actual package |
+| Destiny Elements | 1.8.7 (source only) | Native settings plus License; adapter contract simulated, no vendor runtime certification |
+| Dancepad | Internally 2.1.0 (source only) | Native Breakdance submenu; adapter contract simulated, no vendor runtime certification |
 | Express Add On | 1.4.2 | Express Options plus admin pages exposed by enabled modules in its runtime registry |
 | BreakColorUI Sync | 1.3.4 | Local BreakColorUI Sync admin page |
 | Breakdance WPML Integration | 1.1.0 | Guarded Template Translations adapter; no link without loaded WPML dependencies. Full WPML integration test pending premium dependency packages |
@@ -18,9 +21,9 @@ QuickNav links only to addon administration pages. It does not activate addons, 
 | Image Replacer | 1.0.5 | Detected version; supplied package has no separate admin page |
 | Headspin Copilot, Reading Time Calculator, Migration Mode | Existing integrations | Retained; current package tests pending. Migration Mode remains its registered settings tab |
 
-Navigation was checked with Breakdance 2.8.3 and 3.0.0 RC1, including admin/frontend requests, inactive plugins, permission denial and website-scoped switches. This covers QuickNav navigation, not every addon function or licensed builder feature. Elements Hive Pro and Jooosi Fon Pro await their own package checks.
+Navigation was checked with Breakdance 2.8.3 and 3.0.0 RC1, including admin/frontend requests, inactive plugins, permission denial and website-scoped switches. This covers QuickNav navigation, not every addon function or licensed builder feature. Jooosi Fon Pro awaits its own package check. The supplied Destiny and Dancepad packages contain code that fixes or replaces license state; those packages were read but not executed. Obtain unchanged manufacturer packages for positive runtime tests. Destiny was a RAR archive with a ZIP filename; version is taken from the plugin header.
 
-BreakMade, Dancepad, Smithy Portal/Connect, Phox Elements and Builder Languages are listed as pending package verification. They produce no guessed detection or menu links. Breakdance Navigator remains a competing-toolbar compatibility case. BreakNav is a comparison candidate, not an automatically added shortcut.
+BreakMade, Smithy Portal/Connect, Phox Elements and Builder Languages are listed as pending package verification. They produce no guessed detection or menu links. Breakdance Navigator remains a competing-toolbar compatibility case. BreakNav is a comparison candidate, not an automatically added shortcut.
 
 ## Sources
 

@@ -8,7 +8,7 @@
 
 Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Blocks, Popups, Einstellungen und unterstützte Addons über die WordPress-Toolbar.
 
-**Version:** 2.0.0-beta.2 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
+**Version:** 2.0.0-beta.3 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
 
 [FAQ](#faq) · [Änderungsverlauf](#änderungsverlauf) · [GitHub](https://github.com/deckerweb/breakdance-quicknav)
 
@@ -17,15 +17,15 @@ Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Block
 ## Auf einen Blick
 
 - Inhalte direkt erreichen; Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) auswählen.
-- Website und persönliche Einstellungen; Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen.
-- Breakdance-Einstellungen und Addons; Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge.
+- Website und persönliche Einstellungen; Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen. Vier zugängliche Reiter teilen sich ein Formular mit fester Speicherleiste und Schutz vor dem Verlust ungespeicherter Änderungen.
+- Breakdance-Einstellungen und Addons; Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge. Addons stehen in einem Sammelmenü, einzelne können samt Unterseiten direkt erscheinen. Elements Hive Pro ist geprüft; Destiny-/Dancepad-Adapter warten für vollständige Laufzeittests auf unveränderte Pakete.
 - Ressourcen und bisherige Konfiguration; Alle bisherigen Links-/About-Ziele und sechs BDQN-Konstanten bleiben erhalten. Definierte Konstanten überschreiben gespeicherte Einstellungen. Ein ausdrücklich leeres BDQN_ENABLED_USERS-Array sperrt weiterhin alle Benutzer.
 - Updates und weitere Plugins; deckerweb Updater 2.1.0 bietet Updates stabiler GitHub-Veröffentlichungen. Library 0.8.1 ergänzt die optionale Plugin-Entdeckung. Der Online-Katalog ist standardmäßig ausgeschaltet. Keine Telemetrie.
 - Datenhaltung und native Editoren; QuickNav pausiert ohne passenden Breakdance-Builder; die Einstellungen bleiben erreichbar. Deaktivierung erhält Daten, Deinstallation folgt der Löschentscheidung jeder Website. WordPress steuert die Toolbar-Anzeige im Editor.
 
 ## Installation
 
-1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.2.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
+1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.3.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
 2. QuickNav aktivieren und Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.
 3. Persönliche Sichtbarkeit und Eintragszahl unter Benutzer → Profil einstellen. Bestehende BDQN-Konstanten behalten Vorrang.
 
@@ -37,11 +37,11 @@ Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je 
 
 ### Website und persönliche Einstellungen
 
-Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen.
+Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen. Vier zugängliche Reiter teilen sich ein Formular mit fester Speicherleiste und Schutz vor dem Verlust ungespeicherter Änderungen.
 
 ### Breakdance-Einstellungen und Addons
 
-Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge.
+Registrierte Einstellungsreiter, bestehende Addon-Integrationen und geprüfte Direktlinks für SiteCare, Jooosi Fon, Elements Hive, Express Add On und BreakColorUI Sync. Einzelne Integrationen und optionale Untermenüs lassen sich in den QuickNav-Einstellungen steuern. Addons ohne eigene Admin-Seite bleiben Diagnoseeinträge. Addons stehen in einem Sammelmenü, einzelne können samt Unterseiten direkt erscheinen. Elements Hive Pro ist geprüft; Destiny-/Dancepad-Adapter warten für vollständige Laufzeittests auf unveränderte Pakete.
 
 ### Ressourcen und bisherige Konfiguration
 
@@ -88,6 +88,12 @@ Einstellungen und Vorlieben bleiben standardmäßig erhalten. Die Löschoption e
 [Fragen nach Themen](docs/FAQ-de.md)
 
 ## Änderungsverlauf
+
+### 2.0.0-beta.3 · 8. Oktober 2026 · Testversion
+
+- **Verbessert:** Vier zugängliche Einstellungsbereiche, feste Speicherleiste und Hinweis auf ungespeicherte Änderungen mit gemeinsamem nativem Formular.
+- **Verbessert:** Addon-Direktlinks in einem Menü sammeln; einzelne Addons samt Untermenüs optional direkt anzeigen. Installierte, fehlende und ausstehende Integrationen getrennt darstellen.
+- **Neu:** Elements-Hive-Pro-Navigation mit Lizenz und Werkzeugen. Quellbasierte Adapter für Destiny Elements und Dancepad; ihre gelieferten Pakete sind nicht durch Laufzeittests bestätigt.
 
 ### 2.0.0-beta.2 · 8. Oktober 2026 · Testversion
 

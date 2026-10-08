@@ -3,7 +3,7 @@
  * Plugin Name: Breakdance QuickNav
  * Plugin URI: https://github.com/deckerweb/breakdance-quicknav
  * Description: Quick access to Breakdance content, templates, settings, and official add-ons from the WordPress toolbar.
- * Version: 2.0.0-beta.2
+ * Version: 2.0.0-beta.3
  * Requires at least: 6.7
  * Requires PHP: 7.4
  * Author: David Decker – DECKERWEB
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DDW_BDQN_VERSION', '2.0.0-beta.2' );
+define( 'DDW_BDQN_VERSION', '2.0.0-beta.3' );
 define( 'DDW_BDQN_FILE', __FILE__ );
 define( 'DDW_BDQN_DIR', __DIR__ );
 
