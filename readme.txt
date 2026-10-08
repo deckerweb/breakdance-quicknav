@@ -4,7 +4,7 @@ Tags: breakdance, toolbar, navigation
 Requires at least: 6.7
 Tested up to: 7.1.3
 Requires PHP: 7.4
-Stable tag: 2.0.0-beta.3
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Quick access to Breakdance pages, templates, headers, footers, global blocks, po
 
 == Description ==
 
-**Version:** 2.0.0-beta.3 (test version). **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
+**Version:** 2.0.0. **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
 
 * Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).
 * Website and personal settings; Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions. Four accessible sections share one form with a fixed save bar and unsaved-change protection.
@@ -23,7 +23,7 @@ Quick access to Breakdance pages, templates, headers, footers, global blocks, po
 
 == Installation ==
 
-1. Upload the provided breakdance-quicknav-2.0.0-beta.3.zip under Plugins → Add New → Upload Plugin. Install this test version on a test website first.
+1. Upload the provided breakdance-quicknav-2.0.0.zip under Plugins → Add New → Upload Plugin. Back up your website before upgrading.
 2. Activate QuickNav. Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav); activate a supported Breakdance version to enable toolbar navigation.
 3. Set personal visibility and item count under Users → Profile. Existing BDQN constants remain authoritative.
 
@@ -59,21 +59,15 @@ Settings and preferences are retained by default. The deletion option removes on
 
 == Changelog ==
 
-= 2.0.0-beta.3 =
+= 2.0.0 =
 
 * Improved: Four accessible settings sections, a fixed save bar and unsaved-change protection with a shared native form.
 * Improved: Collect addon shortcuts in one menu; optionally promote individual addons with their submenus. Group installed, missing and pending integrations.
 * New: Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.
-
-= 2.0.0-beta.2 =
-
 * New: Website controls for individual addon integrations, availability explanations and optional addon submenus.
 * New: Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.
 * Fixed: Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.
 * Improved: Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.
-
-= 2.0.0-beta.1 =
-
 * New: Website settings and personal toolbar preferences.
 * Improved: Navigation supports Breakdance 2.x and 3.x, with registered settings tabs and authorized destinations.
 * Fixed: WooCommerce and WPSix Exporter links, query/settings filters and builder URLs.
@@ -86,6 +80,7 @@ Settings and preferences are retained by default. The deletion option removes on
 * Fixed: Show the save confirmation exactly once, below the complete settings header.
 * Improved: Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.
 * Improved: Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.
+* Fixed: Avoid a focus outline around the entire settings panel after saving; retain visible keyboard focus on controls.
 
 = 1.1.0 =
 

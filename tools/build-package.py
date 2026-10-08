@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,zipfile,hashlib,json
 root=Path(__file__).resolve().parents[1]
 a=argparse.ArgumentParser();a.add_argument('destination',type=Path);args=a.parse_args();args.destination.mkdir(parents=True,exist_ok=True)
-version='2.0.0-beta.3'
+version='2.0.0'
 runtime_dirs={'assets','images','includes','languages','docs'}
 runtime_files={'breakdance-quicknav.php','uninstall.php','index.php','LICENSE','readme.txt','README.md','README-de.md','SECURITY.md'}
 skip={'.DS_Store'}

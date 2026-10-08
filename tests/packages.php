@@ -7,7 +7,7 @@ WP_Filesystem();
 $source = getenv( 'BDQN_CANDIDATE' );
 if ( ! $source || ! is_dir( $source ) ) { throw new RuntimeException( 'Missing isolated candidate directory.' ); }
 $basename = plugin_basename( DDW_BDQN_FILE );
-$offer = (object) array( 'response' => array( $basename => (object) array( 'new_version' => '2.0.0' ) ) );
+$offer = (object) array( 'response' => array( $basename => (object) array( 'new_version' => '2.0.1' ) ) );
 set_site_transient( 'update_plugins', $offer );
 $context = array( 'plugin' => $basename, 'type' => 'plugin', 'action' => 'update' );
 global $checks;

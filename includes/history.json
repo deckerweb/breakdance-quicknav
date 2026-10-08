@@ -1,9 +1,9 @@
 [
   {
-    "version": "2.0.0-beta.3",
+    "version": "2.0.0",
     "date": {
-      "en": "October 8, 2026 · Test version",
-      "de": "8. Oktober 2026 · Testversion"
+      "en": "October 8, 2026",
+      "de": "8. Oktober 2026"
     },
     "items": [
       {
@@ -20,16 +20,7 @@
         "category": "new",
         "en": "Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.",
         "de": "Elements-Hive-Pro-Navigation mit Lizenz und Werkzeugen. Quellbasierte Adapter für Destiny Elements und Dancepad; ihre gelieferten Pakete sind nicht durch Laufzeittests bestätigt."
-      }
-    ]
-  },
-  {
-    "version": "2.0.0-beta.2",
-    "date": {
-      "en": "October 8, 2026 · Test version",
-      "de": "8. Oktober 2026 · Testversion"
-    },
-    "items": [
+      },
       {
         "category": "new",
         "en": "Website controls for individual addon integrations, availability explanations and optional addon submenus.",
@@ -49,16 +40,7 @@
         "category": "improved",
         "en": "Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.",
         "de": "Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links."
-      }
-    ]
-  },
-  {
-    "version": "2.0.0-beta.1",
-    "date": {
-      "en": "October 8, 2026 · Test version",
-      "de": "8. Oktober 2026 · Testversion"
-    },
-    "items": [
+      },
       {
         "category": "new",
         "en": "Website settings and personal toolbar preferences.",
@@ -118,6 +100,11 @@
         "category": "improved",
         "en": "Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.",
         "de": "Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte."
+      },
+      {
+        "category": "fixed",
+        "en": "Avoid a focus outline around the entire settings panel after saving; retain visible keyboard focus on controls.",
+        "de": "Fokusrahmen um den gesamten Einstellungsbereich nach dem Speichern vermeiden; sichtbaren Tastaturfokus der Bedienelemente erhalten."
       }
     ]
   },

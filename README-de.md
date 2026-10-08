@@ -8,7 +8,7 @@
 
 Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Blocks, Popups, Einstellungen und unterstützte Addons über die WordPress-Toolbar.
 
-**Version:** 2.0.0-beta.3 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
+**Version:** 2.0.0. **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.
 
 [FAQ](#faq) · [Änderungsverlauf](#änderungsverlauf) · [GitHub](https://github.com/deckerweb/breakdance-quicknav)
 
@@ -25,7 +25,7 @@ Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Block
 
 ## Installation
 
-1. Die bereitgestellte breakdance-quicknav-2.0.0-beta.3.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.
+1. Die bereitgestellte breakdance-quicknav-2.0.0.zip unter Plugins → Installieren → Plugin hochladen installieren. Vor dem Update eine Sicherung der Website erstellen.
 2. QuickNav aktivieren und Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.
 3. Persönliche Sichtbarkeit und Eintragszahl unter Benutzer → Profil einstellen. Bestehende BDQN-Konstanten behalten Vorrang.
 
@@ -89,21 +89,15 @@ Einstellungen und Vorlieben bleiben standardmäßig erhalten. Die Löschoption e
 
 ## Änderungsverlauf
 
-### 2.0.0-beta.3 · 8. Oktober 2026 · Testversion
+### 2.0.0 · 8. Oktober 2026
 
 - **Verbessert:** Vier zugängliche Einstellungsbereiche, feste Speicherleiste und Hinweis auf ungespeicherte Änderungen mit gemeinsamem nativem Formular.
 - **Verbessert:** Addon-Direktlinks in einem Menü sammeln; einzelne Addons samt Untermenüs optional direkt anzeigen. Installierte, fehlende und ausstehende Integrationen getrennt darstellen.
 - **Neu:** Elements-Hive-Pro-Navigation mit Lizenz und Werkzeugen. Quellbasierte Adapter für Destiny Elements und Dancepad; ihre gelieferten Pakete sind nicht durch Laufzeittests bestätigt.
-
-### 2.0.0-beta.2 · 8. Oktober 2026 · Testversion
-
 - **Neu:** Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs.
 - **Neu:** Navigation für SiteCare Builder Tools, Elements Hive, Express Add On und BreakColorUI Sync.
 - **Behoben:** Jooosi Fon erkennen und seine aktuelle Admin-Adresse verwenden; Unterstützung für bisheriges Yabe Webfont erhalten.
 - **Verbessert:** Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links.
-
-### 2.0.0-beta.1 · 8. Oktober 2026 · Testversion
-
 - **Neu:** Website-Einstellungen und persönliche Toolbar-Vorlieben.
 - **Verbessert:** Navigation für Breakdance 2.x und 3.x mit registrierten Einstellungsreitern und berechtigten Zielen.
 - **Behoben:** WooCommerce- und WPSix-Exporter-Verknüpfungen, Abfrage-/Einstellungsfilter und Builder-URLs.
@@ -116,6 +110,7 @@ Einstellungen und Vorlieben bleiben standardmäßig erhalten. Die Löschoption e
 - **Behoben:** Speicherbestätigung genau einmal unter dem vollständigen Einstellungsheader anzeigen.
 - **Verbessert:** Inhalts-Direktlinks sind nach veröffentlichten und unveröffentlichten Einträgen gruppiert; unveröffentlichte Inhalte zeigen ihren konkreten Status.
 - **Verbessert:** Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte.
+- **Behoben:** Fokusrahmen um den gesamten Einstellungsbereich nach dem Speichern vermeiden; sichtbaren Tastaturfokus der Bedienelemente erhalten.
 
 ### 1.1.0 · 7. April 2025 · Repository-Stand
 

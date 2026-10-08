@@ -2,21 +2,15 @@
 
 [Deutsch](CHANGELOG-de.md)
 
-### 2.0.0-beta.3 · October 8, 2026 · Test version
+### 2.0.0 · October 8, 2026
 
 - **Improved:** Four accessible settings sections, a fixed save bar and unsaved-change protection with a shared native form.
 - **Improved:** Collect addon shortcuts in one menu; optionally promote individual addons with their submenus. Group installed, missing and pending integrations.
 - **New:** Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.
-
-### 2.0.0-beta.2 · October 8, 2026 · Test version
-
 - **New:** Website controls for individual addon integrations, availability explanations and optional addon submenus.
 - **New:** Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.
 - **Fixed:** Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.
 - **Improved:** Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.
-
-### 2.0.0-beta.1 · October 8, 2026 · Test version
-
 - **New:** Website settings and personal toolbar preferences.
 - **Improved:** Navigation supports Breakdance 2.x and 3.x, with registered settings tabs and authorized destinations.
 - **Fixed:** WooCommerce and WPSix Exporter links, query/settings filters and builder URLs.
@@ -29,6 +23,7 @@
 - **Fixed:** Show the save confirmation exactly once, below the complete settings header.
 - **Improved:** Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.
 - **Improved:** Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.
+- **Fixed:** Avoid a focus outline around the entire settings panel after saving; retain visible keyboard focus on controls.
 
 ### 1.1.0 · April 7, 2025 · Repository version
 

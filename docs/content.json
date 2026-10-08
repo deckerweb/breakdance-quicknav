@@ -10,7 +10,7 @@
       "Project & Support"
     ],
     "about": "Quick access to Breakdance pages, templates, headers, footers, global blocks, popups, settings and supported addons from the WordPress toolbar.",
-    "requirements": "**Version:** 2.0.0-beta.3 (test version). **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.",
+    "requirements": "**Version:** 2.0.0. **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.",
     "features": [
       "Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).",
       "Website and personal settings; Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions. Four accessible sections share one form with a fixed save bar and unsaved-change protection.",
@@ -20,7 +20,7 @@
       "Safe lifecycle and native editors; QuickNav pauses when Breakdance is unavailable. Settings stay accessible. Deactivation retains data; uninstall follows each website’s deletion choice. WordPress controls editor toolbar visibility."
     ],
     "install": [
-      "Upload the provided breakdance-quicknav-2.0.0-beta.3.zip under Plugins → Add New → Upload Plugin. Install this test version on a test website first.",
+      "Upload the provided breakdance-quicknav-2.0.0.zip under Plugins → Add New → Upload Plugin. Back up your website before upgrading.",
       "Activate QuickNav. Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav); activate a supported Breakdance version to enable toolbar navigation.",
       "Set personal visibility and item count under Users → Profile. Existing BDQN constants remain authoritative."
     ],
@@ -66,7 +66,7 @@
       "Projekt & Unterstützung"
     ],
     "about": "Schneller Zugriff auf Breakdance-Seiten, Templates, Header, Footer, Global Blocks, Popups, Einstellungen und unterstützte Addons über die WordPress-Toolbar.",
-    "requirements": "**Version:** 2.0.0-beta.3 (Testversion). **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.",
+    "requirements": "**Version:** 2.0.0. **Voraussetzungen:** WordPress 6.7+, PHP 7.4+. Die Library benötigt PHP 8.0, der Updater PHP 8.1. Navigation und Einstellungen bleiben verfügbar, wenn eine gemeinsame Komponente nicht geladen werden kann. Unterstützt Breakdance 2.x und 3.x; geprüfte Quellpakete: 2.8.3 und 3.0.0 RC1. QuickNav benötigt keine Lizenz.",
     "features": [
       "Inhalte direkt erreichen; Standardmäßig bis zu 20 zuletzt geänderte Breakdance-Seiten und Einträge je Template-Gruppe. Öffentliche eigene Inhaltstypen, alphabetische Sortierung und bearbeitbare unveröffentlichte Inhalte lassen sich unter Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) auswählen.",
       "Website und persönliche Einstellungen; Toolbar-Bezeichnung, Icon, Menügruppen, Backend-/Frontend-Anzeige und berechtigte Benutzer einstellen. Profilvorlieben gelten nur für diese Website und können Website- oder Builder-Rechte nicht umgehen. Vier zugängliche Reiter teilen sich ein Formular mit fester Speicherleiste und Schutz vor dem Verlust ungespeicherter Änderungen.",
@@ -76,7 +76,7 @@
       "Datenhaltung und native Editoren; QuickNav pausiert ohne passenden Breakdance-Builder; die Einstellungen bleiben erreichbar. Deaktivierung erhält Daten, Deinstallation folgt der Löschentscheidung jeder Website. WordPress steuert die Toolbar-Anzeige im Editor."
     ],
     "install": [
-      "Die bereitgestellte breakdance-quicknav-2.0.0-beta.3.zip unter Plugins → Installieren → Plugin hochladen installieren. Die Testversion zuerst auf einer Testwebsite verwenden.",
+      "Die bereitgestellte breakdance-quicknav-2.0.0.zip unter Plugins → Installieren → Plugin hochladen installieren. Vor dem Update eine Sicherung der Website erstellen.",
       "QuickNav aktivieren und Breakdance → QuickNav (ohne aktiven Builder: Einstellungen → Breakdance QuickNav) öffnen. Ein unterstütztes Breakdance aktivieren, um die Toolbar-Navigation einzuschalten.",
       "Persönliche Sichtbarkeit und Eintragszahl unter Benutzer → Profil einstellen. Bestehende BDQN-Konstanten behalten Vorrang."
     ],

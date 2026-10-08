@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0-beta.3\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Breakdance QuickNav 2.0.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nMIME-Version: 1.0\nPO-Revision-Date: 2026-10-08 10:00+0200\nLast-Translator: David Decker – DECKERWEB\nLanguage-Team: German\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr "%s ist installiert, aber inaktiv. Bitte zuerst aktivieren."
