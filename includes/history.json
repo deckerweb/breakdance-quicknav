@@ -1,0 +1,144 @@
+[
+  {
+    "version": "2.0.0",
+    "date": {
+      "en": "October 8, 2026",
+      "de": "8. Oktober 2026"
+    },
+    "items": [
+      {
+        "category": "improved",
+        "en": "Four accessible settings sections, a fixed save bar and unsaved-change protection with a shared native form.",
+        "de": "Vier zugängliche Einstellungsbereiche, feste Speicherleiste und Hinweis auf ungespeicherte Änderungen mit gemeinsamem nativem Formular."
+      },
+      {
+        "category": "improved",
+        "en": "Collect addon shortcuts in one menu; optionally promote individual addons with their submenus. Group installed, missing and pending integrations.",
+        "de": "Addon-Direktlinks in einem Menü sammeln; einzelne Addons samt Untermenüs optional direkt anzeigen. Installierte, fehlende und ausstehende Integrationen getrennt darstellen."
+      },
+      {
+        "category": "new",
+        "en": "Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.",
+        "de": "Elements-Hive-Pro-Navigation mit Lizenz und Werkzeugen. Quellbasierte Adapter für Destiny Elements und Dancepad; ihre gelieferten Pakete sind nicht durch Laufzeittests bestätigt."
+      },
+      {
+        "category": "new",
+        "en": "Website controls for individual addon integrations, availability explanations and optional addon submenus.",
+        "de": "Website-Schalter für einzelne Addon-Integrationen, verständliche Verfügbarkeitshinweise und optionale Addon-Untermenüs."
+      },
+      {
+        "category": "new",
+        "en": "Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.",
+        "de": "Navigation für SiteCare Builder Tools, Elements Hive, Express Add On und BreakColorUI Sync."
+      },
+      {
+        "category": "fixed",
+        "en": "Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.",
+        "de": "Jooosi Fon erkennen und seine aktuelle Admin-Adresse verwenden; Unterstützung für bisheriges Yabe Webfont erhalten."
+      },
+      {
+        "category": "improved",
+        "en": "Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.",
+        "de": "Bestehende Integrationen bleiben unterstützt. Addon-Links beachten Berechtigungen, geladene Module und Website-Vorlieben; ungeprüfte Pakete erzeugen keine geratenen Links."
+      },
+      {
+        "category": "new",
+        "en": "Website settings and personal toolbar preferences.",
+        "de": "Website-Einstellungen und persönliche Toolbar-Vorlieben."
+      },
+      {
+        "category": "improved",
+        "en": "Navigation supports Breakdance 2.x and 3.x, with registered settings tabs and authorized destinations.",
+        "de": "Navigation für Breakdance 2.x und 3.x mit registrierten Einstellungsreitern und berechtigten Zielen."
+      },
+      {
+        "category": "fixed",
+        "en": "WooCommerce and WPSix Exporter links, query/settings filters and builder URLs.",
+        "de": "WooCommerce- und WPSix-Exporter-Verknüpfungen, Abfrage-/Einstellungsfilter und Builder-URLs."
+      },
+      {
+        "category": "improved",
+        "en": "Existing resource links, configuration constants and addon integrations remain available.",
+        "de": "Bisherige Ressourcenlinks, Konfigurationskonstanten und Addon-Integrationen bleiben erhalten."
+      },
+      {
+        "category": "new",
+        "en": "deckerweb Updater 2.1.0 and Library 0.8.1, with German informal and formal translations.",
+        "de": "deckerweb Updater 2.1.0 und Library 0.8.1 mit deutschen Du- und Sie-Übersetzungen."
+      },
+      {
+        "category": "misc",
+        "en": "WordPress controls editor toolbar visibility; QuickNav no longer changes the editor layout or removes the WordPress logo.",
+        "de": "WordPress steuert die Toolbar-Anzeige im Editor; QuickNav verändert das Editorlayout nicht mehr und entfernt das WordPress-Logo nicht."
+      },
+      {
+        "category": "misc",
+        "en": "Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.",
+        "de": "Plugin-Einstellungen bleiben erhalten, sofern das Löschen nicht ausdrücklich aktiviert wurde. Das optionale Snippet bietet ausschließlich Navigation."
+      },
+      {
+        "category": "new",
+        "en": "Per-form shortcuts beneath Form Submissions for forms with stored submissions.",
+        "de": "Direktlinks je Formular unter Formular-Einsendungen für Formulare mit gespeicherten Einsendungen."
+      },
+      {
+        "category": "improved",
+        "en": "QuickNav settings appear beneath Breakdance when a supported builder is active; otherwise beneath WordPress Settings.",
+        "de": "QuickNav-Einstellungen stehen bei aktivem unterstütztem Builder unter Breakdance, sonst unter den WordPress-Einstellungen."
+      },
+      {
+        "category": "fixed",
+        "en": "Show the save confirmation exactly once, below the complete settings header.",
+        "de": "Speicherbestätigung genau einmal unter dem vollständigen Einstellungsheader anzeigen."
+      },
+      {
+        "category": "improved",
+        "en": "Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.",
+        "de": "Inhalts-Direktlinks sind nach veröffentlichten und unveröffentlichten Einträgen gruppiert; unveröffentlichte Inhalte zeigen ihren konkreten Status."
+      },
+      {
+        "category": "improved",
+        "en": "Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.",
+        "de": "Erkannte Komponenten zeigen Anzeige-Einstellungen verständlich als Aktiviert oder Deaktiviert statt technischer Zahlenwerte."
+      },
+      {
+        "category": "fixed",
+        "en": "Avoid a focus outline around the entire settings panel after saving; retain visible keyboard focus on controls.",
+        "de": "Fokusrahmen um den gesamten Einstellungsbereich nach dem Speichern vermeiden; sichtbaren Tastaturfokus der Bedienelemente erhalten."
+      }
+    ]
+  },
+  {
+    "version": "1.1.0",
+    "date": {
+      "en": "April 7, 2025 · Repository version",
+      "de": "7. April 2025 · Repository-Stand"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Configurable item count, user ID restrictions, editor toolbar visibility, Site Health information and Reading Time Calculator support.",
+        "de": "Einstellbare Eintragszahl, Beschränkung auf Benutzer-IDs, Toolbar-Anzeige im Editor, Website-Zustandsinformationen und Unterstützung für Reading Time Calculator."
+      },
+      {
+        "category": "improved",
+        "en": "German translations, Git Updater support and plugin-list links.",
+        "de": "Deutsche Übersetzungen, Git-Updater-Unterstützung und Verknüpfungen in der Pluginliste."
+      }
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "date": {
+      "en": "March 8, 2025",
+      "de": "8. März 2025"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Initial release with Breakdance templates, pages, resources and addon shortcuts, including AI, Migration Mode, Yabe Webfont and WPSix Exporter.",
+        "de": "Erste Veröffentlichung mit Breakdance-Templates, Seiten, Ressourcen und Addon-Direktwegen einschließlich AI, Migration Mode, Yabe Webfont und WPSix Exporter."
+      }
+    ]
+  }
+]

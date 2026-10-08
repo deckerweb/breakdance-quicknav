@@ -1,226 +1,136 @@
 # Breakdance QuickNav
 
-![Breakdance QuickNav plugin in action](https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/master/assets-github/breakdance-quicknav-screenshot.png)
+[Deutsch](README-de.md)
 
-The **Breakdance QuickNav** plugin adds a quick-access navigator to the WordPress Admin Bar (Toolbar). It allows easy access to Breakdance Builder Templates, Headers, Footers, Global Blocks, Popups, and (regular WordPress) Pages edited with Breakdance, along with other essential settings.
+![Breakdance QuickNav](assets/brand/banner-en.png)
 
-* Contributors: [David Decker](https://github.com/deckerweb), [contributors](https://github.com/deckerweb/breakdance-quicknav/graphs/contributors)
-* Tags: breakdance, quicknav, admin bar, toolbar, breakdance builder, site builder, administrators
-* Requires at least: 6.7
-* Requires PHP: 7.4
-* Stable tag: [main](https://github.com/deckerweb/breakdance-quicknav/releases/latest)
-* Donate link: https://paypal.me/deckerweb
-* License: GPL v2 or later
+## About
 
-_Note:_ This plugin was originally developed by [Peter Kulcsár](https://github.com/beamkiller) under the name ["Breakdance Navigator"](https://github.com/beamkiller/breakdance-navigator). Since it is licensed GPL v2 or later, I decided to fork it to add some more/other links and tweak some things. – If you like the original version, fine! Use it and support the original author!
+Quick access to Breakdance pages, templates, headers, footers, global blocks, popups, settings and supported addons from the WordPress toolbar.
 
----
+**Version:** 2.0.0. **Requirements:** WordPress 6.7+, PHP 7.4+. Library requires PHP 8.0; the updater requires PHP 8.1. Navigation and settings remain available when a shared component cannot load. Supports Breakdance 2.x and 3.x; tested source packages: 2.8.3 and 3.0.0 RC1. A license is not required by QuickNav.
 
-## Quick Links 
+[FAQ](#faq) · [Changelog](#changelog) · [GitHub](https://github.com/deckerweb/breakdance-quicknav)
 
-[Support Project](#support-the-project) | [Installation](#installation) | [Updates](#updates) | [Description](#description) | [How Plugin Works](#how-this-plugin-works) | [FAQ](#frequently-asked-questions) | [Changelog](#changelog) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+**Contents:** [About](#about) · [At a Glance](#at-a-glance) · [Installation](#installation) · [Features](#features) · [FAQ](#faq) · [Changelog](#changelog) · [Project & Support](#project--support)
 
----
+## At a Glance
 
-## Support the Project 
+- Content shortcuts; By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).
+- Website and personal settings; Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions. Four accessible sections share one form with a fixed save bar and unsaved-change protection.
+- Breakdance settings and addons; Registered settings tabs, existing addon integrations and verified shortcuts for SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Control individual integrations and optional submenus in QuickNav settings. Addons without separate admin pages remain diagnostic entries. Addons are collected in one menu, with individual promotion and retained child pages. Elements Hive Pro is verified; Destiny/Dancepad adapters await unchanged packages for full runtime tests.
+- Resources and legacy configuration; Preserve every existing Links/About destination and all six BDQN constants. Defined constants override saved settings. An explicitly empty BDQN_ENABLED_USERS array denies all users.
+- Updates and discovery; Bundled deckerweb Updater 2.1.0 offers stable GitHub release updates. Library 0.8.1 adds optional plugin discovery. Online catalog access is off by default. No telemetry.
+- Safe lifecycle and native editors; QuickNav pauses when Breakdance is unavailable. Settings stay accessible. Deactivation retains data; uninstall follows each website’s deletion choice. WordPress controls editor toolbar visibility.
 
-If you find this project helpful, consider showing your support by buying me a coffee! Your contribution helps me keep developing and improving this plugin.
+## Installation
 
-Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through the following options:
+1. Upload the provided breakdance-quicknav-2.0.0.zip under Plugins → Add New → Upload Plugin. Back up your website before upgrading.
+2. Activate QuickNav. Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav); activate a supported Breakdance version to enable toolbar navigation.
+3. Set personal visibility and item count under Users → Profile. Existing BDQN constants remain authoritative.
 
-- [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
-- [Buy me a coffee](https://buymeacoffee.com/daveshine)
-- [PayPal donation](https://paypal.me/deckerweb)
-- [Join my **newsletter** for DECKERWEB WordPress Plugins](https://eepurl.com/gbAUUn)
+## Features
 
----
+### Content shortcuts
 
-## Installation 
+By default, show up to 20 recently modified Breakdance pages and items in each template group. Select public custom post types, alphabetical sorting or editable unpublished items in Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav).
 
-#### **Quick Install – as Plugin**
-1. **Download ZIP:** [**breakdance-quicknav.zip**](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip)
-2. Upload via WordPress Plugins > Add New > Upload Plugin
-3. Once activated, you’ll see the **BD** menu item in the Admin Bar.
+### Website and personal settings
 
-#### **Alternative: Use as Code Snippet**
-1. Below, download the appropriate snippet version
-2. activate or deactivate in your snippets plugin
+Set toolbar label, icon, visible menu groups, backend/frontend display and eligible users. Profile preferences apply to this website only and cannot bypass website or builder permissions. Four accessible sections share one form with a fixed save bar and unsaved-change protection.
 
-[**Download .json**](https://github.com/deckerweb/oxygen-quicknav/releases/latest/download/ddw-breakdance-quicknav.code-snippets.json) version for: _Code Snippets_ (free & Pro), _Advanced Scripts_ (Premium), _Scripts Organizer_ (Premium)  
---> just use their elegant script import features  
---> in _Scripts Organizer_ use the "Code Snippets Import"  
+### Breakdance settings and addons
 
-For all other snippet manager plugins just use our plugin's main .php file [`breakdance-quicknav.php`](https://github.com/deckerweb/breakdance-quicknav/blob/master/breakdance-quicknav.php) and use its content as snippet (bevor saving your snippet: please check for your plugin if the opening php tag needs to be removed or not!).
+Registered settings tabs, existing addon integrations and verified shortcuts for SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Control individual integrations and optional submenus in QuickNav settings. Addons without separate admin pages remain diagnostic entries. Addons are collected in one menu, with individual promotion and retained child pages. Elements Hive Pro is verified; Destiny/Dancepad adapters await unchanged packages for full runtime tests.
 
---> Please decide for one of both alternatives!
+### Resources and legacy configuration
 
-#### Minimum Requirements 
-* WordPress version 6.7 or higher
-* PHP version 7.4 or higher (better 8.3+)
-* MySQL version 8.0 or higher / OR MariaDB 10.1 or higher
-* Administrator user with capability `manage_options` and `activate_plugins`
+Preserve every existing Links/About destination and all six BDQN constants. Defined constants override saved settings. An explicitly empty BDQN_ENABLED_USERS array denies all users.
 
-### Tested Compatibility
-- **Breakdance Pro**: 2.3.0+ / 2.4.0 Beta
-- **WordPress**: 6.7.2 / 6.8 Beta
-- **PHP**: 8.0 – 8.3
+### Updates and discovery
 
----
+Bundled deckerweb Updater 2.1.0 offers stable GitHub release updates. Library 0.8.1 adds optional plugin discovery. Online catalog access is off by default. No telemetry.
 
-## Updates 
+### Safe lifecycle and native editors
 
-#### For Plugin Version:
+QuickNav pauses when Breakdance is unavailable. Settings stay accessible. Deactivation retains data; uninstall follows each website’s deletion choice. WordPress controls editor toolbar visibility.
 
-1) Alternative 1: Just download a new [ZIP file](https://github.com/deckerweb/breakdance-quicknav/releases/latest/download/breakdance-quicknav.zip) (see above), upload and override existing version. Done.
+## FAQ
 
-2) Alternative 2: Use the (free) [**_Git Updater_ plugin**](https://git-updater.com/) and get updates automatically.
+### Where are the settings?
 
-3) Alternative 3: Upcoming! – In future I will built-in our own deckerweb updater. This is currently being worked on for my plugins. Stay tuned!
+Open Breakdance → QuickNav (without an active builder: Settings → Breakdance QuickNav) or use Settings beside Deactivate in the plugin list. Personal preferences are in your profile.
 
-#### For Code Snippet Version:
+### Why is QuickNav missing?
 
-Just manually: Download the latest Snippet version (see above) and import it in your favorite snippets manager plugin. – You can delete the old snippet; then just activate the new one. Done.
+Check that Breakdance 2.x or 3.x is active in Breakdance mode, the WordPress toolbar is visible and your website/user visibility and permissions allow it. An active Breakdance Navigator suppresses duplicate QuickNav navigation.
 
----
+### Will existing constants still work?
 
-## Description 
+Yes. BDQN_NAME_IN_ADMINBAR, BDQN_ICON, BDQN_NUMBER_TEMPLATES, BDQN_VIEW_CAPABILITY, BDQN_ENABLED_USERS and BDQN_DISABLE_FOOTER override saved defaults. Empty legacy user allowlists still deny everyone.
 
-#### Differences 
-**What Does "Breakdance QuickNav" _Different_ than "Breakdance Navigator"?**
+### Can editors see drafts?
 
-_Good question, hehe :-)_
+Only when unpublished content is enabled and the user has both WordPress object-edit rights and Breakdance edit permission. Setting a lower toolbar capability never grants builder access.
 
-### 1) Intended usage for Administrator users only!
-Therefore the default capability to see the new Admin Bar node is set to `activate_plugins`. You can change this via the constant `BDQN_VIEW_CAPABILITY` – define that via `wp-config.php` or via a Code Snippet plugin:
-```
-define( 'BDQN_VIEW_CAPABILITY', 'edit_posts' );
-```
+### Which addons are supported?
 
-### 2) Restrict to defined user IDs only (since v1.1.0)
-You can define an array of user IDs (can also be only _one_ ID) and that way restrict showing the Breakdance Admin Bar item only for those users. Define that via `wp-config.php` or via a Code Snippet plugin:
-```
-define( 'BDQN_ENABLED_USERS', [ 1, 500, 867 ] );
-```
-This would enable only for the users with the IDs 1, 500 and 867. Note the square brackets around, and no single quotes, just the ID numbers.
-
-For example you are one of many admin users (role `administrator`) but _only you_ want to show it _for yourself_. Given you have user ID 1:
-```
-define( 'BDQN_ENABLED_USERS', [ 1 ] );
-```
-That way only you can see it, the other admins can't!
+Existing integrations remain, with verified navigation for the supplied packages and freely available SiteCare, Jooosi Fon, Elements Hive, Express Add On and BreakColorUI Sync. Other premium packages and WPML dependencies await their own checks. See docs/ADDONS.md.
 
-### 3) Shorter name of main menu item in Admin Bar, just named "BD".
-This is way shorter than "Breakdance Nav" and takes much less of the precious space there. However, if you don't enjoy "BD" you can tweak that also via the constant `BDQN_NAME_IN_ADMINBAR` – define that also via `wp-config.php` or via a Code Snippet plugin:
-```
-define( 'BDQN_NAME_IN_ADMINBAR', 'BD Nav' );
-```
+### Does it support Multisite?
 
-### 4) Default icon of main menu item pulled directly from Breakdance plugin.
-The yellow default logo icon is awesome but a bit too yellow-ish for my taste – at least within the Admin Bar. Therefore I pull in the builder icon intended for dark mode (light logo on dark background). If that is not there for whatever reason it pulls in Peter's yellow icon (in local plugin folder). You can also tweak that via a constant in `wp-config.php` oder via a Code Snippets plugin:
-```
-define( 'BDQN_ICON', 'yellow' );
-```
+Website and network activation are supported. Website settings and personal preferences remain site-scoped. No cross-site toolbar is created. Shared Library data is protected while another host remains installed.
 
-### 5) Adjust the number of displayed Templates/ Pages.
-The default number of displayed Templates/ Pages got increased to 20 (instead of 10). That means up to 20 items, starting from latest (newest) down to older ones. And, now you can adjust that value via constant in `wp-config.php` or via a Code Snippets plugin:
-```
-define( 'BDQN_NUMBER_TEMPLATES', 5 );
-```
-In that example it would only display up to 5 items. NOTE: just add the number, no quotes around it.
+### What happens on uninstall, and is a snippet available?
 
-### 6) Increased plugin support.
-The supported plugins are increased compared to Peters original plugin. The "WPSix Exporter" is now supported by default. All supported plugins are checked if they are active or not.
-_Please note:_ I will ONLY add support for direct Breakdance add-on plugins. And I can only add support if I would own a license myself (for testing etc.). Therefore if there might be Breakdance plugins you want me to add integration for, please open an issue on the plugin page on GitHub so we might discuss that. (Thanks in advance!)
+Settings and preferences are retained by default. The deletion option removes only this website’s QuickNav data; network uninstall applies each website’s choice. Breakdance content remains. A separately generated navigation-only snippet is optional; do not activate it beside the plugin.
 
-### 7) Disable footer items (Links & About)
-To disable these menu items, just use another constant in `wp-config.php` or via a Code Snippets plugin:
-```
-define( 'BDQN_DISABLE_FOOTER', 'yes' );
-```
+[FAQ by topic](docs/FAQ.md)
 
-### 8) Updated links.
-I carefully updated the links from the Breakdance community, including plugin/ library/ tutorial sites.
+## Changelog
 
-### 9) Show Admin Bar also in Block Editor full screen mode.
-This an annoyance with WordPress default: the fullscreen mode isn't fullscreen anyways, however, it should at least show the Admin Bar as it makes total sense in this case. – Now it finally does! (since plugin version v1.1.0)
+### 2.0.0 · October 8, 2026
 
-### 10) Alternate Install: Snippet Version!
-You can use this "plugin" also as Code Snippet in your favorite snippet manager plugin. See here under ["Installation"](#installation)!
+- **Improved:** Four accessible settings sections, a fixed save bar and unsaved-change protection with a shared native form.
+- **Improved:** Collect addon shortcuts in one menu; optionally promote individual addons with their submenus. Group installed, missing and pending integrations.
+- **New:** Elements Hive Pro navigation with License and Tools. Source-based Destiny Elements and Dancepad adapters; their supplied packages are not certified by runtime testing.
+- **New:** Website controls for individual addon integrations, availability explanations and optional addon submenus.
+- **New:** Navigation for SiteCare Builder Tools, Elements Hive, Express Add On and BreakColorUI Sync.
+- **Fixed:** Recognize Jooosi Fon and use its current admin destination while retaining legacy Yabe Webfont support.
+- **Improved:** Existing integrations remain supported. Addon links respect permissions, loaded modules and website preferences; unverified packages never create guessed links.
+- **New:** Website settings and personal toolbar preferences.
+- **Improved:** Navigation supports Breakdance 2.x and 3.x, with registered settings tabs and authorized destinations.
+- **Fixed:** WooCommerce and WPSix Exporter links, query/settings filters and builder URLs.
+- **Improved:** Existing resource links, configuration constants and addon integrations remain available.
+- **New:** deckerweb Updater 2.1.0 and Library 0.8.1, with German informal and formal translations.
+- **Misc:** WordPress controls editor toolbar visibility; QuickNav no longer changes the editor layout or removes the WordPress logo.
+- **Misc:** Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.
+- **New:** Per-form shortcuts beneath Form Submissions for forms with stored submissions.
+- **Improved:** QuickNav settings appear beneath Breakdance when a supported builder is active; otherwise beneath WordPress Settings.
+- **Fixed:** Show the save confirmation exactly once, below the complete settings header.
+- **Improved:** Content shortcuts are grouped by published and unpublished status; unpublished items display their specific status.
+- **Improved:** Detected components describe display settings as Enabled or Disabled instead of technical numeric flags.
+- **Fixed:** Avoid a focus outline around the entire settings panel after saving; retain visible keyboard focus on controls.
 
-### 11) Other tweaks.
-a) There is another check for Breakdance plugin itself: if no Breakdance active then the whole Admin Bar addition is NOT loaded and displayed. Makes sense.
+### 1.1.0 · April 7, 2025 · Repository version
 
-b) If for whatever reason you have already "Breakdance Navigator" installed and ACTIVATED, my plugin (Breakdance QuickNav) will not display anything (even if activated). So it makes sense you decide for one or the other ... 🙂
+- **New:** Configurable item count, user ID restrictions, editor toolbar visibility, Site Health information and Reading Time Calculator support.
+- **Improved:** German translations, Git Updater support and plugin-list links.
 
----
+### 1.0.0 · March 8, 2025
 
-## How this Plugin Works
+- **New:** Initial release with Breakdance templates, pages, resources and addon shortcuts, including AI, Migration Mode, Yabe Webfont and WPSix Exporter.
 
-1. **Pages, Templates, Headers, Footers, Global Blocks, Popups**: Displays up to 10 items, ordered by the last modified date (descending). The "Pages" menu only shows pages built with Breakdance by checking the `_breakdance_data` custom field.
-2. **Form Submissions, Design Library, Settings**: Direct links to relevant sections.
-3. **Additional Links**: Includes links to resources like the Breakdance website and Facebook group. Some may contain affiliate links.
-4. **About**: Includes links to the plugin author.
+## Project & Support
 
----
+David Decker – DECKERWEB. QuickNav.
 
-## Frequently Asked Questions 
+[Issues](https://github.com/deckerweb/breakdance-quicknav/issues) · [Security](SECURITY.md) · [Ko-fi](https://ko-fi.com/deckerweb) · [Buy Me a Coffee](https://buymeacoffee.com/daveshine) · [PayPal](https://paypal.me/deckerweb)
 
-### How can I change / tweak things?
-Please see here under [**Description**](#description) what is possible! (Custom tweaks via constants)
+This plugin originated as a fork of [Breakdance Navigator](https://github.com/beamkiller/breakdance-navigator), Peter Kulcsár, © 2024, GPL v2 or later.
 
-### Why is this functionality not baked into Breakdance itself?
-I don't know. Not everything needs to be built-in. That's what plugins are for: those who _need_ this functionality can install and use them.
+Copyright © 2025–2026 David Decker – DECKERWEB. GPL v2 or later. The existing Breakdance logo belongs to Soflyy. The navigation symbol is original vector artwork. deckerweb Updater 2.1.0 and Library 0.8.1: © 2026 David Decker – DECKERWEB, GPL-2.0-or-later.
 
-### Why is this plugin not on wordpress.org plugin repository?
-Because the restrictions there for plugin authors are becoming more and more. It would be possible but I don't want that anymore. The same for limited support forums for plugin authors on .org. I have decided to leave this whole thing behind me.
+Retained legacy graphics contain [Remix Icon](https://remixicon.com/) symbols, © Remix Icon. The current artwork is original vector artwork.
 
----
-
-## [Changelog](https://github.com/deckerweb/breakdance-quicknav/releases) 
-
-**The Releases**
-
-### 🎉 v1.1.0 – 2025-04-??
-* New: Show Admin Bar also in Block Editor full screen mode
-* New: Adjust the number of shown Templates / Pages via constant (default: up to 20 - instead of 10) _(new custom tweak)_
-* New: Optionally only enable for defined user IDs _(new custom tweak)_
-* New: Add info to Site Health Debug, useful for our constants for custom tweaking
-* New: Added support for "Breakdance Reading Time Calculator" plugin (third-party)
-* New: Added `.pot` file (to translate plugin into your language), plus packaged German translations, including new `l10n.php` files!
-* New: Installable and updateable via [Git Updater plugin](https://git-updater.com/)
-* Change: Remove packaged icon image file in favor of svg-ed version, inline – makes "plugin" usable as code snippet
-* Fix: Minor styling issues for top-level item
-* Improved and simplified code to make better maintainable
-* Plugin: Add meta links on WP Plugins page
-* Alternate install: Use "plugin" as Code Snippet version (see under [Installation](#installation))
-
-### 🎉 v1.0.0 – 2025-03-08
-* Initial release
-* _Note:_ Forked from "Breakdance Navigator" v1.0.1 by Peter Kulcsár (licensed GPL v2 or later)
-* Added support for "Breakdanke Migration" plugin (official add-on)
-* Added support for "Yabe Webfont" plugin (third-party; free & Pro version!)
-* Added support for "WPSix Exporter" plugin (third-party)
-* Improved support for "Breakdance AI Assistant" (official add-on)
-
----
-
-## Plugin Scope / Disclaimer 
-
-This plugin comes as is. I have no intention to add support for every little detail / third-party plugin / library etc. Its main focus is support for the template types and Breakdance settings. Plugin support is added where it makes sense for the daily work of an Administrator and Site Builder.
-
-_Disclaimer 1:_ So far I will support the plugin for breaking errors to keep it working. Otherwise support will be very limited. Also, it will NEVER be released to WordPress.org Plugin Repository for a lot of reasons.
-
-_Disclaimer 2:_ All of the above might change. I do all this stuff only in my spare time.
-
-_Most of all:_ Have fun building great Breakdance powered sites!!! ;-)
-
----
-
-Official _Breakdance_ product logo icon: © Soflyy
-
-Icons used in Admin Bar items: [© Remix Icon](https://remixicon.com/)
-
-Icon used in promo graphics: [© Remix Icon](https://remixicon.com/)
-
-Original Copyright: © 2024, Peter Kulcsár  
-Readme & Plugin Copyright: © 2025, David Decker – DECKERWEB.de
+The settings interface and host integration reuse GPL-2.0-or-later code from [Oxygen QuickNav 2.0.0](https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0), © 2025–2026 David Decker – DECKERWEB.
