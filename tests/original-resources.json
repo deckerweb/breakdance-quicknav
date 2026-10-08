@@ -1,0 +1,66 @@
+{
+  "links": {
+    "breakdance": [
+      "Breakdance HQ",
+      "https://breakdance.com/"
+    ],
+    "breakdance-learn": [
+      "Learn Breakdance (Tutorials)",
+      "https://breakdance.com/learn/"
+    ],
+    "breakdance-docs": [
+      "Breakdance Documentation",
+      "https://breakdance.com/documentation/"
+    ],
+    "breakdance-youtube": [
+      "Breakdance YouTube Channel",
+      "https://www.youtube.com/@OfficialBreakdance/featured"
+    ],
+    "breakdance-fb-group": [
+      "Breakdance FB Group",
+      "https://www.facebook.com/groups/breakdanceofficial"
+    ],
+    "breakdance4fun": [
+      "breakdance4fun (Tutorials, Tips, Resources)",
+      "https://breakdance4fun.supadezign.com/"
+    ],
+    "bd-discord-unofficial": [
+      "Breakdance Unofficial Discord",
+      "https://discord.com/channels/523286444283002890/530617461775532042"
+    ],
+    "headspin": [
+      "Headspin",
+      "https://headspinui.com/"
+    ],
+    "moreblocks": [
+      "Moreblocks",
+      "https://moreblocks.com/"
+    ],
+    "breakerblocks": [
+      "Breakerblocks",
+      "https://breakerblocks.com/"
+    ],
+    "bdlibraryawesome": [
+      "BD Library Awesome",
+      "https://bdlibraryawesome.com/"
+    ],
+    "bdblox": [
+      "Bdblox",
+      "https://bdblox.com/"
+    ]
+  },
+  "about": {
+    "author": [
+      "Author: David Decker",
+      "https://deckerweb.de/"
+    ],
+    "github": [
+      "Plugin on GitHub",
+      "https://github.com/deckerweb/breakdance-quicknav"
+    ],
+    "kofi": [
+      "Buy Me a Coffee",
+      "https://ko-fi.com/deckerweb"
+    ]
+  }
+}

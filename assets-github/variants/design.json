@@ -1,0 +1,35 @@
+{
+  "status": "Three proposals; final selection pending",
+  "variants": {
+    "A": {
+      "bg": "#fff9e9",
+      "fg": "#302e22",
+      "accent": "#8c6100",
+      "card": "#ffffff",
+      "muted": "#635b42",
+      "tag": "Clear / Klar"
+    },
+    "B": {
+      "bg": "#20242b",
+      "fg": "#ffffff",
+      "accent": "#f3c94e",
+      "card": "#2c333d",
+      "muted": "#d5d9df",
+      "tag": "Focus / Fokus"
+    },
+    "C": {
+      "bg": "#f8f5ef",
+      "fg": "#293b42",
+      "accent": "#22786b",
+      "card": "#ffffff",
+      "muted": "#526367",
+      "tag": "Calm / Ruhe"
+    }
+  },
+  "dimensions": [
+    1280,
+    640
+  ],
+  "font": "System Arial; font files are not distributed",
+  "artwork": "Original vector composition; no copied vendor graphics"
+}

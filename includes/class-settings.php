@@ -1,0 +1,91 @@
+<?php
+/** Website and personal configuration. @package BreakdanceQuickNav */
+namespace Deckerweb\BreakdanceQuickNav;
+
+defined( 'ABSPATH' ) || exit;
+
+/** Validates settings, resolves legacy constants, and stores personal preferences. */
+final class Settings {
+	const OPTION = 'ddw_bdqn_settings';
+	const USER_OPTION = 'ddw_bdqn_preferences';
+
+	/** @return array Default website configuration; no database writes. */
+	public static function defaults() {
+		return array(
+			'name' => 'BD', 'icon' => 'auto', 'limit' => 20, 'orderby' => 'modified',
+			'backend' => true, 'frontend' => true, 'footer' => true, 'drafts' => false,
+			'capability' => 'activate_plugins', 'users' => array(), 'post_types' => array( 'page' ),
+			'groups' => array( 'content', 'templates', 'headers', 'footers', 'global-blocks', 'popups', 'settings', 'addons' ),
+			'delete_data' => false,
+		);
+	}
+
+	/**
+	 * Validate an option array against the supported configuration.
+	 * @param mixed $input Submitted or stored configuration.
+	 * @return array Complete sanitized website configuration.
+	 */
+	public static function sanitize( $input ) {
+		$input = is_array( $input ) ? $input : array();
+		$out = self::defaults();
+		foreach ( array( 'backend', 'frontend', 'footer', 'drafts', 'delete_data' ) as $key ) {
+			$out[ $key ] = ! empty( $input[ $key ] );
+		}
+		$out['name'] = isset( $input['name'] ) && is_scalar( $input['name'] ) ? sanitize_text_field( (string) $input['name'] ) : 'BD';
+		if ( '' === $out['name'] ) { $out['name'] = 'BD'; }
+		$out['name'] = function_exists( 'mb_substr' ) ? mb_substr( $out['name'], 0, 40 ) : substr( $out['name'], 0, 40 );
+		$out['limit'] = isset( $input['limit'] ) && is_scalar( $input['limit'] ) ? min( 100, max( 1, absint( $input['limit'] ) ) ) : 20;
+		$out['icon'] = in_array( $input['icon'] ?? '', array( 'auto', 'yellow', 'none' ), true ) ? $input['icon'] : 'auto';
+		$out['orderby'] = in_array( $input['orderby'] ?? '', array( 'modified', 'title' ), true ) ? $input['orderby'] : 'modified';
+		$out['capability'] = isset( $input['capability'] ) && is_string( $input['capability'] ) ? sanitize_key( $input['capability'] ) : 'activate_plugins';
+		if ( '' === $out['capability'] ) { $out['capability'] = 'activate_plugins'; }
+		$users = $input['users'] ?? array();
+		if ( is_string( $users ) ) { $users = preg_split( '/[\s,;]+/', $users ); }
+		$out['users'] = is_array( $users ) ? array_values( array_unique( array_filter( array_map( 'absint', array_filter( $users, 'is_scalar' ) ) ) ) ) : array();
+		$types = get_post_types( array( 'public' => true ), 'names' );
+		$out['post_types'] = is_array( $input['post_types'] ?? null ) ? array_values( array_intersect( array_filter( $input['post_types'], 'is_string' ), $types ) ) : array( 'page' );
+		$out['groups'] = is_array( $input['groups'] ?? null ) ? array_values( array_intersect( array_filter( $input['groups'], 'is_string' ), self::defaults()['groups'] ) ) : self::defaults()['groups'];
+		return $out;
+	}
+
+	/**
+	 * Resolve website values, user preferences, and immutable legacy overrides.
+	 * @param bool $personal Whether to apply the current user's site-scoped preferences.
+	 * @return array Effective settings, with constants taking final precedence.
+	 */
+	public static function get( $personal = true ) {
+		$saved = get_option( self::OPTION, array() );
+		$out = self::sanitize( array_merge( self::defaults(), is_array( $saved ) ? $saved : array() ) );
+		if ( $personal ) {
+			$prefs = get_user_option( self::USER_OPTION );
+			if ( is_array( $prefs ) ) {
+				foreach ( array( 'backend', 'frontend' ) as $key ) {
+					if ( isset( $prefs[ $key ] ) && 'hide' === $prefs[ $key ] ) { $out[ $key ] = false; }
+				}
+				if ( isset( $prefs['limit'] ) && is_scalar( $prefs['limit'] ) && ! empty( $prefs['limit'] ) ) { $out['limit'] = min( 100, max( 1, absint( $prefs['limit'] ) ) ); }
+			}
+		}
+		$map = self::constant_map();
+		foreach ( $map as $key => $constant ) {
+			if ( ! defined( $constant ) ) { continue; }
+			$value = constant( $constant );
+			if ( 'footer' === $key ) { $out['footer'] = 'yes' !== $value; }
+			elseif ( 'users' === $key ) {
+				$out['users'] = is_array( $value ) ? array_values( array_filter( array_map( 'absint', array_filter( $value, 'is_scalar' ) ) ) ) : array( -1 );
+				// An explicitly empty legacy allowlist continues to deny every user.
+				if ( empty( $out['users'] ) ) { $out['users'] = array( -1 ); }
+			} elseif ( 'limit' === $key ) { $out['limit'] = is_scalar( $value ) ? min( 100, max( 1, absint( $value ) ) ) : 20; }
+			elseif ( is_scalar( $value ) ) {
+				if ( 'icon' === $key ) { $out[ $key ] = 'yellow' === $value ? 'yellow' : 'auto'; }
+				elseif ( 'capability' === $key ) { $out[ $key ] = sanitize_key( (string) $value ); }
+				else { $out[ $key ] = sanitize_text_field( (string) $value ); }
+			}
+		}
+		return $out;
+	}
+
+	/** @return array Setting keys mapped to supported legacy constants. */
+	public static function constant_map() {
+		return array( 'name' => 'BDQN_NAME_IN_ADMINBAR', 'icon' => 'BDQN_ICON', 'limit' => 'BDQN_NUMBER_TEMPLATES', 'capability' => 'BDQN_VIEW_CAPABILITY', 'users' => 'BDQN_ENABLED_USERS', 'footer' => 'BDQN_DISABLE_FOOTER' );
+	}
+}

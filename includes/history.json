@@ -1,0 +1,79 @@
+[
+  {
+    "version": "2.0.0-beta.1",
+    "date": {
+      "en": "October 8, 2026 · Test version",
+      "de": "8. Oktober 2026 · Testversion"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Website settings and personal toolbar preferences.",
+        "de": "Website-Einstellungen und persönliche Toolbar-Vorlieben."
+      },
+      {
+        "category": "improved",
+        "en": "Navigation supports Breakdance 2.x and 3.x, with registered settings tabs and authorized destinations.",
+        "de": "Navigation für Breakdance 2.x und 3.x mit registrierten Einstellungsreitern und berechtigten Zielen."
+      },
+      {
+        "category": "fixed",
+        "en": "WooCommerce and WPSix Exporter links, query/settings filters and builder URLs.",
+        "de": "WooCommerce- und WPSix-Exporter-Verknüpfungen, Abfrage-/Einstellungsfilter und Builder-URLs."
+      },
+      {
+        "category": "improved",
+        "en": "Existing resource links, configuration constants and addon integrations remain available.",
+        "de": "Bisherige Ressourcenlinks, Konfigurationskonstanten und Addon-Integrationen bleiben erhalten."
+      },
+      {
+        "category": "new",
+        "en": "deckerweb Updater 2.1.0 and Library 0.8.1, with German informal and formal translations.",
+        "de": "deckerweb Updater 2.1.0 und Library 0.8.1 mit deutschen Du- und Sie-Übersetzungen."
+      },
+      {
+        "category": "misc",
+        "en": "WordPress controls editor toolbar visibility; QuickNav no longer changes the editor layout or removes the WordPress logo.",
+        "de": "WordPress steuert die Toolbar-Anzeige im Editor; QuickNav verändert das Editorlayout nicht mehr und entfernt das WordPress-Logo nicht."
+      },
+      {
+        "category": "misc",
+        "en": "Plugin settings are retained unless removal was explicitly enabled. The optional snippet has navigation only.",
+        "de": "Plugin-Einstellungen bleiben erhalten, sofern das Löschen nicht ausdrücklich aktiviert wurde. Das optionale Snippet bietet ausschließlich Navigation."
+      }
+    ]
+  },
+  {
+    "version": "1.1.0",
+    "date": {
+      "en": "April 7, 2025 · Repository version",
+      "de": "7. April 2025 · Repository-Stand"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Configurable item count, user ID restrictions, editor toolbar visibility, Site Health information and Reading Time Calculator support.",
+        "de": "Einstellbare Eintragszahl, Beschränkung auf Benutzer-IDs, Toolbar-Anzeige im Editor, Website-Zustandsinformationen und Unterstützung für Reading Time Calculator."
+      },
+      {
+        "category": "improved",
+        "en": "German translations, Git Updater support and plugin-list links.",
+        "de": "Deutsche Übersetzungen, Git-Updater-Unterstützung und Verknüpfungen in der Pluginliste."
+      }
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "date": {
+      "en": "March 8, 2025",
+      "de": "8. März 2025"
+    },
+    "items": [
+      {
+        "category": "new",
+        "en": "Initial release with Breakdance templates, pages, resources and addon shortcuts, including AI, Migration Mode, Yabe Webfont and WPSix Exporter.",
+        "de": "Erste Veröffentlichung mit Breakdance-Templates, Seiten, Ressourcen und Addon-Direktwegen einschließlich AI, Migration Mode, Yabe Webfont und WPSix Exporter."
+      }
+    ]
+  }
+]

@@ -1,22 +1,8 @@
-# Composer
-vendor/**/.git
 vendor/
-composer.lock
-composer.phar
-
-# Grunt
 node_modules/
-
-# macOS
 .DS_Store
 .idea/
-.DS_Store
-
-# GitHub
 .nova/
-.github/
-.git/
-.gitattributes
-.gitignore
-_config.yml
-assets-github/
+*.sqlite
+*.log
+__pycache__/
