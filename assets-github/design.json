@@ -1,32 +1,20 @@
 {
   "approved_variant": "B",
-  "approved_on": "2026-10-08",
-  "copyright": "2026 David Decker \u2013 DECKERWEB",
-  "license": "GPL-2.0-or-later",
-  "source": "Original vector artwork; alternative drafts and previous graphics retained",
-  "fonts": "System Arial references; no font binaries distributed",
-  "sizes": {
-    "github": [
-      1280,
-      640
-    ],
-    "wordpress": [
-      [
-        772,
-        250
-      ],
-      [
-        1544,
-        500
-      ]
-    ],
-    "icons": [
-      128,
-      256
-    ]
-  },
+  "revision": "2026-10-13",
+  "font": "Inter, SIL OFL 1.1, glyph paths",
+  "icon_radius": 55,
+  "icon_viewbox": 256,
+  "source": "Original SVG artwork; PNG exports and central WordPress crop from identical SVG source",
+  "icons": [
+    128,
+    256,
+    512,
+    1024
+  ],
   "languages": [
     "en",
     "de"
-  ]
+  ],
+  "copyright": "2026 David Decker \u2013 DECKERWEB",
+  "license": "GPL-2.0-or-later"
 }

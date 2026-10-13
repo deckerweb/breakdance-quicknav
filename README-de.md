@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-![Breakdance QuickNav](assets/brand/banner-de.png)
+![Breakdance QuickNav](assets/brand/banner-de.png?rev=20261013)
 
 ## Über das Plugin
 
@@ -134,3 +134,5 @@ Copyright © 2025–2026 David Decker – DECKERWEB. GPL v2 or later. Das besteh
 Historische Grafiken enthalten Symbole von [Remix Icon](https://remixicon.com/), © Remix Icon. Die aktuellen Grafiken sind eigene Vektorgrafiken.
 
 Einstellungsoberfläche und Host-Anbindung verwenden GPL-2.0-or-later-Code aus [Oxygen QuickNav 2.0.0](https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0), © 2025–2026 David Decker – DECKERWEB.
+
+Schrift der aktuellen Grafiken: Inter, SIL Open Font License 1.1; Schriftzüge als Pfade. [Lizenz](assets/brand/Inter-OFL.txt).

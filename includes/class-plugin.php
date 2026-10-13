@@ -103,7 +103,7 @@ final class Plugin {
 	public function assets( $hook = '' ) {
 		$page = in_array( $hook, array( 'settings_page_breakdance-quicknav', 'breakdance_page_breakdance-quicknav' ), true );
 		if ( ! $page && ( ! $this->visible( Settings::get() ) || ! Builder::active() ) ) { return; }
-		wp_enqueue_style( 'ddw-bdqn', plugins_url( 'assets/quicknav.css', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION );
+		wp_enqueue_style( 'ddw-bdqn', plugins_url( 'assets/quicknav.css', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION . '-artwork-20261013' );
 		if ( $page ) { wp_enqueue_script( 'ddw-bdqn-settings', plugins_url( 'assets/settings.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); wp_enqueue_script( 'ddw-bdqn-dialog', plugins_url( 'assets/dialog.js', DDW_BDQN_FILE ), array(), DDW_BDQN_VERSION, true ); }
 	}
 
@@ -351,7 +351,7 @@ final class Plugin {
 	public function page() {
 		if ( ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'You do not have permission to manage these settings.', 'breakdance-quicknav' ) ); }
 		$s = Settings::get( false );
-		echo '<div class="wrap bdqn-settings"><header class="bdqn-header"><img src="' . esc_url( plugins_url( 'assets/brand/icon.svg', DDW_BDQN_FILE ) ) . '" width="52" height="52" alt=""><div><h1>Breakdance QuickNav</h1><p>' . esc_html__( 'Your shortcuts. Breakdance 2 & 3.', 'breakdance-quicknav' ) . '</p></div></header><hr class="wp-header-end">';
+		echo '<div class="wrap bdqn-settings"><header class="bdqn-header"><img src="' . esc_url( add_query_arg( 'rev', '20261013', plugins_url( 'assets/brand/icon.svg', DDW_BDQN_FILE ) ) ) . '" width="52" height="52" alt=""><div><h1>Breakdance QuickNav</h1><p>' . esc_html__( 'Your shortcuts. Breakdance 2 & 3.', 'breakdance-quicknav' ) . '</p></div></header><hr class="wp-header-end">';
 		// WordPress already renders Settings API notices for options-general.php pages.
 		global $parent_file;
 		if ( 'options-general.php' !== $parent_file ) { settings_errors(); }

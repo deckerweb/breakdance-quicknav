@@ -2,7 +2,7 @@
 
 [Deutsch](Startseite)
 
-![Breakdance QuickNav](https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/main/assets-github/approved/banner-en.png)
+![Breakdance QuickNav](https://raw.githubusercontent.com/deckerweb/breakdance-quicknav/main/assets-github/approved/banner-en.png?rev=20261013)
 
 ## About
 
@@ -134,3 +134,5 @@ Copyright © 2025–2026 David Decker – DECKERWEB. GPL v2 or later. The existi
 Retained legacy graphics contain [Remix Icon](https://remixicon.com/) symbols, © Remix Icon. The current artwork is original vector artwork.
 
 The settings interface and host integration reuse GPL-2.0-or-later code from [Oxygen QuickNav 2.0.0](https://github.com/deckerweb/oxygen-quicknav/tree/v2.0.0), © 2025–2026 David Decker – DECKERWEB.
+
+Current artwork typeface: Inter, SIL Open Font License 1.1; lettering converted to paths. [License](https://github.com/deckerweb/breakdance-quicknav/blob/main/assets/brand/Inter-OFL.txt).
